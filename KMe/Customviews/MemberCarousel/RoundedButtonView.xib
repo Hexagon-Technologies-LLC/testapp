@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB" customClass="RoundedButtonView" customModule="KMe" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ButtonImageGray1" translatesAutoresizingMaskIntoConstraints="NO" id="Fb7-Wg-V52">
+                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="kme_profile.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="8ku-Al-iNc">
+                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Fb7-Wg-V52" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="0PL-00-iVc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="8ku-Al-iNc" secondAttribute="bottom" id="14Q-za-QCt"/>
+                <constraint firstItem="8ku-Al-iNc" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="1yl-qm-XAs"/>
+                <constraint firstItem="8ku-Al-iNc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ZLJ-xd-jCm"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="8ku-Al-iNc" secondAttribute="trailing" id="gEZ-Ep-Hpf"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Fb7-Wg-V52" secondAttribute="bottom" id="j4z-co-yAv"/>
+                <constraint firstItem="Fb7-Wg-V52" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="p6L-RM-Qko"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Fb7-Wg-V52" secondAttribute="trailing" id="uHj-rH-Gzw"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="selectedImageView" destination="8ku-Al-iNc" id="aea-CT-ijF"/>
+                <outlet property="unselectedImageView" destination="Fb7-Wg-V52" id="lx0-In-uBh"/>
+            </connections>
+            <point key="canvasLocation" x="-86.400000000000006" y="356.22188905547227"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ButtonImageGray1" width="500" height="500"/>
+        <image name="kme_profile.jpeg" width="1920" height="1545"/>
+    </resources>
+</document>

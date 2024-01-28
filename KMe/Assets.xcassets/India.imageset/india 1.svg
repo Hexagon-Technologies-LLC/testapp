@@ -1,0 +1,27 @@
+<svg id="india" xmlns="http://www.w3.org/2000/svg" width="21.871" height="14.329" viewBox="0 0 21.871 14.329">
+  <path id="Path_64" data-name="Path 64" d="M21.871,93.052H0v-4.4a.377.377,0,0,1,.377-.377H21.494a.377.377,0,0,1,.377.377v4.4Z" transform="translate(0 -88.276)" fill="#fab446"/>
+  <path id="Path_65" data-name="Path 65" d="M21.494,316.685H.377A.377.377,0,0,1,0,316.308v-4.4H21.871v4.4A.377.377,0,0,1,21.494,316.685Z" transform="translate(0 -302.356)" fill="#73af00"/>
+  <rect id="Rectangle_5" data-name="Rectangle 5" width="21.871" height="4.776" transform="translate(0 4.776)" fill="#f5f5f5"/>
+  <g id="Group_3" data-name="Group 3" transform="translate(8.909 5.138)">
+    <path id="Path_66" data-name="Path 66" d="M210.579,212.607a2.027,2.027,0,1,1,2.027-2.027A2.029,2.029,0,0,1,210.579,212.607Zm0-3.677a1.65,1.65,0,1,0,1.65,1.65A1.652,1.652,0,0,0,210.579,208.93Z" transform="translate(-208.552 -208.553)" fill="#41479b"/>
+    <ellipse id="Ellipse_5" data-name="Ellipse 5" cx="0.23" cy="0.23" rx="0.23" ry="0.23" transform="translate(1.797 1.797)" fill="#41479b"/>
+    <path id="Path_67" data-name="Path 67" d="M214.8,253.942l-.584.059-1.254-.059v-.069l1.254-.059.584.059Z" transform="translate(-212.777 -251.881)" fill="#41479b"/>
+    <path id="Path_68" data-name="Path 68" d="M256,253.942l.584.059,1.254-.059v-.069l-1.254-.059-.584.059Z" transform="translate(-253.973 -251.881)" fill="#41479b"/>
+    <path id="Path_69" data-name="Path 69" d="M253.872,214.805l-.059-.584.059-1.254h.069l.059,1.254-.059.584Z" transform="translate(-251.88 -212.778)" fill="#41479b"/>
+    <path id="Path_70" data-name="Path 70" d="M253.872,256l-.059.584.059,1.254h.069l.059-1.254-.059-.584Z" transform="translate(-251.88 -253.974)" fill="#41479b"/>
+    <path id="Path_71" data-name="Path 71" d="M226.3,226.35l-.455-.371L225,225.05l.049-.049.929.845.371.455Z" transform="translate(-224.297 -224.298)" fill="#41479b"/>
+    <path id="Path_72" data-name="Path 72" d="M255.43,255.48l.371.455.929.845.049-.049-.845-.929-.455-.371Z" transform="translate(-253.428 -253.429)" fill="#41479b"/>
+    <path id="Path_73" data-name="Path 73" d="M255.43,226.3l.371-.455.929-.845.049.049-.845.929-.455.371Z" transform="translate(-253.428 -224.298)" fill="#41479b"/>
+    <path id="Path_74" data-name="Path 74" d="M226.3,255.431l-.455.371-.845.929.049.049.929-.845.371-.455Z" transform="translate(-224.297 -253.429)" fill="#41479b"/>
+    <path id="Path_75" data-name="Path 75" d="M217.658,255.319l-.517.278-1.181.426-.026-.064,1.136-.534.562-.169Z" transform="translate(-215.618 -253.26)" fill="#41479b"/>
+    <path id="Path_76" data-name="Path 76" d="M255.717,239.554l.562-.169,1.136-.534-.026-.064-1.181.426-.517.278Z" transform="translate(-253.677 -237.496)" fill="#41479b"/>
+    <path id="Path_77" data-name="Path 77" d="M239.489,217.659l-.278-.517-.426-1.181.064-.026.534,1.136.169.562Z" transform="translate(-237.494 -215.619)" fill="#41479b"/>
+    <path id="Path_78" data-name="Path 78" d="M255.254,255.718l.169.562.534,1.136.064-.026-.426-1.181-.278-.517Z" transform="translate(-253.259 -253.678)" fill="#41479b"/>
+    <path id="Path_79" data-name="Path 79" d="M217.631,239.554l-.562-.169-1.136-.534.026-.064,1.181.426.517.278Z" transform="translate(-215.618 -237.496)" fill="#41479b"/>
+    <path id="Path_80" data-name="Path 80" d="M255.691,255.319l.517.278,1.181.426.026-.064-1.136-.534-.562-.169Z" transform="translate(-253.677 -253.26)" fill="#41479b"/>
+    <path id="Path_81" data-name="Path 81" d="M255.254,217.632l.169-.562.534-1.136.064.026-.426,1.181-.278.517Z" transform="translate(-253.259 -215.619)" fill="#41479b"/>
+    <path id="Path_82" data-name="Path 82" d="M239.489,255.692l-.278.517-.426,1.181.064.026.534-1.136.169-.562Z" transform="translate(-237.494 -253.678)" fill="#41479b"/>
+  </g>
+  <ellipse id="Ellipse_6" data-name="Ellipse 6" cx="0.31" cy="0.31" rx="0.31" ry="0.31" transform="translate(10.625 6.855)" fill="#f5f5f5"/>
+  <ellipse id="Ellipse_7" data-name="Ellipse 7" cx="0.186" cy="0.186" rx="0.186" ry="0.186" transform="translate(10.75 6.979)" fill="#41479b"/>
+</svg>
