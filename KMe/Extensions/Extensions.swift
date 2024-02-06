@@ -9,8 +9,6 @@ import Foundation
 import UIKit
 import AVFoundation
 
-
-
 extension UIDevice {
     
     // Toggle flash light while using camera

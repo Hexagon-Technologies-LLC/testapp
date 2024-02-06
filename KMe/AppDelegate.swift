@@ -7,16 +7,31 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import Amplify
+import AWSCognitoAuthPlugin
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
+    var appState: AppStore<AppState>?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         IQKeyboardManager.shared.enable = true
-
+        
+        let env = AppEnvironmentImpl()
+        self.appState = env.appState
+        
+        let repo = CFRepositories(env: env)
+        repo.registerDI()
+        
+        do {
+              try Amplify.add(plugin: AWSCognitoAuthPlugin())
+              try Amplify.configure()
+              print("Amplify configured with auth plugin")
+          } catch {
+              print("Failed to initialize Amplify with \(error)")
+          }
+        
         return true
     }
 

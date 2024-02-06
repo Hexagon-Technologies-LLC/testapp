@@ -66,7 +66,6 @@
 		086474B72ACE484C009B6CAB /* SendInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086474B62ACE484C009B6CAB /* SendInviteViewController.swift */; };
 		086474B92ACE8359009B6CAB /* AddKidsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086474B82ACE8359009B6CAB /* AddKidsViewController.swift */; };
 		086474BB2ACED575009B6CAB /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086474BA2ACED575009B6CAB /* CalendarViewController.swift */; };
-		086474BD2ACEDAF9009B6CAB /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086474BC2ACEDAF9009B6CAB /* UIColor+Hex.swift */; };
 		086474C12ACEE270009B6CAB /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086474BF2ACEE270009B6CAB /* Date+Format.swift */; };
 		086474C62ACF4420009B6CAB /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086474C42ACF4420009B6CAB /* SearchResultTableViewCell.swift */; };
 		086474C72ACF4420009B6CAB /* SearchResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 086474C52ACF4420009B6CAB /* SearchResultTableViewCell.xib */; };
@@ -111,7 +110,6 @@
 		08BFC8F82AE24B7000C8D18B /* DateScrollPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08BFC8E72AE24B6F00C8D18B /* DateScrollPicker.xib */; };
 		08BFC8F92AE24B7000C8D18B /* DateInsertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFC8E82AE24B7000C8D18B /* DateInsertType.swift */; };
 		08BFC8FA2AE24B7000C8D18B /* DateScrollPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFC8E92AE24B7000C8D18B /* DateScrollPicker.swift */; };
-		08BFC8FC2AE24C7500C8D18B /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFC8FB2AE24C7500C8D18B /* UIColor+Hex.swift */; };
 		08BFC8FE2AE25B3900C8D18B /* Monthcalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BFC8FD2AE25B3900C8D18B /* Monthcalendar.swift */; };
 		08BFC9002AE25B5800C8D18B /* Monthcalendar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08BFC8FF2AE25B5800C8D18B /* Monthcalendar.xib */; };
 		08C0DEE12AA9A66E008CAC1C /* GetstartedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C0DEE02AA9A66E008CAC1C /* GetstartedViewController.swift */; };
@@ -138,6 +136,29 @@
 		149928545F192A684D2CF777 /* Pods_KMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BE96D6BACCE63270BC8739C /* Pods_KMe.framework */; };
 		3CF2F8788229F4D3F3484584 /* Pods_KMeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 922704075AFAF32E3BC79AB8 /* Pods_KMeTests.framework */; };
 		40B33C4C85028C6AD380D394 /* Pods_KMe_KMeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80697DF04144FCBA3130201A /* Pods_KMe_KMeUITests.framework */; };
+		D4A7BFB42B72738000198593 /* CFRepositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BF9A2B72738000198593 /* CFRepositories.swift */; };
+		D4A7BFB62B72738000198593 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BF9D2B72738000198593 /* Resolver.swift */; };
+		D4A7BFB72B72738000198593 /* CancelBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BF9E2B72738000198593 /* CancelBag.swift */; };
+		D4A7BFB82B72738000198593 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BF9F2B72738000198593 /* JSON.swift */; };
+		D4A7BFB92B72738000198593 /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFA02B72738000198593 /* Then.swift */; };
+		D4A7BFBA2B72738000198593 /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFA12B72738000198593 /* Codable+Extension.swift */; };
+		D4A7BFBB2B72738000198593 /* Network+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFA22B72738000198593 /* Network+Extensions.swift */; };
+		D4A7BFBC2B72738000198593 /* NetworkingLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFA52B72738000198593 /* NetworkingLogger.swift */; };
+		D4A7BFBD2B72738000198593 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFA62B72738000198593 /* NetworkingError.swift */; };
+		D4A7BFBE2B72738000198593 /* ParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFA82B72738000198593 /* ParameterEncoder.swift */; };
+		D4A7BFBF2B72738000198593 /* Combine+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFA92B72738000198593 /* Combine+Extension.swift */; };
+		D4A7BFC02B72738000198593 /* WebRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFAA2B72738000198593 /* WebRepository.swift */; };
+		D4A7BFC12B72738000198593 /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFAB2B72738000198593 /* HTTP.swift */; };
+		D4A7BFC22B72738000198593 /* ResourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFAC2B72738000198593 /* ResourceType.swift */; };
+		D4A7BFC32B72738000198593 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFAD2B72738000198593 /* Keychain.swift */; };
+		D4A7BFC42B72738000198593 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFAF2B72738000198593 /* AuthRepository.swift */; };
+		D4A7BFC52B72738000198593 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFB12B72738000198593 /* AppState.swift */; };
+		D4A7BFC62B72738000198593 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFB32B72738000198593 /* UserInfo.swift */; };
+		D4A7BFC82B72752300198593 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFC72B72752300198593 /* UIColor+Hex.swift */; };
+		D4A7BFCA2B72764900198593 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFC92B72764900198593 /* AppEnvironment.swift */; };
+		D4A7BFCD2B7279A900198593 /* AWSCognitoAuthPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = D4A7BFCC2B7279A900198593 /* AWSCognitoAuthPlugin */; };
+		D4A7BFCF2B7279A900198593 /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = D4A7BFCE2B7279A900198593 /* Amplify */; };
+		D4A7BFD12B727C7400198593 /* AWSUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFD02B727C7400198593 /* AWSUserManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,8 +183,8 @@
 		0838F3092AB3FE7600A6F57B /* CountryselectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryselectionViewController.swift; sourceTree = "<group>"; };
 		0838F30B2AB3FF0500A6F57B /* CountryselectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryselectionTableViewCell.swift; sourceTree = "<group>"; };
 		0838F30C2AB3FF0500A6F57B /* CountryselectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryselectionTableViewCell.xib; sourceTree = "<group>"; };
-		0838F3102AB40AE700A6F57B /* SHPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHPopup.h; path = popup/SHPopup.h; sourceTree = "<group>"; };
-		0838F3112AB40AE700A6F57B /* SHPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHPopup.swift; path = popup/SHPopup.swift; sourceTree = "<group>"; };
+		0838F3102AB40AE700A6F57B /* SHPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPopup.h; sourceTree = "<group>"; };
+		0838F3112AB40AE700A6F57B /* SHPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SHPopup.swift; sourceTree = "<group>"; };
 		0838F3132AB92C5A00A6F57B /* DocSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocSummaryViewController.swift; sourceTree = "<group>"; };
 		0838F3152AB92D3300A6F57B /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		0838F3162AB92D3300A6F57B /* ActivityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityTableViewCell.xib; sourceTree = "<group>"; };
@@ -223,7 +244,6 @@
 		086474B62ACE484C009B6CAB /* SendInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendInviteViewController.swift; sourceTree = "<group>"; };
 		086474B82ACE8359009B6CAB /* AddKidsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddKidsViewController.swift; sourceTree = "<group>"; };
 		086474BA2ACED575009B6CAB /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		086474BC2ACEDAF9009B6CAB /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		086474BF2ACEE270009B6CAB /* Date+Format.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Format.swift"; sourceTree = "<group>"; };
 		086474C42ACF4420009B6CAB /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		086474C52ACF4420009B6CAB /* SearchResultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultTableViewCell.xib; sourceTree = "<group>"; };
@@ -268,7 +288,6 @@
 		08BFC8E72AE24B6F00C8D18B /* DateScrollPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateScrollPicker.xib; sourceTree = "<group>"; };
 		08BFC8E82AE24B7000C8D18B /* DateInsertType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateInsertType.swift; sourceTree = "<group>"; };
 		08BFC8E92AE24B7000C8D18B /* DateScrollPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateScrollPicker.swift; sourceTree = "<group>"; };
-		08BFC8FB2AE24C7500C8D18B /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Hex.swift"; path = "KMe/Extensions/UIColor+Hex.swift"; sourceTree = SOURCE_ROOT; };
 		08BFC8FD2AE25B3900C8D18B /* Monthcalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monthcalendar.swift; sourceTree = "<group>"; };
 		08BFC8FF2AE25B5800C8D18B /* Monthcalendar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Monthcalendar.xib; sourceTree = "<group>"; };
 		08C0DEE02AA9A66E008CAC1C /* GetstartedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetstartedViewController.swift; sourceTree = "<group>"; };
@@ -300,6 +319,27 @@
 		AD7DB69A9128AB4E105BD630 /* Pods-KMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMe.release.xcconfig"; path = "Target Support Files/Pods-KMe/Pods-KMe.release.xcconfig"; sourceTree = "<group>"; };
 		BC03FD88456D638CE873AF10 /* Pods-KMe-KMeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMe-KMeUITests.release.xcconfig"; path = "Target Support Files/Pods-KMe-KMeUITests/Pods-KMe-KMeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C36AF0FD6E2EBF42987A3F3D /* Pods-KMeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMeTests.debug.xcconfig"; path = "Target Support Files/Pods-KMeTests/Pods-KMeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D4A7BF9A2B72738000198593 /* CFRepositories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFRepositories.swift; sourceTree = "<group>"; };
+		D4A7BF9D2B72738000198593 /* Resolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
+		D4A7BF9E2B72738000198593 /* CancelBag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelBag.swift; sourceTree = "<group>"; };
+		D4A7BF9F2B72738000198593 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		D4A7BFA02B72738000198593 /* Then.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
+		D4A7BFA12B72738000198593 /* Codable+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Codable+Extension.swift"; sourceTree = "<group>"; };
+		D4A7BFA22B72738000198593 /* Network+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Network+Extensions.swift"; sourceTree = "<group>"; };
+		D4A7BFA52B72738000198593 /* NetworkingLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingLogger.swift; sourceTree = "<group>"; };
+		D4A7BFA62B72738000198593 /* NetworkingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
+		D4A7BFA82B72738000198593 /* ParameterEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEncoder.swift; sourceTree = "<group>"; };
+		D4A7BFA92B72738000198593 /* Combine+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Combine+Extension.swift"; sourceTree = "<group>"; };
+		D4A7BFAA2B72738000198593 /* WebRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRepository.swift; sourceTree = "<group>"; };
+		D4A7BFAB2B72738000198593 /* HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
+		D4A7BFAC2B72738000198593 /* ResourceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceType.swift; sourceTree = "<group>"; };
+		D4A7BFAD2B72738000198593 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		D4A7BFAF2B72738000198593 /* AuthRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
+		D4A7BFB12B72738000198593 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		D4A7BFB32B72738000198593 /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		D4A7BFC72B72752300198593 /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		D4A7BFC92B72764900198593 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
+		D4A7BFD02B727C7400198593 /* AWSUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSUserManager.swift; sourceTree = "<group>"; };
 		F7FBEDA2A314813B9BA05F4C /* Pods-KMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMe.debug.xcconfig"; path = "Target Support Files/Pods-KMe/Pods-KMe.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -308,7 +348,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4A7BFCF2B7279A900198593 /* Amplify in Frameworks */,
 				149928545F192A684D2CF777 /* Pods_KMe.framework in Frameworks */,
+				D4A7BFCD2B7279A900198593 /* AWSCognitoAuthPlugin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +376,8 @@
 		0838F30F2AB4091E00A6F57B /* popup */ = {
 			isa = PBXGroup;
 			children = (
+				0838F3102AB40AE700A6F57B /* SHPopup.h */,
+				0838F3112AB40AE700A6F57B /* SHPopup.swift */,
 			);
 			path = popup;
 			sourceTree = "<group>";
@@ -366,15 +410,15 @@
 				08C488A02AE8DC5600329F98 /* Mockdata */,
 				08C4889D2AE8DB8D00329F98 /* Models */,
 				0838F30F2AB4091E00A6F57B /* popup */,
-				0838F3102AB40AE700A6F57B /* SHPopup.h */,
-				0838F3112AB40AE700A6F57B /* SHPopup.swift */,
 				08C0DEF82AB15172008CAC1C /* Extensions */,
 				08C0DEED2AB01E92008CAC1C /* Customviews */,
 				08FC8B072AA862D300926DA3 /* Controllers */,
 				08FC8B022AA8605400926DA3 /* Collectioncells */,
 				086462B52AA852EC009CBF01 /* Fonts */,
+				D4A7BF992B72736D00198593 /* Repositories */,
 				086462B22AA83C11009CBF01 /* Placeholder_images */,
 				086462AF2AA741D3009CBF01 /* Components */,
+				D4A7BFC92B72764900198593 /* AppEnvironment.swift */,
 				0864627F2AA5AC15009CBF01 /* AppDelegate.swift */,
 				086462812AA5AC15009CBF01 /* SceneDelegate.swift */,
 				086462832AA5AC15009CBF01 /* ViewController.swift */,
@@ -468,7 +512,6 @@
 			children = (
 				08BFC8E82AE24B7000C8D18B /* DateInsertType.swift */,
 				08BFC8D92AE24B6C00C8D18B /* DateScrollItem.swift */,
-				08BFC8FB2AE24C7500C8D18B /* UIColor+Hex.swift */,
 				08BFC8DC2AE24B6D00C8D18B /* DateScrollManager.swift */,
 				08BFC8E92AE24B7000C8D18B /* DateScrollPicker.swift */,
 				08BFC8E72AE24B6F00C8D18B /* DateScrollPicker.xib */,
@@ -536,9 +579,9 @@
 		08C0DEF82AB15172008CAC1C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D4A7BFC72B72752300198593 /* UIColor+Hex.swift */,
 				08BFC8E42AE24B6F00C8D18B /* Date+Days.swift */,
 				086474BF2ACEE270009B6CAB /* Date+Format.swift */,
-				086474BC2ACEDAF9009B6CAB /* UIColor+Hex.swift */,
 				08C0DEF92AB15190008CAC1C /* Extensions.swift */,
 				08BB6D552ABD6B08004EAAAF /* Toastview.swift */,
 			);
@@ -622,6 +665,88 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		D4A7BF992B72736D00198593 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				D4A7BF9A2B72738000198593 /* CFRepositories.swift */,
+				D4A7BFA32B72738000198593 /* Core */,
+				D4A7BFB22B72738000198593 /* Models */,
+				D4A7BFAE2B72738000198593 /* Repositories */,
+				D4A7BFB02B72738000198593 /* System */,
+				D4A7BF9B2B72738000198593 /* Utilities */,
+				D4A7BFD02B727C7400198593 /* AWSUserManager.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		D4A7BF9B2B72738000198593 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D4A7BF9D2B72738000198593 /* Resolver.swift */,
+				D4A7BF9E2B72738000198593 /* CancelBag.swift */,
+				D4A7BF9F2B72738000198593 /* JSON.swift */,
+				D4A7BFA02B72738000198593 /* Then.swift */,
+				D4A7BFA12B72738000198593 /* Codable+Extension.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		D4A7BFA32B72738000198593 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				D4A7BFA42B72738000198593 /* Network */,
+				D4A7BFAD2B72738000198593 /* Keychain.swift */,
+				D4A7BFA22B72738000198593 /* Network+Extensions.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		D4A7BFA42B72738000198593 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D4A7BFA52B72738000198593 /* NetworkingLogger.swift */,
+				D4A7BFA62B72738000198593 /* NetworkingError.swift */,
+				D4A7BFA72B72738000198593 /* Encoding */,
+				D4A7BFA92B72738000198593 /* Combine+Extension.swift */,
+				D4A7BFAA2B72738000198593 /* WebRepository.swift */,
+				D4A7BFAB2B72738000198593 /* HTTP.swift */,
+				D4A7BFAC2B72738000198593 /* ResourceType.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		D4A7BFA72B72738000198593 /* Encoding */ = {
+			isa = PBXGroup;
+			children = (
+				D4A7BFA82B72738000198593 /* ParameterEncoder.swift */,
+			);
+			path = Encoding;
+			sourceTree = "<group>";
+		};
+		D4A7BFAE2B72738000198593 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				D4A7BFAF2B72738000198593 /* AuthRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		D4A7BFB02B72738000198593 /* System */ = {
+			isa = PBXGroup;
+			children = (
+				D4A7BFB12B72738000198593 /* AppState.swift */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
+		D4A7BFB22B72738000198593 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D4A7BFB32B72738000198593 /* UserInfo.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		E8AC2583EDEB049B56BE9D8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -650,6 +775,10 @@
 			dependencies = (
 			);
 			name = KMe;
+			packageProductDependencies = (
+				D4A7BFCC2B7279A900198593 /* AWSCognitoAuthPlugin */,
+				D4A7BFCE2B7279A900198593 /* Amplify */,
+			);
 			productName = KMe;
 			productReference = 0864627C2AA5AC15009CBF01 /* KMe.app */;
 			productType = "com.apple.product-type.application";
@@ -725,6 +854,9 @@
 				Base,
 			);
 			mainGroup = 086462732AA5AC15009CBF01;
+			packageReferences = (
+				D4A7BFCB2B7279A900198593 /* XCRemoteSwiftPackageReference "amplify-swift" */,
+			);
 			productRefGroup = 0864627D2AA5AC15009CBF01 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -911,13 +1043,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				086474A92ACD12FE009B6CAB /* CircularCarousel+Loader.swift in Sources */,
+				D4A7BFC22B72738000198593 /* ResourceType.swift in Sources */,
 				0838F3142AB92C5A00A6F57B /* DocSummaryViewController.swift in Sources */,
 				0893A6D02AEA49290047C07A /* Reminder.swift in Sources */,
 				08C0DEF32AB01F00008CAC1C /* Uploadstackview.swift in Sources */,
+				D4A7BFC32B72738000198593 /* Keychain.swift in Sources */,
 				087EC8252AF0F7C300295036 /* CalendarHeaderTableViewCell.swift in Sources */,
 				08BFC8F02AE24B7000C8D18B /* UICollectionViewCell+Fade.swift in Sources */,
 				087EC8282AF108B900295036 /* EmptyRequestView.swift in Sources */,
 				08BFC8F52AE24B7000C8D18B /* Date+Days.swift in Sources */,
+				D4A7BFB72B72738000198593 /* CancelBag.swift in Sources */,
 				08BFC8EA2AE24B7000C8D18B /* DateScrollItem.swift in Sources */,
 				086474B52ACE438C009B6CAB /* InviteViewController.swift in Sources */,
 				08C0DF042AB174D0008CAC1C /* Documentsummary.swift in Sources */,
@@ -927,33 +1062,45 @@
 				08AE1BA42AF51B6B00F8A4E4 /* TermsViewController.swift in Sources */,
 				08B723F02AD92EF800855635 /* CalendarTableViewCell.swift in Sources */,
 				08BFC8ED2AE24B7000C8D18B /* DateScrollManager.swift in Sources */,
+				D4A7BFBA2B72738000198593 /* Codable+Extension.swift in Sources */,
 				08C0DF002AB17482008CAC1C /* Uploadedstackview.swift in Sources */,
+				D4A7BFC62B72738000198593 /* UserInfo.swift in Sources */,
 				086474B92ACE8359009B6CAB /* AddKidsViewController.swift in Sources */,
 				086474AD2ACD12FE009B6CAB /* NSObjectExtension.swift in Sources */,
 				082F0BB02AF2206900A0A08B /* Member.swift in Sources */,
 				08FC8B052AA8608B00926DA3 /* CountryCollectionViewCell.swift in Sources */,
+				D4A7BFB82B72738000198593 /* JSON.swift in Sources */,
 				086462842AA5AC15009CBF01 /* ViewController.swift in Sources */,
 				087EC81C2AF0EB6400295036 /* ShimmerView.swift in Sources */,
 				086462802AA5AC15009CBF01 /* AppDelegate.swift in Sources */,
+				D4A7BFB62B72738000198593 /* Resolver.swift in Sources */,
 				08C0DEE32AA9B289008CAC1C /* LoginViewController.swift in Sources */,
 				08BFC8F12AE24B7000C8D18B /* UICollectionView+Fade.swift in Sources */,
 				08AE1BA02AF4EE2E00F8A4E4 /* EditProfileViewController.swift in Sources */,
 				08A55C422ABAC21500A2B1F5 /* MoreoptionView.swift in Sources */,
 				08BB6D482ABC9C1A004EAAAF /* NotificationViewController.swift in Sources */,
+				D4A7BFBB2B72738000198593 /* Network+Extensions.swift in Sources */,
 				08462B1B2B2074A900FAAF8B /* Country.swift in Sources */,
 				086474A72ACD12FE009B6CAB /* CircularCarousel+Scroll.swift in Sources */,
+				D4A7BFD12B727C7400198593 /* AWSUserManager.swift in Sources */,
 				08C0DEF72AB14F1B008CAC1C /* LocationCell.swift in Sources */,
-				086474BD2ACEDAF9009B6CAB /* UIColor+Hex.swift in Sources */,
 				08C4889F2AE8DBCC00329F98 /* Notification.swift in Sources */,
+				D4A7BFB92B72738000198593 /* Then.swift in Sources */,
+				D4A7BFBC2B72738000198593 /* NetworkingLogger.swift in Sources */,
 				08C488A22AE8DC6600329F98 /* Mockdata.swift in Sources */,
-				08BFC8FC2AE24C7500C8D18B /* UIColor+Hex.swift in Sources */,
+				D4A7BFC02B72738000198593 /* WebRepository.swift in Sources */,
 				088FB5582AEFCC7B003A132E /* Sharedwith.swift in Sources */,
 				08BFC8FA2AE24B7000C8D18B /* DateScrollPicker.swift in Sources */,
+				D4A7BFC52B72738000198593 /* AppState.swift in Sources */,
 				08BB6D522ABD15A3004EAAAF /* ProfileViewController.swift in Sources */,
 				083912772AC684B400B81C2B /* CaptureViewController.swift in Sources */,
 				086474C92ACFA05F009B6CAB /* RequestAccessViewController.swift in Sources */,
+				D4A7BFC42B72738000198593 /* AuthRepository.swift in Sources */,
 				086462822AA5AC15009CBF01 /* SceneDelegate.swift in Sources */,
 				08C0DF062AB1B603008CAC1C /* HostViewController.swift in Sources */,
+				D4A7BFC82B72752300198593 /* UIColor+Hex.swift in Sources */,
+				D4A7BFBD2B72738000198593 /* NetworkingError.swift in Sources */,
+				D4A7BFB42B72738000198593 /* CFRepositories.swift in Sources */,
 				083912792AC6850000B81C2B /* SharewithViewController.swift in Sources */,
 				08A41B962ABAF546007B26EB /* DocumentDetails.swift in Sources */,
 				086474AB2ACD12FE009B6CAB /* CircularCarousel.swift in Sources */,
@@ -962,14 +1109,17 @@
 				08C0DEEC2AAA8DB8008CAC1C /* UIBezierPath+MaterialOutlinedTextField.swift in Sources */,
 				08AE1B9E2AF4E16500F8A4E4 /* InviteMember.swift in Sources */,
 				08462B192B2066DB00FAAF8B /* MemberDocument.swift in Sources */,
+				D4A7BFC12B72738000198593 /* HTTP.swift in Sources */,
 				08FC8B092AA862F200926DA3 /* MembersViewController.swift in Sources */,
 				0838F3172AB92D3300A6F57B /* ActivityTableViewCell.swift in Sources */,
+				D4A7BFCA2B72764900198593 /* AppEnvironment.swift in Sources */,
 				086474A62ACD12FE009B6CAB /* CircularCarouselDataSource.swift in Sources */,
 				0838F3122AB40AE700A6F57B /* SHPopup.swift in Sources */,
 				08C0DEE52AA9B818008CAC1C /* ProfileCompletionViewController.swift in Sources */,
 				08BFC8F72AE24B7000C8D18B /* SeparatorViewCell.swift in Sources */,
 				0839127D2AC6855F00B81C2B /* ShareTableViewCell.swift in Sources */,
 				08BB6D542ABD205C004EAAAF /* EditProfileCompletionViewController.swift in Sources */,
+				D4A7BFBF2B72738000198593 /* Combine+Extension.swift in Sources */,
 				08BFC8F62AE24B7000C8D18B /* DateScrollPickerFormat.swift in Sources */,
 				08BFC8F42AE24B7000C8D18B /* DateScrollPicker+Protocols.swift in Sources */,
 				08C0DEFA2AB15190008CAC1C /* Extensions.swift in Sources */,
@@ -986,6 +1136,7 @@
 				0838F30A2AB3FE7600A6F57B /* CountryselectionViewController.swift in Sources */,
 				08C0DEE12AA9A66E008CAC1C /* GetstartedViewController.swift in Sources */,
 				086474AE2ACD12FE009B6CAB /* CircularCarousel+Animation.swift in Sources */,
+				D4A7BFBE2B72738000198593 /* ParameterEncoder.swift in Sources */,
 				08C0DEEA2AAA8D84008CAC1C /* MaterialOutlinedTextField.swift in Sources */,
 				086474AF2ACD12FE009B6CAB /* CircularCarousel+Layout.swift in Sources */,
 				08C0DEE82AAA8D58008CAC1C /* ColorModel.swift in Sources */,
@@ -1352,6 +1503,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D4A7BFCB2B7279A900198593 /* XCRemoteSwiftPackageReference "amplify-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aws-amplify/amplify-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.25.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D4A7BFCC2B7279A900198593 /* AWSCognitoAuthPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4A7BFCB2B7279A900198593 /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			productName = AWSCognitoAuthPlugin;
+		};
+		D4A7BFCE2B7279A900198593 /* Amplify */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4A7BFCB2B7279A900198593 /* XCRemoteSwiftPackageReference "amplify-swift" */;
+			productName = Amplify;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 086462742AA5AC15009CBF01 /* Project object */;
 }
