@@ -12,6 +12,7 @@ xcuserdata/
 ## compatibility with Xcode 3 and earlier (ignoring not required starting Xcode 4)
 build/
 DerivedData/
+Pods/
 *.moved-aside
 *.pbxuser
 !default.pbxuser
@@ -48,6 +49,7 @@ playground.xcworkspace
 
 .build/
 
+
 # CocoaPods
 #
 # We recommend against adding the Pods directory to your .gitignore. However
@@ -55,9 +57,9 @@ playground.xcworkspace
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
 #
 # Pods/
-#
 # Add this line if you want to avoid checking in source code from the Xcode workspace
 # *.xcworkspace
+
 
 # Carthage
 #

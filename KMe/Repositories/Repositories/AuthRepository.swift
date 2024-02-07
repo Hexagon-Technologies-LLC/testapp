@@ -14,7 +14,7 @@ public protocol AuthRepository: WebRepository {
     func credentialToken(code: String) async throws -> TokenInfo
     func signIn(username: String, password: String) async throws -> Bool
     func getProfile(email: String) async throws -> UserInfo
-    func createProfile(params: [String: Any]) async throws -> UserInfo
+    func createProfile(params: [String: Any]) async throws -> String
 }
 
 struct AuthRepositoryImpl {
@@ -55,7 +55,7 @@ extension AuthRepositoryImpl {
                                  "redirect_uri": "https%3A%2F%2Fkmeapp.app",
                                  "code": code]
         
-        let tokenInfo:TokenInfo = try await execute(endpoint: API.credentialToken(param: param), isFullPath: false, logLevel: .debug)
+        let tokenInfo:TokenInfo = try await execute(endpoint: API.credentialToken(param: param), isFullPath: true, logLevel: .debug)
         return tokenInfo
     }
     
@@ -64,9 +64,9 @@ extension AuthRepositoryImpl {
         return userInfo
     }
     
-    func createProfile(params: [String : Any]) async throws -> UserInfo {
-        let userInfo: UserInfo = try await execute(endpoint: API.createProfile(param: params), isFullPath: false, logLevel: .debug)
-        return userInfo
+    func createProfile(params: [String : Any]) async throws -> String {
+        let userInfo: [String: String] = try await execute(endpoint: API.createProfile(param: params), isFullPath: false, logLevel: .debug)
+        return userInfo["user_id"] ?? ""
     }
 }
 
@@ -86,7 +86,7 @@ extension AuthRepositoryImpl {
         var endPoint: Endpoint {
             switch self {
             case .credentialToken:
-                return .post(path: "oauth2/token")
+                return .post(path: "https://kme.auth.us-east-1.amazoncognito.com/oauth2/token")
             case .signIn:
                 return .post(path: "login")
             case .getProfile(let email):
@@ -99,7 +99,7 @@ extension AuthRepositoryImpl {
         var task: HTTPTask {
             switch self {
             case .credentialToken(let param):
-                return .requestParameters(encoding: .urlEncodingGET, urlParameters: param)
+                return .requestParameters(encoding: .urlEncodingPOST, urlParameters: param)
             case .signIn(let param):
                 return .requestParameters(bodyParameters: param, encoding: .jsonEncoding)
             case .getProfile:

@@ -50,6 +50,7 @@ class ProfileCompletionViewController: UIViewController,UIPickerViewDelegate,UIP
     let genderpicker = ["Male","Female","Other","Don't want to specify"]
     var pickerView = UIPickerView()
     let datePicker = UIDatePicker()
+    @LazyInjected var repoAuth: AuthRepository
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -171,10 +172,22 @@ class ProfileCompletionViewController: UIViewController,UIPickerViewDelegate,UIP
     }
     
     /**Call back action method for filing button**/
-    @IBAction func flingActionCallback(_ sender: FlingActionButton){
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController  = storyBoard.instantiateViewController(withIdentifier: "SSCustomTabBarViewController") as! SSCustomTabBarViewController
-        self.navigationController?.pushViewController(nextViewController, animated:true)
+    @IBAction func flingActionCallback(_ sender: FlingActionButton) {
+        Task {
+            let params = ["dob": self.dateofbirth.text,
+                          "email": "test@gmail.com",
+                          "first_name": self.firstname.text,
+                          "gender": self.gender.text,
+                          "last_name": self.lastname.text,
+                          "middle_name": self.middlename.text,
+                          "photo_url": "",
+                          "region": self.region.text,
+                          "username": "test user"]
+            let createdUserD = try await repoAuth.createProfile(params: params)
+            if !createdUserD.isEmpty {
+                showRegisterSuccessAlert()
+            }
+        }
     }
     
     
@@ -203,11 +216,7 @@ class ProfileCompletionViewController: UIViewController,UIPickerViewDelegate,UIP
             popupVC?.regiondelegate = self;
             self.presentPopup(controller: popupVC!, completion: nil)
             self.view.endEditing(true)
-
-            
         }
-        
-        
     }
     
     /**Text field delegate function called when user click finish editing  on that textfield**/
@@ -243,6 +252,20 @@ class ProfileCompletionViewController: UIViewController,UIPickerViewDelegate,UIP
     {
         gender.text = genderpicker[row]
         gender.resignFirstResponder()
+    }
+    
+    func showRegisterSuccessAlert()
+    {
+        
+        let alert = UIAlertController(title: "", message: "Register Successfully", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let nextViewController  = storyBoard.instantiateViewController(withIdentifier: "SSCustomTabBarViewController") as! SSCustomTabBarViewController
+            self.navigationController?.pushViewController(nextViewController, animated:true)
+            
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
 }
