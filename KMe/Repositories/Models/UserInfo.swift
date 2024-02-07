@@ -9,9 +9,10 @@ import Foundation
 
 
 public struct TokenInfo: Codable {
+    let id_token: String
     let access_token: String
-    let expires_in: Int
     let refresh_token: String
+    let expires_in: Int
 }
 
 public struct UserInfo: Codable {

@@ -11,7 +11,10 @@ import Combine
 import Foundation
 
 public protocol AuthRepository: WebRepository {
-    func signIn(email: String, password: String) async throws -> TokenInfo
+    func credentialToken(code: String) async throws -> TokenInfo
+    func signIn(username: String, password: String) async throws -> Bool
+    func getProfile(email: String) async throws -> UserInfo
+    func createProfile(params: [String: Any]) async throws -> UserInfo
 }
 
 struct AuthRepositoryImpl {
@@ -38,35 +41,71 @@ public enum AuthError: Error, LocalizedError {
 
 // MARK: - Async impl
 extension AuthRepositoryImpl {
-    func signIn(email: String, password: String) async throws -> TokenInfo {
+    func signIn(username: String, password: String) async throws -> Bool {
         
-        let param: Parameters = ["username": email, "password": password]
+        let param: Parameters = ["username": username, "password": password]
         
-        let tokenInfo:TokenInfo = try await execute(endpoint: API.signIn(param: param), isFullPath: true, logLevel: .debug)
+        let result: Bool = try await execute(endpoint: API.signIn(param: param), isFullPath: false, logLevel: .debug)
+        return result
+    }
+    
+    func credentialToken(code: String) async throws -> TokenInfo {
+        let param: Parameters = ["grant_type": "authorization_code",
+                                 "client_id": "45vr75joq0hgjv6k8ath6ifimm",
+                                 "redirect_uri": "https%3A%2F%2Fkmeapp.app",
+                                 "code": code]
+        
+        let tokenInfo:TokenInfo = try await execute(endpoint: API.credentialToken(param: param), isFullPath: false, logLevel: .debug)
         return tokenInfo
+    }
+    
+    func getProfile(email: String) async throws -> UserInfo {
+        let userInfo: UserInfo = try await execute(endpoint: API.getProfile(email: email), isFullPath: false, logLevel: .debug)
+        return userInfo
+    }
+    
+    func createProfile(params: [String : Any]) async throws -> UserInfo {
+        let userInfo: UserInfo = try await execute(endpoint: API.createProfile(param: params), isFullPath: false, logLevel: .debug)
+        return userInfo
     }
 }
 
 // MARK: - Protocol impl
 extension AuthRepositoryImpl: AuthRepository {
+   
 
 }
 // MARK: - Configuration
 extension AuthRepositoryImpl {
     enum API: ResourceType {
         case signIn(param: Parameters)
+        case credentialToken(param: Parameters)
+        case getProfile(email: String)
+        case createProfile(param: Parameters)
         
         var endPoint: Endpoint {
             switch self {
+            case .credentialToken:
+                return .post(path: "oauth2/token")
             case .signIn:
                 return .post(path: "login")
+            case .getProfile(let email):
+                return .get(path: "profile/\(email)")
+            case .createProfile:
+                return .post(path: "profile")
             }
         }
         
         var task: HTTPTask {
             switch self {
+            case .credentialToken(let param):
+                return .requestParameters(encoding: .urlEncodingGET, urlParameters: param)
             case .signIn(let param):
-                return .requestParameters(encoding: .urlEncoding, urlParameters: param)
+                return .requestParameters(bodyParameters: param, encoding: .jsonEncoding)
+            case .getProfile:
+                return .requestParameters(encoding: .jsonEncoding)
+            case .createProfile(let param):
+                return .requestParameters(bodyParameters: param, encoding: .jsonEncoding)
             }
         }
         

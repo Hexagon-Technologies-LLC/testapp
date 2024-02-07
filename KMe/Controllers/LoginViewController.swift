@@ -34,13 +34,17 @@ class LoginViewController: UIViewController {
         //will hide default navigation bar
         self.navigationController?.isNavigationBarHidden = true
     }
+    
     @IBAction func loginwithapple(_ sender: UIButton){
         //click action for login button
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ProfileCompletionViewController") as! ProfileCompletionViewController
-        nextViewController.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(nextViewController, animated:true)
-        
+//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ProfileCompletionViewController") as! ProfileCompletionViewController
+//        nextViewController.modalPresentationStyle = .fullScreen
+//        self.navigationController?.pushViewController(nextViewController, animated:true)
+
+        if let url = URL(string: Defined.authHostedURL) {
+            UIApplication.shared.open(url)
+        }
     }
     /*
      // MARK: - Navigation

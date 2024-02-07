@@ -44,7 +44,7 @@ extension AppEnvironmentImpl {
 // MARK: - Configuration
 extension AppEnvironmentImpl {
     struct Configuration: ServiceConfiguration {
-        var environment: NetworkEnvironment = .testing(url: "https://kme.auth.us-east-1.amazoncognito.com/")
+        var environment: NetworkEnvironment = .testing(url: Defined.baseURL)
         
         var urlSession: URLSession {
             let configuration = URLSessionConfiguration.default
