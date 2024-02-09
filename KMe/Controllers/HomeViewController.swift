@@ -9,6 +9,9 @@ import UIKit
 import ToastViewSwift
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,Optiondelegate {
+    @IBOutlet weak var lbUserName: UILabel!
+    @LazyInjected var appState: AppStore<AppState>
+    
     func menuselected(menuitem: Int) {
         
         self.selectedview.menuview.fadeOut()
@@ -98,6 +101,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     let optionview = MoreoptionView()
     
     override func viewDidLoad() {
+        guard let userInfo = appState[\.userData.userInfo] else { return }
+        
         super.viewDidLoad()
         registerNib()
         _ = UIScreen.main.bounds.width
@@ -118,9 +123,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         let myString = NSMutableAttributedString(string: textcontent, attributes: myAttribute )
         let myRange = NSRange(location: textcontent.count - (documentname.count) , length: documentname.count) // range starting at location 17 with a lenth of 7: "Strings"
         myString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.init(named: "accent")!, range: myRange)
-        
         welcomemessage.attributedText = myString
-        
+        lbUserName.text = "Hi \(userInfo.last_name)"
         //Stack View
         documentview.axis  = NSLayoutConstraint.Axis.vertical
         documentview.alignment = UIStackView.Alignment.center
@@ -131,10 +135,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             addnewview(staus: documents[index],indexval: cardposition)
             cardposition = cardposition + 1;
         }
-        
-        
-        
-        
         documentview.translatesAutoresizingMaskIntoConstraints = false
         
         // Do any additional setup after loading the view.

@@ -9,10 +9,15 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    @IBOutlet weak var lbGender: UILabel!
+    @IBOutlet weak var lbProfileName: UILabel!
+    @LazyInjected var appState: AppStore<AppState>
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let userInfo = appState[\.userData.userInfo] else { return }
+        lbProfileName.text = userInfo.fullName
         
-        // Do any additional setup after loading the view.
     }
     @IBAction func editprofile(_ sender: Any) {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)

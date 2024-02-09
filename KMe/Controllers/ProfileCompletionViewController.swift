@@ -8,7 +8,6 @@
 import UIKit
 import SSCustomTabbar
 
-
 class ProfileCompletionViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource, UITextFieldDelegate,regionselectiondelegate {
     
     /** Delegate function for region selection field popup dismiss*/
@@ -115,7 +114,6 @@ class ProfileCompletionViewController: UIViewController,UIPickerViewDelegate,UIP
         
         dateofbirth.inputAccessoryView = toolbar
         dateofbirth.inputView = datePicker
-        
     }
     
     
@@ -181,10 +179,10 @@ class ProfileCompletionViewController: UIViewController,UIPickerViewDelegate,UIP
                           "last_name": self.lastname.text,
                           "middle_name": self.middlename.text,
                           "photo_url": "",
-                          "region": self.region.text,
-                          "username": "test user"]
-            let createdUserD = try await repoAuth.createProfile(params: params)
-            if !createdUserD.isEmpty {
+                          "region": self.region.text]
+            let createdUserID = try await repoAuth.createProfile(params: params)
+            if !createdUserID.isEmpty {
+                let _ = try await repoAuth.getProfile(id: createdUserID)
                 showRegisterSuccessAlert()
             }
         }
@@ -254,18 +252,14 @@ class ProfileCompletionViewController: UIViewController,UIPickerViewDelegate,UIP
         gender.resignFirstResponder()
     }
     
-    func showRegisterSuccessAlert()
-    {
-        
+    func showRegisterSuccessAlert() {
         let alert = UIAlertController(title: "", message: "Register Successfully", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let nextViewController  = storyBoard.instantiateViewController(withIdentifier: "SSCustomTabBarViewController") as! SSCustomTabBarViewController
             self.navigationController?.pushViewController(nextViewController, animated:true)
-            
         }))
         self.present(alert, animated: true, completion: nil)
     }
-    
 }

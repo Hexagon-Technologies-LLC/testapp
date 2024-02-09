@@ -136,6 +136,8 @@
 		149928545F192A684D2CF777 /* Pods_KMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BE96D6BACCE63270BC8739C /* Pods_KMe.framework */; };
 		3CF2F8788229F4D3F3484584 /* Pods_KMeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 922704075AFAF32E3BC79AB8 /* Pods_KMeTests.framework */; };
 		40B33C4C85028C6AD380D394 /* Pods_KMe_KMeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80697DF04144FCBA3130201A /* Pods_KMe_KMeUITests.framework */; };
+		D47E8C6C2B75B2E3007879A1 /* UserDefaultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E8C6B2B75B2E3007879A1 /* UserDefaultHandler.swift */; };
+		D47E8C702B75BB94007879A1 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E8C6F2B75BB94007879A1 /* DateUtil.swift */; };
 		D4A7BFB42B72738000198593 /* CFRepositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BF9A2B72738000198593 /* CFRepositories.swift */; };
 		D4A7BFB62B72738000198593 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BF9D2B72738000198593 /* Resolver.swift */; };
 		D4A7BFB72B72738000198593 /* CancelBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BF9E2B72738000198593 /* CancelBag.swift */; };
@@ -320,6 +322,8 @@
 		AD7DB69A9128AB4E105BD630 /* Pods-KMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMe.release.xcconfig"; path = "Target Support Files/Pods-KMe/Pods-KMe.release.xcconfig"; sourceTree = "<group>"; };
 		BC03FD88456D638CE873AF10 /* Pods-KMe-KMeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMe-KMeUITests.release.xcconfig"; path = "Target Support Files/Pods-KMe-KMeUITests/Pods-KMe-KMeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C36AF0FD6E2EBF42987A3F3D /* Pods-KMeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMeTests.debug.xcconfig"; path = "Target Support Files/Pods-KMeTests/Pods-KMeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D47E8C6B2B75B2E3007879A1 /* UserDefaultHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHandler.swift; sourceTree = "<group>"; };
+		D47E8C6F2B75BB94007879A1 /* DateUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		D4A7BF9A2B72738000198593 /* CFRepositories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFRepositories.swift; sourceTree = "<group>"; };
 		D4A7BF9D2B72738000198593 /* Resolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
 		D4A7BF9E2B72738000198593 /* CancelBag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelBag.swift; sourceTree = "<group>"; };
@@ -415,6 +419,7 @@
 				08C4889D2AE8DB8D00329F98 /* Models */,
 				0838F30F2AB4091E00A6F57B /* popup */,
 				08C0DEF82AB15172008CAC1C /* Extensions */,
+				D47E8C6A2B75B2CE007879A1 /* Utils */,
 				08C0DEED2AB01E92008CAC1C /* Customviews */,
 				08FC8B072AA862D300926DA3 /* Controllers */,
 				08FC8B022AA8605400926DA3 /* Collectioncells */,
@@ -668,6 +673,15 @@
 				134CC2B3364DF602724F364E /* Pods-KMeTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D47E8C6A2B75B2CE007879A1 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D47E8C6F2B75BB94007879A1 /* DateUtil.swift */,
+				D47E8C6B2B75B2E3007879A1 /* UserDefaultHandler.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		D4A7BF992B72736D00198593 /* Repositories */ = {
@@ -1053,6 +1067,7 @@
 				0893A6D02AEA49290047C07A /* Reminder.swift in Sources */,
 				08C0DEF32AB01F00008CAC1C /* Uploadstackview.swift in Sources */,
 				D4A7BFC32B72738000198593 /* Keychain.swift in Sources */,
+				D47E8C702B75BB94007879A1 /* DateUtil.swift in Sources */,
 				087EC8252AF0F7C300295036 /* CalendarHeaderTableViewCell.swift in Sources */,
 				08BFC8F02AE24B7000C8D18B /* UICollectionViewCell+Fade.swift in Sources */,
 				087EC8282AF108B900295036 /* EmptyRequestView.swift in Sources */,
@@ -1116,6 +1131,7 @@
 				08AE1B9E2AF4E16500F8A4E4 /* InviteMember.swift in Sources */,
 				08462B192B2066DB00FAAF8B /* MemberDocument.swift in Sources */,
 				D4A7BFC12B72738000198593 /* HTTP.swift in Sources */,
+				D47E8C6C2B75B2E3007879A1 /* UserDefaultHandler.swift in Sources */,
 				08FC8B092AA862F200926DA3 /* MembersViewController.swift in Sources */,
 				0838F3172AB92D3300A6F57B /* ActivityTableViewCell.swift in Sources */,
 				D4A7BFCA2B72764900198593 /* AppEnvironment.swift in Sources */,

@@ -13,8 +13,11 @@ import Foundation
 public protocol AuthRepository: WebRepository {
     func credentialToken(code: String) async throws -> TokenInfo
     func signIn(username: String, password: String) async throws -> Bool
+    func getProfile(id: String) async throws -> UserInfo
     func getProfile(email: String) async throws -> UserInfo
     func createProfile(params: [String: Any]) async throws -> String
+    func updateProfile(id: String, params: [String: Any]) async throws -> String
+    func deleteProfile(id: String) async throws -> String
 }
 
 struct AuthRepositoryImpl {
@@ -40,7 +43,7 @@ public enum AuthError: Error, LocalizedError {
 }
 
 // MARK: - Async impl
-extension AuthRepositoryImpl {
+extension AuthRepositoryImpl: AuthRepository {
     func signIn(username: String, password: String) async throws -> Bool {
         
         let param: Parameters = ["username": username, "password": password]
@@ -58,9 +61,16 @@ extension AuthRepositoryImpl {
         let tokenInfo:TokenInfo = try await execute(endpoint: API.credentialToken(param: param), isFullPath: true, logLevel: .debug)
         return tokenInfo
     }
+   
+    func getProfile(id: String) async throws -> UserInfo {
+        let userInfo: UserInfo = try await execute(endpoint: API.getProfile(email: id), isFullPath: false, logLevel: .debug)
+        UserDefaultHandler.userInfo = userInfo
+        return userInfo
+    }
     
     func getProfile(email: String) async throws -> UserInfo {
         let userInfo: UserInfo = try await execute(endpoint: API.getProfile(email: email), isFullPath: false, logLevel: .debug)
+        UserDefaultHandler.userInfo = userInfo
         return userInfo
     }
     
@@ -68,20 +78,28 @@ extension AuthRepositoryImpl {
         let userInfo: [String: String] = try await execute(endpoint: API.createProfile(param: params), isFullPath: false, logLevel: .debug)
         return userInfo["user_id"] ?? ""
     }
+    
+    func updateProfile(id: String, params: [String: Any]) async throws -> String {
+        let result: [String: String] = try await execute(endpoint: API.updateProfile(id: id, params: params), isFullPath: false, logLevel: .debug)
+        return result["user_id"] ?? ""
+    }
+    
+    func deleteProfile(id: String) async throws -> String {
+        let result: [String: String] = try await execute(endpoint: API.deleteProfile(id: id), isFullPath: false, logLevel: .debug)
+        return result["user_id"] ?? ""
+    }
 }
 
-// MARK: - Protocol impl
-extension AuthRepositoryImpl: AuthRepository {
-   
-
-}
 // MARK: - Configuration
 extension AuthRepositoryImpl {
     enum API: ResourceType {
         case signIn(param: Parameters)
         case credentialToken(param: Parameters)
+        case getProfile(id: String)
         case getProfile(email: String)
         case createProfile(param: Parameters)
+        case updateProfile(id: String, params: Parameters)
+        case deleteProfile(id: String)
         
         var endPoint: Endpoint {
             switch self {
@@ -89,10 +107,14 @@ extension AuthRepositoryImpl {
                 return .post(path: "https://kme.auth.us-east-1.amazoncognito.com/oauth2/token")
             case .signIn:
                 return .post(path: "login")
-            case .getProfile(let email):
-                return .get(path: "profile/\(email)")
+            case .getProfile(let emailOrID):
+                return .get(path: "profile/\(emailOrID)")
             case .createProfile:
                 return .post(path: "profile")
+            case .updateProfile(let id, _):
+                return .put(path: "profile/\(id)")
+            case .deleteProfile(let id):
+                return .delete(path: "profile/\(id)")
             }
         }
         
@@ -100,11 +122,9 @@ extension AuthRepositoryImpl {
             switch self {
             case .credentialToken(let param):
                 return .requestParameters(encoding: .urlEncodingPOST, urlParameters: param)
-            case .signIn(let param):
-                return .requestParameters(bodyParameters: param, encoding: .jsonEncoding)
-            case .getProfile:
+            case .getProfile, .deleteProfile:
                 return .requestParameters(encoding: .jsonEncoding)
-            case .createProfile(let param):
+            case .signIn(let param), .createProfile(let param), .updateProfile(_, let param):
                 return .requestParameters(bodyParameters: param, encoding: .jsonEncoding)
             }
         }

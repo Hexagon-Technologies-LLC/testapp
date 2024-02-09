@@ -72,7 +72,7 @@ extension AppEnvironmentImpl {
         }
         
         private func setupUserData() {
-//            appState[\.userData.userInfo] = UserDefaultHandler.userInfo
+            appState[\.userData.userInfo] = UserDefaultHandler.userInfo
         }
         
         func sceneDidBecomeActive() {
