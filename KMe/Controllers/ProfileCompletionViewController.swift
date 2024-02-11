@@ -173,9 +173,7 @@ class ProfileCompletionViewController: UIViewController,UIPickerViewDelegate,UIP
             return
         }
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy"
-        dateofbirth.text = formatter.string(from: datePicker.date)
+        dateofbirth.text = datePicker.date.toString()
         dateofbirth.sendActions(for: .editingChanged)
         self.view.endEditing(true)
     }

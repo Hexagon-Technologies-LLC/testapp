@@ -15,10 +15,15 @@ extension Date {
 }
 
 extension String {
-    func toDate() -> Date? {
+    func toDate(dateFormat format: String = Defined.commonDateFormat) -> Date? {
         let formatter = DateFormatter()
         formatter.dateFormat = Defined.commonDateFormat
         
         return formatter.date(from: self)
+    }
+    
+    func toDateISO8601() -> Date? {
+        let newFormatter = ISO8601DateFormatter()
+        return newFormatter.date(from: self)
     }
 }

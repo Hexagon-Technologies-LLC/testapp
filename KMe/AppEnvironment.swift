@@ -37,6 +37,7 @@ extension AppEnvironmentImpl {
             var locale: String = "en"
             var isActive: Bool = false
             var keyboardHeight: CGFloat = 0
+            var callbackCode: String? = ""
         }
     }
 }

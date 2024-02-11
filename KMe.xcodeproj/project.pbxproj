@@ -428,7 +428,7 @@
 				08C4889D2AE8DB8D00329F98 /* Models */,
 				D4A7BF992B72736D00198593 /* Repositories */,
 				086462AF2AA741D3009CBF01 /* Components */,
-				08C0DEED2AB01E92008CAC1C /* Customviews */,
+				08C0DEED2AB01E92008CAC1C /* CustomViews */,
 				D47E8C6A2B75B2CE007879A1 /* Utils */,
 				D4DDBE852B792457007E2B2F /* Resources */,
 				08C488A02AE8DC5600329F98 /* Mockdata */,
@@ -547,7 +547,7 @@
 			path = outlinedTextfield;
 			sourceTree = "<group>";
 		};
-		08C0DEED2AB01E92008CAC1C /* Customviews */ = {
+		08C0DEED2AB01E92008CAC1C /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
 				08FC8B022AA8605400926DA3 /* Collectioncells */,
@@ -583,7 +583,7 @@
 				087EC8272AF108B900295036 /* EmptyRequestView.swift */,
 				087EC8292AF108CE00295036 /* EmptyRequestView.xib */,
 			);
-			path = Customviews;
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		08C0DEF82AB15172008CAC1C /* Extensions */ = {

@@ -18,24 +18,26 @@ class EditProfileViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     /**delegate method for region selection applly*/
     
     func regionselectionapplied(countries: NSMutableArray) {
-        
+        self.regionDefault(countries: countries)
+        self.dismissPopup(completion: nil)
+    }
+    
+    func regionDefault(countries: NSArray) {
         region.text = countries.componentsJoined(by: ",")
         
         selectedcountries.removeAllObjects()
         selectedcountries.addObjects(from: countries as! [String])
-        if(selectedcountries.count > 0)
-        {
+        
+        if selectedcountries.count > 0 {
             regionlayout.isHidden = false
             regionview.isHidden = false
             region.isHidden = true
-        }else
-        {
-            regionlayout.isHidden = true
-            region.isHidden = false
-            regionview.isHidden = true
+        } else {
+            regionlayout.isHidden = false
+            region.isHidden = true
+            regionview.isHidden = false
         }
         updateselectedflag()
-        self.dismissPopup(completion: nil)
     }
     
     /**declare Iboutlet components **/
@@ -91,14 +93,17 @@ class EditProfileViewController: UIViewController,UIPickerViewDelegate,UIPickerV
             self.navigationController?.popToRootViewController(animated: true)
             return
         }
-        updatetextfield(t: firstname,label: userInfo.first_name, placeholder: "First Name", imagename: "")
-        updatetextfield(t: middlename,label: userInfo.middle_name, placeholder: "Middle Name", imagename: "")
-        updatetextfield(t: lastname,label: userInfo.last_name, placeholder: "Last Name", imagename: "")
+        updatetextfield(t: firstname, label: userInfo.first_name, placeholder: "First Name", imagename: "")
+        updatetextfield(t: middlename, label: userInfo.middle_name, placeholder: "Middle Name", imagename: "")
+        updatetextfield(t: lastname, label: userInfo.last_name, placeholder: "Last Name", imagename: "")
 //        updatetextfield(t: relations,label: userInfo.gender,imagename: "gender")
-        updatetextfield(t: gender,label: userInfo.gender, placeholder: "Gender", imagename: "gender")
+        updatetextfield(t: gender, label: userInfo.gender, placeholder: "Gender", imagename: "gender")
         
-        updatetextfield(t: dateofbirth,label: userInfo.dob, placeholder: "Date of birth", imagename: "calendar")
-        updatetextfield(t: region,label: "Select region", imagename: "regions")
+        updatetextfield(t: dateofbirth ,label: userInfo.dob.toDateISO8601()?.toString() ?? "", placeholder: "Date of birth", imagename: "calendar")
+    
+        if let regionArray = userInfo.region.split(separator: ",") as? NSArray {
+            regionDefault(countries: regionArray)
+        }
         firstname.delegate = self
         lastname.delegate = self
         middlename.delegate = self
@@ -144,14 +149,17 @@ class EditProfileViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     }
     
     @objc func donedatePicker(){
+        if datePicker.date > Defined.MINIMUM_AGE {
+            // Age under 18
+            KMAlert.alert(title: "Invalid Age", message: "You must be over 18 years old ") { _ in
+                
+            }
+            self.view.endEditing(true)
+            return
+        }
         
-        
-        print("datapicker")
-        print(datePicker.date)
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy"
-        dateofbirth.text = formatter.string(from: datePicker.date)
+        dateofbirth.text = datePicker.date.toString()
+        dateofbirth.sendActions(for: .editingChanged)
         self.view.endEditing(true)
     }
     
