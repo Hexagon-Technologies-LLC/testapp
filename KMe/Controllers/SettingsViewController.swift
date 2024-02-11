@@ -78,18 +78,16 @@ class SettingsViewController: UIViewController {
     
     @IBAction func deleteProfileClicked(_ sender: Any) {
         guard let userInfo = appState[\.userData.userInfo] else { return }
-        let alert = UIAlertController(title: "", message: "Are you sure you want to delete your account?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+        
+        KMAlert.actionSheetConfirm(title: "", message: "Are you sure you want to delete your account?") { _ in
+            //
+        } submitAction: { _ in
             Task {
                 let deletedUser = try await self.repoAuth.deleteProfile(id: userInfo.id)
                 if !deletedUser.isEmpty {
                     self.appState.value.logout()
                 }
             }
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
-            
-        }))
-        self.present(alert, animated: true, completion: nil)
+        }
     }
 }

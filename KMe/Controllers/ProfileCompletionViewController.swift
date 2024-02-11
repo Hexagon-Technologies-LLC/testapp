@@ -7,6 +7,7 @@
 
 import UIKit
 import SSCustomTabbar
+import Combine
 
 class ProfileCompletionViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource, UITextFieldDelegate,regionselectiondelegate {
     
@@ -18,6 +19,7 @@ class ProfileCompletionViewController: UIViewController,UIPickerViewDelegate,UIP
     func regionselectionapplied(countries: NSMutableArray) {
         
         region.text = countries.componentsJoined(by: ",")
+        region.sendActions(for: .editingChanged)
         
         selectedcountries.removeAllObjects()
         selectedcountries.addObjects(from: countries as! [String])
@@ -42,21 +44,65 @@ class ProfileCompletionViewController: UIViewController,UIPickerViewDelegate,UIP
     @IBOutlet weak var region: MaterialOutlinedTextField!
     @IBOutlet weak var flaglayout: UIStackView!
     @IBOutlet weak var regionview: UIView!
-
+    @IBOutlet weak var flingBtn: FlingActionButton!
+    
     var selectedcountries : NSMutableArray = NSMutableArray()
     var isExpand:Bool = false
         /**Master vlaues for gender**/
     let genderpicker = ["Male","Female","Other","Don't want to specify"]
     var pickerView = UIPickerView()
     let datePicker = UIDatePicker()
+    
+    private let viewModel = ProfileCompletionViewModel()
+    private var cancelBag = CancelBag()
     @LazyInjected var repoAuth: AuthRepository
     
     override func viewDidLoad() {
         super.viewDidLoad()
- 
         
+        subscription()
+        bindingToViewModel()
     }
  
+    func bindingToViewModel() {
+        firstname.textPublisher
+            .assign(to: \.firstName, on: viewModel)
+              .store(in: cancelBag)
+        middlename.textPublisher
+              .assign(to: \.middleName, on: viewModel)
+              .store(in: cancelBag)
+        lastname.textPublisher
+              .assign(to: \.lastName, on: viewModel)
+              .store(in: cancelBag)
+        dateofbirth.textPublisher
+              .assign(to: \.dateOfBirth, on: viewModel)
+              .store(in: cancelBag)
+        gender.textPublisher
+              .assign(to: \.gender, on: viewModel)
+              .store(in: cancelBag)
+        region.textPublisher
+              .assign(to: \.region, on: viewModel)
+              .store(in: cancelBag)
+    }
+    
+    func subscription() {
+        cancelBag.collect {
+            viewModel.$userInfo.dropFirst().sink { userInfo in
+                KMAlert.alert(title: "", message: "Register Successfully") { action in
+                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                    let nextViewController  = storyBoard.instantiateViewController(withIdentifier: "SSCustomTabBarViewController") as! SSCustomTabBarViewController
+                    self.navigationController?.pushViewController(nextViewController, animated:true)
+                }
+            }
+            
+            viewModel.$errorMessage.dropFirst().sink { error in
+                KMAlert.alert(title: "", message: error) { _ in
+                    self.flingBtn.reset()
+                }
+            }
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         
         /** to stop editing and close keyboard**/
@@ -118,27 +164,26 @@ class ProfileCompletionViewController: UIViewController,UIPickerViewDelegate,UIP
     
     
     @objc func donedatePicker(){
+        if datePicker.date > Defined.MINIMUM_AGE {
+            // Age under 18
+            KMAlert.alert(title: "Invalid Age", message: "You must be over 18 years old ") { _ in
+                
+            }
+            self.view.endEditing(true)
+            return
+        }
         
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
         dateofbirth.text = formatter.string(from: datePicker.date)
+        dateofbirth.sendActions(for: .editingChanged)
         self.view.endEditing(true)
     }
     
     @objc func cancelDatePicker(){
         self.view.endEditing(true)
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
-    /**Function for adding right image view for form fields **/
     func updatetextfield(t: MaterialOutlinedTextField,label:String,imagename: String)  {
         t.label.text = label
         t.placeholder = label
@@ -166,26 +211,11 @@ class ProfileCompletionViewController: UIViewController,UIPickerViewDelegate,UIP
             imgcontainer.addSubview(imageView)
             t.rightView = imgcontainer
         }
-        
     }
     
     /**Call back action method for filing button**/
     @IBAction func flingActionCallback(_ sender: FlingActionButton) {
-        Task {
-            let params = ["dob": self.dateofbirth.text,
-                          "email": "test@gmail.com",
-                          "first_name": self.firstname.text,
-                          "gender": self.gender.text,
-                          "last_name": self.lastname.text,
-                          "middle_name": self.middlename.text,
-                          "photo_url": "",
-                          "region": self.region.text]
-            let createdUserID = try await repoAuth.createProfile(params: params)
-            if !createdUserID.isEmpty {
-                let _ = try await repoAuth.getProfile(id: createdUserID)
-                showRegisterSuccessAlert()
-            }
-        }
+        viewModel.register()
     }
     
     
@@ -227,8 +257,6 @@ class ProfileCompletionViewController: UIViewController,UIPickerViewDelegate,UIP
         return true
     }
     
-    
-    
     /**Delegate  and datasource method for picker views **/
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -250,16 +278,6 @@ class ProfileCompletionViewController: UIViewController,UIPickerViewDelegate,UIP
     {
         gender.text = genderpicker[row]
         gender.resignFirstResponder()
-    }
-    
-    func showRegisterSuccessAlert() {
-        let alert = UIAlertController(title: "", message: "Register Successfully", preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let nextViewController  = storyBoard.instantiateViewController(withIdentifier: "SSCustomTabBarViewController") as! SSCustomTabBarViewController
-            self.navigationController?.pushViewController(nextViewController, animated:true)
-        }))
-        self.present(alert, animated: true, completion: nil)
+        gender.sendActions(for: .editingChanged)
     }
 }

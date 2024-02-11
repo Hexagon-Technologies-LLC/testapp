@@ -146,16 +146,13 @@ class CaptureViewController: UIViewController,AVCapturePhotoCaptureDelegate {
         let image = UIImage(data: imageData)
         capturedImage.image = image
     }
+    
     func showcamearaccessalert()
     {
-        
-        let alert = UIAlertController(title: "", message: "Don't have permission to access back camera", preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
-            
-        }))
-        self.present(alert, animated: true, completion: nil)
+        KMAlert.alert(title: "", message: "Don't have permission to access back camera") { _ in      
+        }
     }
+    
     @IBAction func backnavigation(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }

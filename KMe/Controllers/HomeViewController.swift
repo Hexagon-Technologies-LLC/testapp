@@ -29,20 +29,16 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         
     }
+    
     func showconfirmalert()
     {
-        
-        let alert = UIAlertController(title: "", message: "Please confirm before proceeding to deleting the document.", preferredStyle: .actionSheet)
-        
-        
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { action in
-            
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { action in
-            
-        }))
-        self.present(alert, animated: true, completion: nil)
+        KMAlert.actionSheetConfirm(title: "", message: "Please confirm before proceeding to deleting the document.", submitTitle: "Delete") { _ in
+            // Cancel
+        } submitAction: { _ in
+            // Delete
+        }
     }
+    
     func copyclipboardsuccess() {
         let config = ToastConfiguration(
             direction: .bottom,

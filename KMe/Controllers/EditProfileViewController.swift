@@ -256,7 +256,9 @@ class EditProfileViewController: UIViewController,UIPickerViewDelegate,UIPickerV
             let createdUserID = try await repoAuth.updateProfile(id: userInfo.id, params: params)
             if !createdUserID.isEmpty {
                 let _ = try await repoAuth.getProfile(id: createdUserID)
-                showUpdateProfileSuccessAlert()
+                KMAlert.alert(title: "", message: "Update Profile Successfully") { _ in
+                    //
+                }
             }
         }
     }
@@ -334,15 +336,6 @@ class EditProfileViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     
     @IBAction func backnavigation(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
-    }
-    
-    func showUpdateProfileSuccessAlert() {
-        let alert = UIAlertController(title: "", message: "Update Profile Successfully", preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-            self.navigationController?.popToRootViewController(animated: true)
-        }))
-        self.present(alert, animated: true, completion: nil)
     }
 }
 
