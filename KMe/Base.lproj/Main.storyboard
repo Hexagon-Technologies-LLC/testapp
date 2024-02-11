@@ -427,7 +427,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OI5-0S-bCO">
                                                                 <rect key="frame" x="0.0" y="7" width="361" height="50"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kme_profile.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="vpd-zn-1rx">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kme_profile" translatesAutoresizingMaskIntoConstraints="NO" id="vpd-zn-1rx">
                                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="50" id="Xmb-gV-eT1"/>
@@ -1642,7 +1642,7 @@
                                 <color key="textColor" name="primarytextcolor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kme_profile.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="Snt-Vr-WeU">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kme_profile" translatesAutoresizingMaskIntoConstraints="NO" id="Snt-Vr-WeU">
                                 <rect key="frame" x="16" y="209.33333333333337" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="3wj-pm-6Y2"/>
@@ -1976,7 +1976,7 @@
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qt1-qQ-jy6">
                                                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kme_profile.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="CGl-18-LMS">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kme_profile" translatesAutoresizingMaskIntoConstraints="NO" id="CGl-18-LMS">
                                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                             </imageView>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bQS-IF-UiV">
@@ -2517,7 +2517,7 @@
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mO1-AY-pfq">
                                                         <rect key="frame" x="136.66666666666666" y="0.0" width="119.99999999999997" height="120"/>
                                                         <subviews>
-                                                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="kme_profile.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="ou0-hT-Lmm">
+                                                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="kme_profile" translatesAutoresizingMaskIntoConstraints="NO" id="ou0-hT-Lmm">
                                                                 <rect key="frame" x="14" y="14" width="100" height="100"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <userDefinedRuntimeAttributes>
@@ -3269,7 +3269,7 @@
                                 <rect key="frame" x="0.0" y="139" width="393" height="713"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="gIe-90-Yuy">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="681.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="656"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uah-3C-JqO">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="386"/>
@@ -3374,11 +3374,11 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" id="yoq-ie-Dm2">
-                                                <rect key="frame" x="0.0" y="656" width="393" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="681.33333333333337" width="393" height="0.0"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RMc-mY-hVh">
-                                                        <rect key="frame" x="16" y="24.000000000000014" width="361" height="215.33333333333337"/>
+                                                        <rect key="frame" x="16" y="24" width="361" height="190"/>
                                                         <color key="backgroundColor" name="tablebgcolor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -3387,12 +3387,12 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="6Vd-lm-eGU">
-                                                        <rect key="frame" x="32" y="40.000000000000014" width="329" height="183.33333333333337"/>
+                                                        <rect key="frame" x="32" y="40" width="329" height="158"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="aSk-e3-421">
                                                                 <rect key="frame" x="0.0" y="0.0" width="329" height="50"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kme_profile.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="bcs-Vf-H7Q">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kme_profile" translatesAutoresizingMaskIntoConstraints="NO" id="bcs-Vf-H7Q">
                                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="50" id="E28-um-bej"/>
@@ -3422,7 +3422,7 @@
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mXu-bE-f35">
-                                                                <rect key="frame" x="0.0" y="119.33333333333337" width="329" height="64"/>
+                                                                <rect key="frame" x="0.0" y="119.33333333333339" width="329" height="38.666666666666671"/>
                                                                 <color key="backgroundColor" name="controlbgcolor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="64" id="0Vk-aj-enx"/>
@@ -4911,7 +4911,7 @@
         <image name="eye.slash" catalog="system" width="128" height="95"/>
         <image name="flag" width="22" height="14.333333015441895"/>
         <image name="flashicon" width="20" height="23.666666030883789"/>
-        <image name="kme_profile.jpeg" width="1920" height="1545"/>
+        <image name="kme_profile" width="640" height="515"/>
         <image name="leftcorner" width="61" height="19"/>
         <image name="logout" width="75" height="75"/>
         <image name="menu1" width="20.666666030883789" height="21.666666030883789"/>

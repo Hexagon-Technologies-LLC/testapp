@@ -32,7 +32,6 @@
 		086462A12AA5AC17009CBF01 /* KMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086462A02AA5AC17009CBF01 /* KMeUITests.swift */; };
 		086462A32AA5AC17009CBF01 /* KMeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086462A22AA5AC17009CBF01 /* KMeUITestsLaunchTests.swift */; };
 		086462B12AA741EB009CBF01 /* FlingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086462B02AA741EB009CBF01 /* FlingActionButton.swift */; };
-		086462B42AA83C1F009CBF01 /* kme_profile.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 086462B32AA83C1F009CBF01 /* kme_profile.jpeg */; };
 		086462C82AA852FB009CBF01 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 086462B62AA852FB009CBF01 /* Montserrat-LightItalic.ttf */; };
 		086462C92AA852FB009CBF01 /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 086462B72AA852FB009CBF01 /* Montserrat-ExtraLight.ttf */; };
 		086462CA2AA852FB009CBF01 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 086462B82AA852FB009CBF01 /* Montserrat-Thin.ttf */; };
@@ -217,7 +216,6 @@
 		086462A02AA5AC17009CBF01 /* KMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMeUITests.swift; sourceTree = "<group>"; };
 		086462A22AA5AC17009CBF01 /* KMeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		086462B02AA741EB009CBF01 /* FlingActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlingActionButton.swift; sourceTree = "<group>"; };
-		086462B32AA83C1F009CBF01 /* kme_profile.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kme_profile.jpeg; sourceTree = "<group>"; };
 		086462B62AA852FB009CBF01 /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-LightItalic.ttf"; sourceTree = "<group>"; };
 		086462B72AA852FB009CBF01 /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
 		086462B82AA852FB009CBF01 /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Thin.ttf"; sourceTree = "<group>"; };
@@ -390,13 +388,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0838F30F2AB4091E00A6F57B /* popup */ = {
+		0838F30F2AB4091E00A6F57B /* Popup */ = {
 			isa = PBXGroup;
 			children = (
 				0838F3102AB40AE700A6F57B /* SHPopup.h */,
 				0838F3112AB40AE700A6F57B /* SHPopup.swift */,
 			);
-			path = popup;
+			path = Popup;
 			sourceTree = "<group>";
 		};
 		086462732AA5AC15009CBF01 = {
@@ -425,26 +423,22 @@
 			isa = PBXGroup;
 			children = (
 				D4CFA52C2B7376A400E000E0 /* KMe.entitlements */,
-				08C488A02AE8DC5600329F98 /* Mockdata */,
-				08C4889D2AE8DB8D00329F98 /* Models */,
-				0838F30F2AB4091E00A6F57B /* popup */,
-				08C0DEF82AB15172008CAC1C /* Extensions */,
-				D47E8C6A2B75B2CE007879A1 /* Utils */,
-				08C0DEED2AB01E92008CAC1C /* Customviews */,
 				08FC8B072AA862D300926DA3 /* Controllers */,
 				D4DDBE7F2B7916C9007E2B2F /* ViewModel */,
-				08FC8B022AA8605400926DA3 /* Collectioncells */,
-				086462B52AA852EC009CBF01 /* Fonts */,
+				08C4889D2AE8DB8D00329F98 /* Models */,
 				D4A7BF992B72736D00198593 /* Repositories */,
-				086462B22AA83C11009CBF01 /* Placeholder_images */,
 				086462AF2AA741D3009CBF01 /* Components */,
+				08C0DEED2AB01E92008CAC1C /* Customviews */,
+				D47E8C6A2B75B2CE007879A1 /* Utils */,
+				D4DDBE852B792457007E2B2F /* Resources */,
+				08C488A02AE8DC5600329F98 /* Mockdata */,
+				08C0DEF82AB15172008CAC1C /* Extensions */,
 				D4A7BFC92B72764900198593 /* AppEnvironment.swift */,
 				0864627F2AA5AC15009CBF01 /* AppDelegate.swift */,
 				086462812AA5AC15009CBF01 /* SceneDelegate.swift */,
 				086462832AA5AC15009CBF01 /* ViewController.swift */,
 				D4CFA52E2B737C5C00E000E0 /* Defined.swift */,
 				086462852AA5AC15009CBF01 /* Main.storyboard */,
-				086462882AA5AC16009CBF01 /* Assets.xcassets */,
 				0864628A2AA5AC16009CBF01 /* LaunchScreen.storyboard */,
 				0864628D2AA5AC16009CBF01 /* Info.plist */,
 			);
@@ -471,19 +465,12 @@
 		086462AF2AA741D3009CBF01 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				0838F30F2AB4091E00A6F57B /* Popup */,
 				08C0DEE62AAA8D3E008CAC1C /* outlinedTextfield */,
 				086462B02AA741EB009CBF01 /* FlingActionButton.swift */,
 				D4DDBE7B2B791110007E2B2F /* KMAlert.swift */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		086462B22AA83C11009CBF01 /* Placeholder_images */ = {
-			isa = PBXGroup;
-			children = (
-				086462B32AA83C1F009CBF01 /* kme_profile.jpeg */,
-			);
-			path = Placeholder_images;
 			sourceTree = "<group>";
 		};
 		086462B52AA852EC009CBF01 /* Fonts */ = {
@@ -563,6 +550,7 @@
 		08C0DEED2AB01E92008CAC1C /* Customviews */ = {
 			isa = PBXGroup;
 			children = (
+				08FC8B022AA8605400926DA3 /* Collectioncells */,
 				08BFC8D82AE24B4B00C8D18B /* ScrollDatePicker */,
 				0864749A2ACD12CD009B6CAB /* MemberCarousel */,
 				086474A22ACD12FD009B6CAB /* NSObjectExtension.swift */,
@@ -797,6 +785,15 @@
 			path = Publishers;
 			sourceTree = "<group>";
 		};
+		D4DDBE852B792457007E2B2F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				086462B52AA852EC009CBF01 /* Fonts */,
+				086462882AA5AC16009CBF01 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		E8AC2583EDEB049B56BE9D8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -938,7 +935,6 @@
 				0864628C2AA5AC16009CBF01 /* LaunchScreen.storyboard in Resources */,
 				086462C92AA852FB009CBF01 /* Montserrat-ExtraLight.ttf in Resources */,
 				08C0DF022AB174BC008CAC1C /* Documentsummary.xib in Resources */,
-				086462B42AA83C1F009CBF01 /* kme_profile.jpeg in Resources */,
 				086462892AA5AC16009CBF01 /* Assets.xcassets in Resources */,
 				08BFC9002AE25B5800C8D18B /* Monthcalendar.xib in Resources */,
 				08A41B952ABAF546007B26EB /* DocumentDetails.xib in Resources */,
