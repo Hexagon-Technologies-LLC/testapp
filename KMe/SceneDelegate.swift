@@ -49,8 +49,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-        if let url = URLContexts.first?.url, let code = url.query?.split(separator: "=").last {
-            appState[\.system.callbackCode] = String(code)
+        if let url = URLContexts.first?.url, let idToken = url.fragment?.components(separatedBy: "access_token").first {
+            let idTokenValue = String(idToken).components(separatedBy: "=").last
+            appState[\.system.callbackCode] = idTokenValue
         }
     }
 }
