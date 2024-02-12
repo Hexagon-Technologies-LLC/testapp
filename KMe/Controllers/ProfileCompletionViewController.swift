@@ -15,6 +15,7 @@ class ProfileCompletionViewController: UIViewController,UIPickerViewDelegate,UIP
     func regionclosed() {
         self.dismissPopup(completion: nil)
     }
+    
     /** Delegate function for region selection applied*/
     func regionselectionapplied(countries: NSMutableArray) {
         
@@ -53,9 +54,17 @@ class ProfileCompletionViewController: UIViewController,UIPickerViewDelegate,UIP
     var pickerView = UIPickerView()
     let datePicker = UIDatePicker()
     
-    private let viewModel = ProfileCompletionViewModel()
+    private var viewModel: ProfileCompletionViewModel!
     private var cancelBag = CancelBag()
     @LazyInjected var repoAuth: AuthRepository
+    
+    class func makeVC(email: String) -> ProfileCompletionViewController {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "ProfileCompletionViewController") as! ProfileCompletionViewController
+        let viewModel = ProfileCompletionViewModel(registerEmail: email)
+        vc.viewModel = viewModel
+        return vc
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

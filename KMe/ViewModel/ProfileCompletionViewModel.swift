@@ -23,12 +23,17 @@ public class ProfileCompletionViewModel: ObservableObject {
     
     @Published var errorMessage: String?
     @Published var userInfo: UserInfo?
+    var registerEmail: String
+    
+    init(registerEmail: String) {
+        self.registerEmail = registerEmail
+    }
     
     func register() {
         Task {
             do {
                 let params = ["dob": self.dateOfBirth,
-                              "email": "test@gmail.com",
+                              "email": registerEmail ?? "",
                               "first_name": self.firstName,
                               "gender": self.gender,
                               "last_name": self.lastName,

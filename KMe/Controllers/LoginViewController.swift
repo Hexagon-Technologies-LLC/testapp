@@ -7,6 +7,7 @@
 
 import UIKit
 import JWTDecode
+import SSCustomTabbar
 
 class LoginViewController: UIViewController {
     
@@ -50,12 +51,6 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginwithapple(_ sender: UIButton){
-        //click action for login button
-//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ProfileCompletionViewController") as! ProfileCompletionViewController
-//        nextViewController.modalPresentationStyle = .fullScreen
-//        self.navigationController?.pushViewController(nextViewController, animated:true)
-
         if let url = URL(string: Defined.authHostedURL) {
             UIApplication.shared.open(url)
         }
@@ -64,14 +59,25 @@ class LoginViewController: UIViewController {
     func loginProcess(_ code: String) {
         do {
             let decodedToken = try decode(jwt: code)
-            print(decodedToken)
+            if let email = decodedToken.body["email"] as? String {
+                Task {
+                    do {
+                        let _ = try await repoAuth.getProfile(email: email)
+                        
+                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                        let nextViewController  = storyBoard.instantiateViewController(withIdentifier: "SSCustomTabBarViewController") as! SSCustomTabBarViewController
+                        self.navigationController?.pushViewController(nextViewController, animated:true)
+                    } catch {
+                        let vc = ProfileCompletionViewController.makeVC(email: email)
+                        self.navigationController?.pushViewController(vc, animated:true)
+                    }
+                }
+            } else {
+                KMAlert.alert(title: "", message: "Email not found") { _ in
+                }
+            }
         } catch {
             print(error)
         }
-        
-        //        Task {
-        //            let credentialResult = try await repoAuth.credentialToken(code: code)
-        //            print(credentialResult)
-        //        }
     }
 }

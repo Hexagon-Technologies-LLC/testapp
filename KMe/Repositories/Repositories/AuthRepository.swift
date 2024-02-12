@@ -63,13 +63,13 @@ extension AuthRepositoryImpl: AuthRepository {
     }
    
     func getProfile(id: String) async throws -> UserInfo {
-        let userInfo: UserInfo = try await execute(endpoint: API.getProfile(email: id), isFullPath: false, logLevel: .debug)
+        let userInfo: UserInfo = try await execute(endpoint: API.getProfileByID(id), isFullPath: false, logLevel: .debug)
         UserDefaultHandler.userInfo = userInfo
         return userInfo
     }
     
     func getProfile(email: String) async throws -> UserInfo {
-        let userInfo: UserInfo = try await execute(endpoint: API.getProfile(email: email), isFullPath: false, logLevel: .debug)
+        let userInfo: UserInfo = try await execute(endpoint: API.getProfileByEmail(email), isFullPath: false, logLevel: .debug)
         UserDefaultHandler.userInfo = userInfo
         return userInfo
     }
@@ -95,8 +95,8 @@ extension AuthRepositoryImpl {
     enum API: ResourceType {
         case signIn(param: Parameters)
         case credentialToken(param: Parameters)
-        case getProfile(id: String)
-        case getProfile(email: String)
+        case getProfileByID(_ id: String)
+        case getProfileByEmail(_ email: String)
         case createProfile(param: Parameters)
         case updateProfile(id: String, params: Parameters)
         case deleteProfile(id: String)
@@ -107,8 +107,10 @@ extension AuthRepositoryImpl {
                 return .post(path: "https://kme.auth.us-east-1.amazoncognito.com/oauth2/token")
             case .signIn:
                 return .post(path: "login")
-            case .getProfile(let emailOrID):
-                return .get(path: "profile/\(emailOrID)")
+            case .getProfileByID(let id):
+                return .get(path: "profile/\(id)")
+            case .getProfileByEmail(let email):
+                return .get(path: "profile/email/\(email)")
             case .createProfile:
                 return .post(path: "profile")
             case .updateProfile(let id, _):
@@ -122,7 +124,7 @@ extension AuthRepositoryImpl {
             switch self {
             case .credentialToken(let param):
                 return .requestParameters(encoding: .urlEncodingPOST, urlParameters: param)
-            case .getProfile, .deleteProfile:
+            case .getProfileByID, .getProfileByEmail, .deleteProfile:
                 return .requestParameters(encoding: .jsonEncoding)
             case .signIn(let param), .createProfile(let param), .updateProfile(_, let param):
                 return .requestParameters(bodyParameters: param, encoding: .jsonEncoding)

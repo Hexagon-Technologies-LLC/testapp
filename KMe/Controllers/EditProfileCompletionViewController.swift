@@ -194,7 +194,7 @@ class EditProfileCompletionViewController: UIViewController,UIPickerViewDelegate
         print(datePicker.date)
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy"
+        formatter.dateFormat = "MM/dd/yyyy"
         dateofbirth.text = formatter.string(from: datePicker.date)
         self.view.endEditing(true)
     }
