@@ -35,9 +35,13 @@ public class LoginViewModel: ObservableObject {
             if let email = decodedToken.body["email"] as? String {
                 do {
                     let _ = try await repoAuth.getProfile(email: email)
-                    loginState = .loggedIn
+                    await MainActor.run {
+                        loginState = .loggedIn
+                    }
                 } catch {
-                    loginState = .unRegistered(email: email)
+                    await MainActor.run {
+                        loginState = .unRegistered(email: email)
+                    }
                 }
             } else {
                 errorMessage = "Email not found"
