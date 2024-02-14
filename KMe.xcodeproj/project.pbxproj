@@ -160,6 +160,9 @@
 		D4A7BFCD2B7279A900198593 /* AWSCognitoAuthPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = D4A7BFCC2B7279A900198593 /* AWSCognitoAuthPlugin */; };
 		D4A7BFCF2B7279A900198593 /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = D4A7BFCE2B7279A900198593 /* Amplify */; };
 		D4A7BFD12B727C7400198593 /* AWSUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFD02B727C7400198593 /* AWSUserManager.swift */; };
+		D4C696E12B7C4C50002427B9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C696E02B7C4C50002427B9 /* LoginViewModel.swift */; };
+		D4C696E32B7C5146002427B9 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C696E22B7C5146002427B9 /* SettingViewModel.swift */; };
+		D4C696E52B7C5215002427B9 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C696E42B7C5215002427B9 /* EditProfileViewModel.swift */; };
 		D4CFA52F2B737C5C00E000E0 /* Defined.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CFA52E2B737C5C00E000E0 /* Defined.swift */; };
 		D4DDBE7A2B790E43007E2B2F /* String+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDBE792B790E43007E2B2F /* String+Ex.swift */; };
 		D4DDBE7C2B791110007E2B2F /* KMAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDBE7B2B791110007E2B2F /* KMAlert.swift */; };
@@ -348,6 +351,9 @@
 		D4A7BFC72B72752300198593 /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		D4A7BFC92B72764900198593 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		D4A7BFD02B727C7400198593 /* AWSUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSUserManager.swift; sourceTree = "<group>"; };
+		D4C696E02B7C4C50002427B9 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		D4C696E22B7C5146002427B9 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		D4C696E42B7C5215002427B9 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		D4CFA52C2B7376A400E000E0 /* KMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KMe.entitlements; sourceTree = "<group>"; };
 		D4CFA52E2B737C5C00E000E0 /* Defined.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defined.swift; sourceTree = "<group>"; };
 		D4DDBE792B790E43007E2B2F /* String+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ex.swift"; sourceTree = "<group>"; };
@@ -772,7 +778,10 @@
 		D4DDBE7F2B7916C9007E2B2F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				D4C696E02B7C4C50002427B9 /* LoginViewModel.swift */,
 				D4DDBE802B7916DF007E2B2F /* ProfileCompletionViewModel.swift */,
+				D4C696E42B7C5215002427B9 /* EditProfileViewModel.swift */,
+				D4C696E22B7C5146002427B9 /* SettingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1117,6 +1126,8 @@
 				086474B92ACE8359009B6CAB /* AddKidsViewController.swift in Sources */,
 				086474AD2ACD12FE009B6CAB /* NSObjectExtension.swift in Sources */,
 				082F0BB02AF2206900A0A08B /* Member.swift in Sources */,
+				D4C696E52B7C5215002427B9 /* EditProfileViewModel.swift in Sources */,
+				D4C696E12B7C4C50002427B9 /* LoginViewModel.swift in Sources */,
 				D4DDBE812B7916DF007E2B2F /* ProfileCompletionViewModel.swift in Sources */,
 				08FC8B052AA8608B00926DA3 /* CountryCollectionViewCell.swift in Sources */,
 				D4A7BFB82B72738000198593 /* JSON.swift in Sources */,
@@ -1130,6 +1141,7 @@
 				08AE1BA02AF4EE2E00F8A4E4 /* EditProfileViewController.swift in Sources */,
 				08A55C422ABAC21500A2B1F5 /* MoreoptionView.swift in Sources */,
 				08BB6D482ABC9C1A004EAAAF /* NotificationViewController.swift in Sources */,
+				D4C696E32B7C5146002427B9 /* SettingViewModel.swift in Sources */,
 				D4A7BFBB2B72738000198593 /* Network+Extensions.swift in Sources */,
 				08462B1B2B2074A900FAAF8B /* Country.swift in Sources */,
 				086474A72ACD12FE009B6CAB /* CircularCarousel+Scroll.swift in Sources */,

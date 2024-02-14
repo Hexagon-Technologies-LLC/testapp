@@ -64,8 +64,9 @@ class EditProfileViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     var relationpickerView = UIPickerView()
     
     let datePicker = UIDatePicker()
-    @LazyInjected var repoAuth: AuthRepository
     @LazyInjected var appState: AppStore<AppState>
+    private var viewModel = EditProfileViewModel()
+    private var cancelBag = CancelBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +76,50 @@ class EditProfileViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         
         regionview.isUserInteractionEnabled = true
         regionview.addGestureRecognizer(countrygesture)
+        
+        subscription()
+        bindingToViewModel()
     }
+    
+    func bindingToViewModel() {
+        firstname.textPublisher
+            .assign(to: \.firstName, on: viewModel)
+              .store(in: cancelBag)
+        middlename.textPublisher
+              .assign(to: \.middleName, on: viewModel)
+              .store(in: cancelBag)
+        lastname.textPublisher
+              .assign(to: \.lastName, on: viewModel)
+              .store(in: cancelBag)
+        dateofbirth.textPublisher
+              .assign(to: \.dateOfBirth, on: viewModel)
+              .store(in: cancelBag)
+        gender.textPublisher
+              .assign(to: \.gender, on: viewModel)
+              .store(in: cancelBag)
+        region.textPublisher
+              .assign(to: \.region, on: viewModel)
+              .store(in: cancelBag)
+    }
+    
+    func subscription() {
+        cancelBag.collect {
+            viewModel.$isUpdateSuccess.dropFirst().sink { success in
+                if success == true {
+                    KMAlert.alert(title: "", message: "Update Profile Successfully") { _ in
+                        //
+                    }
+                }
+            }
+            
+            viewModel.$errorMessage.dropFirst().sink { error in
+                KMAlert.alert(title: "", message: error) { _ in
+                    //
+                }
+            }
+        }
+    }
+    
     @objc func chooseRegion(_ sender:UITapGestureRecognizer){
         let popupVC = self.setPopupVC(storyboradID: "Main", viewControllerID: "CountryselectionViewController") as? CountryselectionViewController
         popupVC?.popupAlign = .center
@@ -149,7 +193,7 @@ class EditProfileViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     }
     
     @objc func donedatePicker(){
-        if datePicker.date > Defined.MINIMUM_AGE {
+        if viewModel.isAgeInvalid(datePicker.date) {
             // Age under 18
             KMAlert.alert(title: "Invalid Age", message: "You must be over 18 years old ") { _ in
                 
@@ -252,22 +296,7 @@ class EditProfileViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     
     @IBAction func submitButtonTapped(_ sender: Any) {
         Task {
-            guard let userInfo = appState[\.userData.userInfo] else { return }
-            let params = ["dob": self.dateofbirth.text,
-                          "email": "test@gmail.com",
-                          "first_name": self.firstname.text,
-                          "gender": self.gender.text,
-                          "last_name": self.lastname.text,
-                          "middle_name": self.middlename.text,
-                          "photo_url": "",
-                          "region": self.region.text]
-            let createdUserID = try await repoAuth.updateProfile(id: userInfo.id, params: params)
-            if !createdUserID.isEmpty {
-                let _ = try await repoAuth.getProfile(id: createdUserID)
-                KMAlert.alert(title: "", message: "Update Profile Successfully") { _ in
-                    //
-                }
-            }
+            await viewModel.updateProfile()
         }
     }
     

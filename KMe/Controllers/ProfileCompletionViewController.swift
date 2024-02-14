@@ -56,7 +56,6 @@ class ProfileCompletionViewController: UIViewController,UIPickerViewDelegate,UIP
     
     private var viewModel: ProfileCompletionViewModel!
     private var cancelBag = CancelBag()
-    @LazyInjected var repoAuth: AuthRepository
     
     class func makeVC(email: String) -> ProfileCompletionViewController {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
@@ -173,7 +172,7 @@ class ProfileCompletionViewController: UIViewController,UIPickerViewDelegate,UIP
     
     
     @objc func donedatePicker(){
-        if datePicker.date > Defined.MINIMUM_AGE {
+        if viewModel.isAgeInvalid(datePicker.date) {
             // Age under 18
             KMAlert.alert(title: "Invalid Age", message: "You must be over 18 years old ") { _ in
                 
@@ -222,7 +221,9 @@ class ProfileCompletionViewController: UIViewController,UIPickerViewDelegate,UIP
     
     /**Call back action method for filing button**/
     @IBAction func flingActionCallback(_ sender: FlingActionButton) {
-        viewModel.register()
+        Task {
+            await viewModel.register()
+        }
     }
     
     

@@ -12,8 +12,8 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var termsview: UIView!
     @IBOutlet weak var settingsviiew: UIView!
     @IBOutlet weak var deleteButton: UIButton!
-    @LazyInjected var repoAuth: AuthRepository
     @LazyInjected var appState: AppStore<AppState>
+    private var viewModel = SettingViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,14 +80,11 @@ class SettingsViewController: UIViewController {
         guard let userInfo = appState[\.userData.userInfo] else { return }
         
         KMAlert.actionSheetConfirm(title: "", message: "Are you sure you want to delete your account?") { _ in
-            //
-        } submitAction: { _ in
             Task {
-                let deletedUser = try await self.repoAuth.deleteProfile(id: userInfo.id)
-                if !deletedUser.isEmpty {
-                    self.appState.value.logout()
-                }
+                await self.viewModel.deleteAccount()
             }
+        } submitAction: { _ in
+           
         }
     }
 }

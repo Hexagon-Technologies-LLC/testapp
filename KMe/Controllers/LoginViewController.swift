@@ -14,8 +14,10 @@ class LoginViewController: UIViewController {
     //declaration interface builder components
     @IBOutlet weak var googlelogin: UIButton!
     @IBOutlet weak var applelogin: UIButton!
-    @LazyInjected var repoAuth: AuthRepository
+    
     @Injected var appState: AppStore<AppState>
+    private var cancelBag = CancelBag()
+    private var viewModel = LoginViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,12 +38,38 @@ class LoginViewController: UIViewController {
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(appEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        
+        self.subscription()
     }
     
     @objc func appEnterForeground() {
-        if let callbackCode = appState[\.system.callbackCode] {
-            loginProcess(callbackCode)
-            appState[\.system.callbackCode] = nil
+        if appState[\.system.callbackCode] != nil {
+            Task {
+               await viewModel.loginProcess()
+            }
+        }
+    }
+    
+    func subscription() {
+        cancelBag.collect {
+            viewModel.$loginState.dropFirst().sink { state in
+                switch state {
+                case .unRegistered(let email):
+                    let vc = ProfileCompletionViewController.makeVC(email: email)
+                    self.navigationController?.pushViewController(vc, animated:true)
+                case .loggedIn:
+                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                    let nextViewController  = storyBoard.instantiateViewController(withIdentifier: "SSCustomTabBarViewController") as! SSCustomTabBarViewController
+                    self.navigationController?.pushViewController(nextViewController, animated:true)
+                default: break
+                }
+            }
+            
+            viewModel.$errorMessage.dropFirst().sink { error in
+                KMAlert.alert(title: "", message: error) { _ in
+                    //
+                }
+            }
         }
     }
     
@@ -53,31 +81,6 @@ class LoginViewController: UIViewController {
     @IBAction func loginwithapple(_ sender: UIButton){
         if let url = URL(string: Defined.authHostedURL) {
             UIApplication.shared.open(url)
-        }
-    }
-    
-    func loginProcess(_ code: String) {
-        do {
-            let decodedToken = try decode(jwt: code)
-            if let email = decodedToken.body["email"] as? String {
-                Task {
-                    do {
-                        let _ = try await repoAuth.getProfile(email: email)
-                        
-                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                        let nextViewController  = storyBoard.instantiateViewController(withIdentifier: "SSCustomTabBarViewController") as! SSCustomTabBarViewController
-                        self.navigationController?.pushViewController(nextViewController, animated:true)
-                    } catch {
-                        let vc = ProfileCompletionViewController.makeVC(email: email)
-                        self.navigationController?.pushViewController(vc, animated:true)
-                    }
-                }
-            } else {
-                KMAlert.alert(title: "", message: "Email not found") { _ in
-                }
-            }
-        } catch {
-            print(error)
         }
     }
 }
