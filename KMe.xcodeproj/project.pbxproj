@@ -163,6 +163,8 @@
 		D4C696E12B7C4C50002427B9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C696E02B7C4C50002427B9 /* LoginViewModel.swift */; };
 		D4C696E32B7C5146002427B9 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C696E22B7C5146002427B9 /* SettingViewModel.swift */; };
 		D4C696E52B7C5215002427B9 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C696E42B7C5215002427B9 /* EditProfileViewModel.swift */; };
+		D4C696E72B7CBA97002427B9 /* DocumentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C696E62B7CBA97002427B9 /* DocumentRepository.swift */; };
+		D4C696E92B7CBD07002427B9 /* DocumentJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C696E82B7CBD07002427B9 /* DocumentJob.swift */; };
 		D4CFA52F2B737C5C00E000E0 /* Defined.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CFA52E2B737C5C00E000E0 /* Defined.swift */; };
 		D4DDBE7A2B790E43007E2B2F /* String+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDBE792B790E43007E2B2F /* String+Ex.swift */; };
 		D4DDBE7C2B791110007E2B2F /* KMAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DDBE7B2B791110007E2B2F /* KMAlert.swift */; };
@@ -354,6 +356,8 @@
 		D4C696E02B7C4C50002427B9 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D4C696E22B7C5146002427B9 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		D4C696E42B7C5215002427B9 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
+		D4C696E62B7CBA97002427B9 /* DocumentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentRepository.swift; sourceTree = "<group>"; };
+		D4C696E82B7CBD07002427B9 /* DocumentJob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentJob.swift; sourceTree = "<group>"; };
 		D4CFA52C2B7376A400E000E0 /* KMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KMe.entitlements; sourceTree = "<group>"; };
 		D4CFA52E2B737C5C00E000E0 /* Defined.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defined.swift; sourceTree = "<group>"; };
 		D4DDBE792B790E43007E2B2F /* String+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ex.swift"; sourceTree = "<group>"; };
@@ -755,6 +759,7 @@
 			isa = PBXGroup;
 			children = (
 				D4A7BFAF2B72738000198593 /* AuthRepository.swift */,
+				D4C696E62B7CBA97002427B9 /* DocumentRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -771,6 +776,7 @@
 			isa = PBXGroup;
 			children = (
 				D4A7BFB32B72738000198593 /* UserInfo.swift */,
+				D4C696E82B7CBD07002427B9 /* DocumentJob.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1109,6 +1115,7 @@
 				087EC8282AF108B900295036 /* EmptyRequestView.swift in Sources */,
 				08BFC8F52AE24B7000C8D18B /* Date+Days.swift in Sources */,
 				D4A7BFB72B72738000198593 /* CancelBag.swift in Sources */,
+				D4C696E72B7CBA97002427B9 /* DocumentRepository.swift in Sources */,
 				08BFC8EA2AE24B7000C8D18B /* DateScrollItem.swift in Sources */,
 				086474B52ACE438C009B6CAB /* InviteViewController.swift in Sources */,
 				08C0DF042AB174D0008CAC1C /* Documentsummary.swift in Sources */,
@@ -1120,6 +1127,7 @@
 				08AE1BA42AF51B6B00F8A4E4 /* TermsViewController.swift in Sources */,
 				08B723F02AD92EF800855635 /* CalendarTableViewCell.swift in Sources */,
 				08BFC8ED2AE24B7000C8D18B /* DateScrollManager.swift in Sources */,
+				D4C696E92B7CBD07002427B9 /* DocumentJob.swift in Sources */,
 				D4A7BFBA2B72738000198593 /* Codable+Extension.swift in Sources */,
 				08C0DF002AB17482008CAC1C /* Uploadedstackview.swift in Sources */,
 				D4A7BFC62B72738000198593 /* UserInfo.swift in Sources */,

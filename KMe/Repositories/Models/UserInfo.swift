@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct TokenInfo: Codable {
     let id_token: String
     let access_token: String
