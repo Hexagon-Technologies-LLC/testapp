@@ -15,3 +15,9 @@ struct Defined {
     // Age of 18.
     static let MINIMUM_AGE: Date = Calendar.current.date(byAdding: .year, value: -18, to: Date())!;
 }
+
+enum LoadingState {
+    case none
+    case loading
+    case done
+}

@@ -59,11 +59,11 @@ extension DocumentRepositoryImpl {
         var endPoint: Endpoint {
             switch self {
             case .processingSubmit:
-                return .post(path: "process/submit")
+                return .post(path: "processing/submit")
             case .processingCheck(let id):
-                return .get(path: "process/check/\(id)")
+                return .get(path: "processing/check/\(id)")
             case .processingReceive(let id):
-                return .get(path: "profile/receive/\(id)")
+                return .get(path: "processing/receive/\(id)")
             }
         }
         

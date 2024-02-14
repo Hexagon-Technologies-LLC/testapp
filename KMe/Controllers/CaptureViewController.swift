@@ -7,12 +7,13 @@
 
 import UIKit
 import AVFoundation
+import SVProgressHUD
 
-class CaptureViewController: UIViewController,AVCapturePhotoCaptureDelegate {
+class CaptureViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     var captureSession: AVCaptureSession!
     var stillImageOutput: AVCapturePhotoOutput!
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
-    
+
     var isfrontcaptured: Bool!
     var isbackcaptured: Bool!
     @IBOutlet weak var btnview: UIStackView!
@@ -24,6 +25,11 @@ class CaptureViewController: UIViewController,AVCapturePhotoCaptureDelegate {
     
     @IBOutlet weak var retakebtn: UIButton!
     @IBOutlet weak var continuebtn: UIButton!
+    
+    @Injected var appState: AppStore<AppState>
+    private var cancelBag = CancelBag()
+    private var viewModel = CaptureViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let documentname = "Indian Passport";
@@ -38,8 +44,8 @@ class CaptureViewController: UIViewController,AVCapturePhotoCaptureDelegate {
         myString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.init(named: "accent")!, range: nameRange)
         
         descriptionlbl.attributedText = myString
+        self.subscription()
     }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -52,8 +58,33 @@ class CaptureViewController: UIViewController,AVCapturePhotoCaptureDelegate {
         startcamera()
         
     }
-    func startcamera()
-    {
+    
+    func subscription() {
+        cancelBag.collect {
+            viewModel.$loadingState.dropFirst().sink { state in
+                switch state {
+                case .loading:
+                    SVProgressHUD.show()
+                case .done:
+                    SVProgressHUD.dismiss()
+                default: break
+                }
+            }
+            
+            viewModel.$errorMessage.dropFirst().sink { error in
+                KMAlert.alert(title: "", message: error) { _ in
+                }
+            }
+            
+            viewModel.$documentJob.dropFirst().sink { documentData in
+                KMAlert.alert(title: "Document Received", message: documentData.debugDescription) { _ in
+                    
+                }
+            }
+        }
+    }
+    
+    func startcamera() {
         guard let backCamera = AVCaptureDevice.default(for: AVMediaType.video)
         else {
             print("Unable to access back camera!")
@@ -65,7 +96,6 @@ class CaptureViewController: UIViewController,AVCapturePhotoCaptureDelegate {
             
             
             stillImageOutput = AVCapturePhotoOutput()
-            
             if captureSession.canAddInput(input) && captureSession.canAddOutput(stillImageOutput) {
                 captureSession.addInput(input)
                 captureSession.addOutput(stillImageOutput)
@@ -112,19 +142,16 @@ class CaptureViewController: UIViewController,AVCapturePhotoCaptureDelegate {
        
     }
     
-    func captureDocument()
-    {
+    func captureDocument() {
         let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
         stillImageOutput.capturePhoto(with: settings, delegate: self)
-        
-        self.captureSession?.stopRunning()
-        
         
         cameraview.isHidden = true
         btnview.isHidden = false
         // previewView.isHidden = true;
         capturedImage.isHidden = false
     }
+    
     @IBAction func toggleflash(_ sender: Any) {
         guard let device = AVCaptureDevice.default(for: AVMediaType.video),
               device.hasTorch else { return }
@@ -136,26 +163,26 @@ class CaptureViewController: UIViewController,AVCapturePhotoCaptureDelegate {
         } catch {
             assert(false, "error: device flash light, \(error)")
         }
-        
     }
+    
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        
         guard let imageData = photo.fileDataRepresentation()
         else { return }
         
         let image = UIImage(data: imageData)
         capturedImage.image = image
+        self.captureSession?.stopRunning()
     }
     
-    func showcamearaccessalert()
-    {
-        KMAlert.alert(title: "", message: "Don't have permission to access back camera") { _ in      
+    func showcamearaccessalert() {
+        KMAlert.alert(title: "", message: "Don't have permission to access back camera") { _ in
         }
     }
     
     @IBAction func backnavigation(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    
     @IBAction func retaake(_ sender: Any) {
         cameraview.isHidden = false;
         //   previewView.isHidden = false;
@@ -167,35 +194,26 @@ class CaptureViewController: UIViewController,AVCapturePhotoCaptureDelegate {
     }
     
     @IBAction func continuebtn(_ sender: Any) {
-        if(!isfrontcaptured)
-        {
+//        if !isfrontcaptured  {
             //   previewView.isHidden = false;
             capturedImage.isHidden = true
             cameraview.isHidden = false;
             continuebtn.setTitle("Confirm", for: .normal)
             btnview.isHidden = true
             isfrontcaptured = true
-            DispatchQueue.global(qos: .userInitiated).async { //[weak self] in
-                self.captureSession.startRunning()
+           
+            if let imageData = capturedImage.image?.jpegData(compressionQuality: 1)?.base64EncodedString() {
+                Task {
+                    await viewModel.submitToProgressing(documentBase64: imageData)
+                }
             }
-        }else
-        {
-            self.navigationController?.popViewController(animated: true)
-        }
+//        } else {
+//            self.navigationController?.popViewController(animated: true)
+//        }
         
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.captureSession.stopRunning()
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }

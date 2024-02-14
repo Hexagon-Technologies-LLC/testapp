@@ -137,6 +137,7 @@
 		40B33C4C85028C6AD380D394 /* Pods_KMe_KMeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80697DF04144FCBA3130201A /* Pods_KMe_KMeUITests.framework */; };
 		D47E8C6C2B75B2E3007879A1 /* UserDefaultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E8C6B2B75B2E3007879A1 /* UserDefaultHandler.swift */; };
 		D47E8C702B75BB94007879A1 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E8C6F2B75BB94007879A1 /* DateUtil.swift */; };
+		D485E1502B7D262700BB2473 /* CaptureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485E14F2B7D262700BB2473 /* CaptureViewModel.swift */; };
 		D4A7BFB42B72738000198593 /* CFRepositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BF9A2B72738000198593 /* CFRepositories.swift */; };
 		D4A7BFB62B72738000198593 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BF9D2B72738000198593 /* Resolver.swift */; };
 		D4A7BFB72B72738000198593 /* CancelBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BF9E2B72738000198593 /* CancelBag.swift */; };
@@ -157,9 +158,6 @@
 		D4A7BFC62B72738000198593 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFB32B72738000198593 /* UserInfo.swift */; };
 		D4A7BFC82B72752300198593 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFC72B72752300198593 /* UIColor+Hex.swift */; };
 		D4A7BFCA2B72764900198593 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFC92B72764900198593 /* AppEnvironment.swift */; };
-		D4A7BFCD2B7279A900198593 /* AWSCognitoAuthPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = D4A7BFCC2B7279A900198593 /* AWSCognitoAuthPlugin */; };
-		D4A7BFCF2B7279A900198593 /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = D4A7BFCE2B7279A900198593 /* Amplify */; };
-		D4A7BFD12B727C7400198593 /* AWSUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFD02B727C7400198593 /* AWSUserManager.swift */; };
 		D4C696E12B7C4C50002427B9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C696E02B7C4C50002427B9 /* LoginViewModel.swift */; };
 		D4C696E32B7C5146002427B9 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C696E22B7C5146002427B9 /* SettingViewModel.swift */; };
 		D4C696E52B7C5215002427B9 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C696E42B7C5215002427B9 /* EditProfileViewModel.swift */; };
@@ -332,6 +330,7 @@
 		C36AF0FD6E2EBF42987A3F3D /* Pods-KMeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMeTests.debug.xcconfig"; path = "Target Support Files/Pods-KMeTests/Pods-KMeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D47E8C6B2B75B2E3007879A1 /* UserDefaultHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHandler.swift; sourceTree = "<group>"; };
 		D47E8C6F2B75BB94007879A1 /* DateUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
+		D485E14F2B7D262700BB2473 /* CaptureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureViewModel.swift; sourceTree = "<group>"; };
 		D4A7BF9A2B72738000198593 /* CFRepositories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFRepositories.swift; sourceTree = "<group>"; };
 		D4A7BF9D2B72738000198593 /* Resolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
 		D4A7BF9E2B72738000198593 /* CancelBag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelBag.swift; sourceTree = "<group>"; };
@@ -352,7 +351,6 @@
 		D4A7BFB32B72738000198593 /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		D4A7BFC72B72752300198593 /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		D4A7BFC92B72764900198593 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
-		D4A7BFD02B727C7400198593 /* AWSUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSUserManager.swift; sourceTree = "<group>"; };
 		D4C696E02B7C4C50002427B9 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D4C696E22B7C5146002427B9 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		D4C696E42B7C5215002427B9 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
@@ -373,9 +371,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4A7BFCF2B7279A900198593 /* Amplify in Frameworks */,
 				149928545F192A684D2CF777 /* Pods_KMe.framework in Frameworks */,
-				D4A7BFCD2B7279A900198593 /* AWSCognitoAuthPlugin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -706,7 +702,6 @@
 				D4A7BFAE2B72738000198593 /* Repositories */,
 				D4A7BFB02B72738000198593 /* System */,
 				D4A7BF9B2B72738000198593 /* Utilities */,
-				D4A7BFD02B727C7400198593 /* AWSUserManager.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -788,6 +783,7 @@
 				D4DDBE802B7916DF007E2B2F /* ProfileCompletionViewModel.swift */,
 				D4C696E42B7C5215002427B9 /* EditProfileViewModel.swift */,
 				D4C696E22B7C5146002427B9 /* SettingViewModel.swift */,
+				D485E14F2B7D262700BB2473 /* CaptureViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -838,8 +834,6 @@
 			);
 			name = KMe;
 			packageProductDependencies = (
-				D4A7BFCC2B7279A900198593 /* AWSCognitoAuthPlugin */,
-				D4A7BFCE2B7279A900198593 /* Amplify */,
 			);
 			productName = KMe;
 			productReference = 0864627C2AA5AC15009CBF01 /* KMe.app */;
@@ -917,7 +911,6 @@
 			);
 			mainGroup = 086462732AA5AC15009CBF01;
 			packageReferences = (
-				D4A7BFCB2B7279A900198593 /* XCRemoteSwiftPackageReference "amplify-swift" */,
 			);
 			productRefGroup = 0864627D2AA5AC15009CBF01 /* Products */;
 			projectDirPath = "";
@@ -1153,13 +1146,13 @@
 				D4A7BFBB2B72738000198593 /* Network+Extensions.swift in Sources */,
 				08462B1B2B2074A900FAAF8B /* Country.swift in Sources */,
 				086474A72ACD12FE009B6CAB /* CircularCarousel+Scroll.swift in Sources */,
-				D4A7BFD12B727C7400198593 /* AWSUserManager.swift in Sources */,
 				08C0DEF72AB14F1B008CAC1C /* LocationCell.swift in Sources */,
 				08C4889F2AE8DBCC00329F98 /* Notification.swift in Sources */,
 				D4A7BFB92B72738000198593 /* Then.swift in Sources */,
 				D4A7BFBC2B72738000198593 /* NetworkingLogger.swift in Sources */,
 				08C488A22AE8DC6600329F98 /* Mockdata.swift in Sources */,
 				D4A7BFC02B72738000198593 /* WebRepository.swift in Sources */,
+				D485E1502B7D262700BB2473 /* CaptureViewModel.swift in Sources */,
 				088FB5582AEFCC7B003A132E /* Sharedwith.swift in Sources */,
 				08BFC8FA2AE24B7000C8D18B /* DateScrollPicker.swift in Sources */,
 				D4A7BFC52B72738000198593 /* AppState.swift in Sources */,
@@ -1397,7 +1390,7 @@
 				CODE_SIGN_ENTITLEMENTS = KMe/KMe.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = 57YK7A6W44;
+				DEVELOPMENT_TEAM = 48HJA497TD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KMe/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires to access your camera";
@@ -1412,7 +1405,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.app.KMe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.KMe.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1433,7 +1426,7 @@
 				CODE_SIGN_ENTITLEMENTS = KMe/KMe.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = 57YK7A6W44;
+				DEVELOPMENT_TEAM = 48HJA497TD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KMe/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires to access your camera";
@@ -1448,7 +1441,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.app.KMe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.KMe.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1579,30 +1572,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		D4A7BFCB2B7279A900198593 /* XCRemoteSwiftPackageReference "amplify-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/aws-amplify/amplify-swift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.25.6;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		D4A7BFCC2B7279A900198593 /* AWSCognitoAuthPlugin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D4A7BFCB2B7279A900198593 /* XCRemoteSwiftPackageReference "amplify-swift" */;
-			productName = AWSCognitoAuthPlugin;
-		};
-		D4A7BFCE2B7279A900198593 /* Amplify */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D4A7BFCB2B7279A900198593 /* XCRemoteSwiftPackageReference "amplify-swift" */;
-			productName = Amplify;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 086462742AA5AC15009CBF01 /* Project object */;
 }

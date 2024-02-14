@@ -7,8 +7,6 @@
 
 import UIKit
 import IQKeyboardManagerSwift
-import Amplify
-import AWSCognitoAuthPlugin
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,14 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let repo = CFRepositories(env: env)
         repo.registerDI()
-        
-        do {
-              try Amplify.add(plugin: AWSCognitoAuthPlugin())
-              try Amplify.configure()
-              print("Amplify configured with auth plugin")
-          } catch {
-              print("Failed to initialize Amplify with \(error)")
-          }
         
         return true
     }
