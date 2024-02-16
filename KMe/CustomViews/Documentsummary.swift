@@ -34,21 +34,37 @@ class Documentsummary: UIView,Menudelegate {
     @IBOutlet weak var menubottomconstraint: NSLayoutConstraint!
 
     @IBOutlet weak var menuview: MoreoptionView!
-
     @IBOutlet weak var sharedocument: UIButton!
+    
+    @IBOutlet weak var cardType: UILabel!
+    @IBOutlet weak var cardName: UILabel!
+    @IBOutlet weak var documentNumberName: UILabel!
+    @IBOutlet weak var documentNumber: UILabel!
+    @IBOutlet weak var cardProfileImage: UIImageView!
+    @IBOutlet weak var cardProfileQR: UIImageView!
+    
+    // Card Detail
     
     @IBAction func copyclipboard(_ sender: Any) {
         UIPasteboard.general.string = "BEHPM3927C"
         optiondelegate?.copyclipboardsuccess()
     }
     @IBAction func authenticateUser(_ sender: Any) {
-        
         authenticate()
     }
     
     @IBAction func showmoremenu(_ sender: Any) {
         optiondelegate?.optionselected(menuitem: self.tag)
 
+    }
+    
+    func configureDriverLicenseCard(_ license: LicenseDocument) {
+        cardProfileQR.isHidden = true
+        cardProfileImage.isHidden = true
+        documentNumberName.text = "LIC NO"
+        documentNumber.text = license.document_data?.document_number
+        cardType.text = "DRIVER'S LICENSE"
+        cardName.text = license.document_data?.fullName
     }
     
     func authenticate() {

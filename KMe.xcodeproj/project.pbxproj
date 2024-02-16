@@ -138,6 +138,8 @@
 		D47E8C6C2B75B2E3007879A1 /* UserDefaultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E8C6B2B75B2E3007879A1 /* UserDefaultHandler.swift */; };
 		D47E8C702B75BB94007879A1 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E8C6F2B75BB94007879A1 /* DateUtil.swift */; };
 		D485E1502B7D262700BB2473 /* CaptureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485E14F2B7D262700BB2473 /* CaptureViewModel.swift */; };
+		D485E1532B7E736B00BB2473 /* AddDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485E1522B7E736B00BB2473 /* AddDocument.swift */; };
+		D485E1552B7E78CD00BB2473 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485E1542B7E78CD00BB2473 /* Document.swift */; };
 		D4A7BFB42B72738000198593 /* CFRepositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BF9A2B72738000198593 /* CFRepositories.swift */; };
 		D4A7BFB62B72738000198593 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BF9D2B72738000198593 /* Resolver.swift */; };
 		D4A7BFB72B72738000198593 /* CancelBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BF9E2B72738000198593 /* CancelBag.swift */; };
@@ -331,6 +333,8 @@
 		D47E8C6B2B75B2E3007879A1 /* UserDefaultHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHandler.swift; sourceTree = "<group>"; };
 		D47E8C6F2B75BB94007879A1 /* DateUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		D485E14F2B7D262700BB2473 /* CaptureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureViewModel.swift; sourceTree = "<group>"; };
+		D485E1522B7E736B00BB2473 /* AddDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDocument.swift; sourceTree = "<group>"; };
+		D485E1542B7E78CD00BB2473 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		D4A7BF9A2B72738000198593 /* CFRepositories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFRepositories.swift; sourceTree = "<group>"; };
 		D4A7BF9D2B72738000198593 /* Resolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
 		D4A7BF9E2B72738000198593 /* CancelBag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelBag.swift; sourceTree = "<group>"; };
@@ -693,6 +697,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		D485E1512B7E735400BB2473 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				D485E1522B7E736B00BB2473 /* AddDocument.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
 		D4A7BF992B72736D00198593 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
@@ -770,8 +782,10 @@
 		D4A7BFB22B72738000198593 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D485E1512B7E735400BB2473 /* Request */,
 				D4A7BFB32B72738000198593 /* UserInfo.swift */,
 				D4C696E82B7CBD07002427B9 /* DocumentJob.swift */,
+				D485E1542B7E78CD00BB2473 /* Document.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1096,6 +1110,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D485E1532B7E736B00BB2473 /* AddDocument.swift in Sources */,
 				086474A92ACD12FE009B6CAB /* CircularCarousel+Loader.swift in Sources */,
 				D4A7BFC22B72738000198593 /* ResourceType.swift in Sources */,
 				0838F3142AB92C5A00A6F57B /* DocSummaryViewController.swift in Sources */,
@@ -1208,6 +1223,7 @@
 				086474AF2ACD12FE009B6CAB /* CircularCarousel+Layout.swift in Sources */,
 				08C0DEE82AAA8D58008CAC1C /* ColorModel.swift in Sources */,
 				086474AA2ACD12FE009B6CAB /* CircularCarousel+Gesture.swift in Sources */,
+				D485E1552B7E78CD00BB2473 /* Document.swift in Sources */,
 				086474BB2ACED575009B6CAB /* CalendarViewController.swift in Sources */,
 				08BB6D462ABC962F004EAAAF /* SettingsViewController.swift in Sources */,
 				084BF0C32AF8C1C50072F36D /* NotificationSettingsViewController.swift in Sources */,
@@ -1389,7 +1405,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = KMe/KMe.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 48HJA497TD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KMe/Info.plist;
@@ -1425,7 +1441,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = KMe/KMe.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 48HJA497TD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KMe/Info.plist;

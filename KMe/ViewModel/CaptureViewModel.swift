@@ -13,7 +13,7 @@ public class CaptureViewModel: ObservableObject {
     private var cancelBag = CancelBag()
     @Published var errorMessage: String?
     @Published var loadingState: LoadingState = .none
-    @Published var documentJob: DocumentJob?
+    @Published var documentIDAdded: String?
     
     var retryStatusCount = 0
     
@@ -32,7 +32,11 @@ public class CaptureViewModel: ObservableObject {
                 let processingStatus = await self.processingCheck(jobId: returnedJobId)
                 if processingStatus {
                     let processingData = try await self.repoDocument.processingReceive(id: returnedJobId)
-                    documentJob = processingData
+                    
+                    let documentData = AddDocument(documentData: processingData.asDictionary, documentType: "License", editedOCR: false, expiryDate: processingData.date_of_expiration, OCRData: processingData.asDictionary, region: processingData.region, userID: userInfo.id).convertToRequest()
+                    
+                    documentIDAdded = try await self.repoDocument.addDocument(params: documentData as [String : Any])
+                    
                     await MainActor.run {
                         loadingState = .done
                     }

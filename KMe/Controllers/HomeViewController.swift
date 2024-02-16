@@ -7,10 +7,13 @@
 
 import UIKit
 import ToastViewSwift
+import SVProgressHUD
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,Optiondelegate {
     @IBOutlet weak var lbUserName: UILabel!
     @LazyInjected var appState: AppStore<AppState>
+    @LazyInjected var repoDocument: DocumentRepository
+    private var cancelBag = CancelBag()
     
     func menuselected(menuitem: Int) {
         
@@ -82,13 +85,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var locations = ["All", "India", "UK", "USA", "Canada", "Australia"]
     var country_flags = ["All", "flag", "UK", "USA", "Canada", "aus"]
     
-    var document_names = ["Upload Passport","Upload Voter ID Card","Aadhaar Card","Driving License","PAN Card"]
-    var document_placeholder = ["passport_placeholder","voterid_placeholder","aadhaar","drivinglicence_placehoder","pancard"]
+    var document_names = ["Upload Passport or Driver's License","Aadhaar Card","Driving License","PAN Card"]
+    var document_placeholder = ["passport_placeholder","aadhaar","drivinglicence_placehoder","pancard"]
     
     
-    var documents = [1,1,3,3,3]
+    var documents = [1,3,3,3]
     var list = ["1", "2", "3"]
-    var colornames = [UIColor.green,UIColor.red,UIColor(named: "drivinglicence"),UIColor(named: "aadhaar_color"),UIColor(named: "accent")]
+    var colornames = [UIColor.green,UIColor(named: "drivinglicence"),UIColor(named: "aadhaar_color"),UIColor(named: "accent")]
     
     @IBOutlet weak var documentview: UIStackView!
     @IBOutlet weak var tagview: UILabel!
@@ -126,16 +129,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         documentview.alignment = UIStackView.Alignment.center
         documentview.spacing   = -32.0
         selectedindex = documents.count - 1
-        cardposition = 0;
-        for index in documents {
-            addnewview(staus: documents[index],indexval: cardposition)
-            cardposition = cardposition + 1;
-        }
-        documentview.translatesAutoresizingMaskIntoConstraints = false
-        
-        // Do any additional setup after loading the view.
+       
+        addUploadView()
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         tagview.numberOfLines = 0
@@ -143,40 +139,96 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         tagview.sizeToFit()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        guard let userInfo = appState[\.userData.userInfo] else { return }
+        SVProgressHUD.show()
+        Task {
+            let documentsData = try await repoDocument.getDocuments(userId: userInfo.id)
+            await SVProgressHUD.dismiss()
+            print(documentsData)
+            self.addCard(passports: documentsData.passport, licenses: documentsData.license)
+            
+//            cardposition = 0;
+//            for index in documents {
+//                addnewview(staus: index,indexval: cardposition)
+//                cardposition = cardposition + 1;
+//            }
+            documentview.translatesAutoresizingMaskIntoConstraints = false
+            
+        }
+    }
+    
+    func addUploadView() {
+        let uploadView = Bundle.main.loadNibNamed("Uploadstackview", owner: self, options: nil)?.first as! UIView
+        uploadView.backgroundColor = UIColor(named: "Uploadbg")
+        uploadView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        uploadView.widthAnchor.constraint(equalToConstant:  self.view.frame.size.width).isActive = true
+        uploadView.roundAllCorners(cornerRadius: 20)
+        
+        uploadView.applyGradient(colours: [UIColor(named: "gradient_top")!,UIColor(named: "gradient_bottom")!])
+        uploadView.layer.borderWidth = 0.75
+        uploadView.layer.borderColor = UIColor.lightGray.cgColor
+        let gesture = UITapGestureRecognizer(target: self, action:  #selector (self.uploadAction (_:)))
+        uploadView.addGestureRecognizer(gesture)
+        
+        if let namelabel = uploadView.viewWithTag(33) as? UILabel {
+            namelabel.text = "Upload Passport or Driver's License"
+            namelabel.textColor = .white
+            namelabel.bringSubviewToFront(uploadView)
+        }
+        
+        if let docimage = uploadView.viewWithTag(44) as? UIImageView {
+            docimage.image = UIImage(named: "passport_placeholder")
+            docimage.tintColor = .white
+        }
+        documentview.addArrangedSubview(uploadView)
+    }
+    
+    func addCard(passports: [PassportDocument], licenses: [LicenseDocument]) {
+        for license in licenses {
+            let documentView = Documentsummary()
+            documentView.bgview.backgroundColor = colornames.randomElement()! //UIColor(named: "drivinglicence")
+            documentView.namelabel.text = license.documentTypeName
+            documentView.docimage.image = UIImage(named: "drivinglicence_placehoder")
+            documentView.docimage.tintColor = .black
+            documentView.configureDriverLicenseCard(license)
+            if(selectedindex != 1)
+            {
+                documentView.bottomconstraint.constant = 44
+                documentView.menubottomconstraint.constant = 44
+                documentView.documentview.isHidden = true
+                documentView.actionview.isHidden = true
+                
+            }else
+            {
+                documentView.bottomconstraint.constant = 24
+                documentView.menubottomconstraint.constant = 24
+                documentView.documentview.isHidden = false
+                documentView.actionview.isHidden = false
+            }
+            
+            
+            documentView.widthAnchor.constraint(equalToConstant:  self.view.frame.size.width).isActive = true
+            documentView.bgview.layer.cornerRadius = 20;
+//            documentView.tag = indexval
+            documentView.bgview.clipsToBounds = true
+            let gesture = UITapGestureRecognizer(target: self, action:  #selector (self.someAction (_:)))
+            documentView.addGestureRecognizer(gesture)
+            documentView.bgview.layer.shadowColor = UIColor.black.cgColor
+            documentView.bgview.layer.shadowOpacity = 1
+            documentView.bgview.layer.shadowOffset = .zero
+            documentView.bgview.layer.shadowRadius = 10
+            documentView.optiondelegate = self
+            selectedview = documentView
+            documentview.addArrangedSubview(documentView)
+        }
+    }
+    
     func addnewview(staus: Int,indexval : Int)  {
         switch staus {
-        case 1:
-            let uploadView = Bundle.main.loadNibNamed("Uploadstackview", owner: self, options: nil)?.first as! UIView
-            uploadView.backgroundColor = UIColor(named: "Uploadbg")
-            uploadView.heightAnchor.constraint(equalToConstant:90).isActive = true
-            uploadView.widthAnchor.constraint(equalToConstant:  self.view.frame.size.width).isActive = true
-            uploadView.roundCorners(cornerRadius: 20)
-            
-            uploadView.applyGradient(colours: [UIColor(named: "gradient_top")!,UIColor(named: "gradient_bottom")!])
-            uploadView.layer.borderWidth = 0.75
-            uploadView.layer.borderColor = UIColor.lightGray.cgColor
-            let gesture = UITapGestureRecognizer(target: self, action:  #selector (self.uploadAction (_:)))
-            uploadView.addGestureRecognizer(gesture)
-            
-            if let namelabel = uploadView.viewWithTag(33) as? UILabel {
-                namelabel.text = document_names[indexval]
-                namelabel.textColor = .white
-                namelabel.bringSubviewToFront(uploadView)
-            }
-            
-            
-            if let docimage = uploadView.viewWithTag(44) as? UIImageView {
-                docimage.image = UIImage(named: document_placeholder[indexval])
-                docimage.tintColor = .white
-            }
-            documentview.addArrangedSubview(uploadView)
-            
-            
-            break;
-            
         case 3:
-            
-            
             let documentView = Documentsummary()
             documentView.bgview.backgroundColor = colornames[indexval]
             documentView.namelabel.text = document_names[indexval]
@@ -195,9 +247,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 documentView.menubottomconstraint.constant = 24
                 documentView.documentview.isHidden = false
                 documentView.actionview.isHidden = false
-                
-                
-                
             }
             
             
@@ -227,6 +276,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         self.navigationController?.pushViewController(nextViewController, animated:true)
     }
+    
     @objc func someAction(_ sender:UITapGestureRecognizer){
         
         UIView.animate(withDuration: 1.0, animations: {
@@ -241,23 +291,23 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             self.selectedview = expandview
         }
         print(selectedindex)
-        if(selectedindex ==  sender.view?.tag  ?? 0)
-        {
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "DocSummaryViewController") as! DocSummaryViewController
-            if(selectedindex == 2)
-            {
-                nextViewController.isexpired = true
-                
-            }else
-            {
-                nextViewController.isexpired = false
-                
-            }
-            self.navigationController?.pushViewController(nextViewController, animated:true)
-        }
-        
-        selectedindex = sender.view?.tag  ?? 0
+//        if(selectedindex ==  sender.view?.tag  ?? 0)
+//        {
+//            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "DocSummaryViewController") as! DocSummaryViewController
+//            if(selectedindex == 2)
+//            {
+//                nextViewController.isexpired = true
+//                
+//            }else
+//            {
+//                nextViewController.isexpired = false
+//                
+//            }
+//            self.navigationController?.pushViewController(nextViewController, animated:true)
+//        }
+//        
+//        selectedindex = sender.view?.tag  ?? 0
     }
     
     @objc func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int

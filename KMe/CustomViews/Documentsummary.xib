@@ -23,8 +23,14 @@
                 <outlet property="actionview" destination="fqJ-KV-9kE" id="7hr-fq-rod"/>
                 <outlet property="bgview" destination="yVg-aq-rEG" id="ONm-Hl-8Hd"/>
                 <outlet property="bottomconstraint" destination="avJ-7c-BRn" id="NiD-oH-Yxy"/>
+                <outlet property="cardName" destination="YlC-aE-MEf" id="y8a-K7-eXA"/>
+                <outlet property="cardProfileImage" destination="Lzp-bM-atV" id="zDt-7Z-sfC"/>
+                <outlet property="cardProfileQR" destination="VVU-jk-foG" id="Sfe-QD-Twp"/>
+                <outlet property="cardType" destination="tGw-m3-dTe" id="EXR-bf-e3x"/>
                 <outlet property="containerView" destination="iN0-l3-epB" id="axS-N9-Yv8"/>
                 <outlet property="docimage" destination="tAg-nR-iy6" id="aim-FW-hKj"/>
+                <outlet property="documentNumber" destination="ocb-qE-tcZ" id="JMW-gp-0Mx"/>
+                <outlet property="documentNumberName" destination="y3Y-R0-FJm" id="Tma-CS-Azf"/>
                 <outlet property="documentview" destination="apv-of-JzQ" id="qbh-cB-me4"/>
                 <outlet property="menubottomconstraint" destination="Vct-AX-zau" id="oTz-6u-44W"/>
                 <outlet property="menuview" destination="chj-6M-adY" id="EsA-Wd-MMW"/>
@@ -91,14 +97,14 @@
                                                                                     <color key="textColor" name="primarytextcolor"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Government of India" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DwX-8C-58k">
-                                                                                    <rect key="frame" x="0.0" y="16.666666666666671" width="125.66666666666667" height="14.666666666666664"/>
+                                                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Government of India" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DwX-8C-58k">
+                                                                                    <rect key="frame" x="0.0" y="15.666666666666671" width="125.66666666666667" height="0.0"/>
                                                                                     <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
                                                                                     <color key="textColor" name="primarytextcolor"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uSz-H6-iLv">
-                                                                                    <rect key="frame" x="0.0" y="33.333333333333329" width="227" height="10.666666666666664"/>
+                                                                                    <rect key="frame" x="0.0" y="16.666666666666671" width="227" height="27.333333333333329"/>
                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 </view>
                                                                             </subviews>
@@ -127,7 +133,7 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BEHPM3927C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ocb-qE-tcZ">
-                                                                            <rect key="frame" x="0.0" y="16.333333333333329" width="120.33333333333333" height="21"/>
+                                                                            <rect key="frame" x="0.0" y="16.333333333333343" width="120.33333333333333" height="21"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                             <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="17"/>
                                                                             <color key="textColor" name="primarytextcolor"/>

@@ -179,7 +179,11 @@ extension UIView {
         self.layer.cornerRadius = CGFloat(cornerRadius)
         self.clipsToBounds = true
         self.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        
+    }
+    
+    func roundAllCorners(cornerRadius: Double) {
+        self.layer.cornerRadius = CGFloat(cornerRadius)
+        self.clipsToBounds = true
     }
     
     /**These functions are not used in our application so commented out. if need border for any one or two side of ui . we can use this function**/

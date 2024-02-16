@@ -56,7 +56,6 @@ class CaptureViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         captureSession = AVCaptureSession()
         captureSession.sessionPreset = .medium
         startcamera()
-        
     }
     
     func subscription() {
@@ -76,9 +75,9 @@ class CaptureViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                 }
             }
             
-            viewModel.$documentJob.dropFirst().sink { documentData in
-                KMAlert.alert(title: "Document Received", message: documentData.debugDescription) { _ in
-                    
+            viewModel.$documentIDAdded.dropFirst().sink { _ in
+                KMAlert.alert(title: "", message: "Document Upload Successfully") { _ in
+                    self.navigationController?.popViewController(animated: true)
                 }
             }
         }

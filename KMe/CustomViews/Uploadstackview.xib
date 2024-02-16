@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,32 +20,29 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="108"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="F78-q5-MFk">
-                    <rect key="frame" x="16" y="12" width="361" height="24"/>
-                    <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upload" translatesAutoresizingMaskIntoConstraints="NO" id="hE1-f6-YEp">
-                            <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="24" id="4Kp-ST-9hd"/>
-                                <constraint firstAttribute="height" constant="24" id="REd-fq-A7T"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" tag="33" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload Passport" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRC-bc-ynV">
-                            <rect key="frame" x="32" y="2.3333333333333339" width="297" height="19.666666666666664"/>
-                            <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="16"/>
-                            <color key="textColor" name="primarytextcolor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="44" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uploadtype" translatesAutoresizingMaskIntoConstraints="NO" id="QAn-K6-G3y">
-                            <rect key="frame" x="337" y="0.0" width="24" height="24"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="24" id="gCz-1p-oc3"/>
-                                <constraint firstAttribute="width" constant="24" id="yKR-KU-bv4"/>
-                            </constraints>
-                        </imageView>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </stackView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upload" translatesAutoresizingMaskIntoConstraints="NO" id="hE1-f6-YEp">
+                    <rect key="frame" x="16" y="25" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="REd-fq-A7T"/>
+                        <constraint firstAttribute="width" secondItem="hE1-f6-YEp" secondAttribute="height" multiplier="1:1" id="uUe-W8-ABW"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" tag="33" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload Passport" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRC-bc-ynV">
+                    <rect key="frame" x="53" y="12" width="287" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="YED-tK-QRE"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="16"/>
+                    <color key="textColor" name="primarytextcolor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="44" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uploadtype" translatesAutoresizingMaskIntoConstraints="NO" id="QAn-K6-G3y">
+                    <rect key="frame" x="353" y="25" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="QAn-K6-G3y" secondAttribute="height" multiplier="1:1" id="Cug-Gg-FGc"/>
+                        <constraint firstAttribute="width" constant="24" id="yKR-KU-bv4"/>
+                    </constraints>
+                </imageView>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6u-Lg-w5h">
                     <rect key="frame" x="16" y="44" width="150" height="30"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.11" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -71,12 +68,15 @@
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="Z6u-Lg-w5h" secondAttribute="bottom" constant="34" id="1hs-BA-exe"/>
+                <constraint firstItem="XRC-bc-ynV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="76Y-B0-POb"/>
+                <constraint firstItem="hE1-f6-YEp" firstAttribute="centerY" secondItem="XRC-bc-ynV" secondAttribute="centerY" id="CQ2-eA-VUL"/>
                 <constraint firstItem="Z6u-Lg-w5h" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="DxD-wG-DSr"/>
-                <constraint firstItem="F78-q5-MFk" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="UCn-Es-Q6P"/>
-                <constraint firstAttribute="trailing" secondItem="F78-q5-MFk" secondAttribute="trailing" constant="16" id="ai3-ZW-NPh"/>
-                <constraint firstItem="Z6u-Lg-w5h" firstAttribute="top" secondItem="F78-q5-MFk" secondAttribute="bottom" constant="8" id="cxI-xT-duh"/>
-                <constraint firstItem="F78-q5-MFk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="h7k-P2-99d"/>
-                <constraint firstItem="F78-q5-MFk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="ufj-bI-HFA"/>
+                <constraint firstItem="QAn-K6-G3y" firstAttribute="leading" secondItem="XRC-bc-ynV" secondAttribute="trailing" constant="13" id="Ex9-0C-hBV"/>
+                <constraint firstItem="QAn-K6-G3y" firstAttribute="centerY" secondItem="XRC-bc-ynV" secondAttribute="centerY" id="JUo-Ay-YoB"/>
+                <constraint firstAttribute="trailing" secondItem="QAn-K6-G3y" secondAttribute="trailing" constant="16" id="KT0-zR-YYa"/>
+                <constraint firstItem="hE1-f6-YEp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="dXg-Qf-sEo"/>
+                <constraint firstItem="XRC-bc-ynV" firstAttribute="leading" secondItem="hE1-f6-YEp" secondAttribute="trailing" constant="13" id="gLc-Ca-JKa"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
