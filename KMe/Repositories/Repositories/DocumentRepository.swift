@@ -15,7 +15,8 @@ protocol DocumentRepository: WebRepository {
     func processingReceive(id: String) async throws -> DocumentJob
     func addDocument(params: [String: Any]) async throws-> String
     func getDocuments(userId: String) async throws -> (passport: [PassportDocument], license: [LicenseDocument])
-    func deleteDocument(params: [String : Any]) async throws -> String
+    func deleteDocumentByType(userID: String, documentType: String) async throws -> String
+    func deleteDocumentByID(id: String) async throws -> String
 }
 
 struct DocumentRepositoryImpl {
@@ -95,8 +96,13 @@ extension DocumentRepositoryImpl: DocumentRepository {
         }
     }
     
-    func deleteDocument(params: [String : Any]) async throws -> String {
-        let result: [String: String] = try await execute(endpoint: API.deleteDocument(params), isFullPath: false, logLevel: .debug)
+    func deleteDocumentByType(userID: String, documentType: String) async throws -> String {
+        let result: [String: String] = try await execute(endpoint: API.deleteDocumentByType(userID, documentType: documentType), isFullPath: false, logLevel: .debug)
+        return result["document_id"] ?? ""
+    }
+    
+    func deleteDocumentByID(id: String) async throws -> String {
+        let result: [String: String] = try await execute(endpoint: API.deleteDocumentByID(id), isFullPath: false, logLevel: .debug)
         return result["document_id"] ?? ""
     }
 }
@@ -110,7 +116,8 @@ extension DocumentRepositoryImpl {
         case processingReceive(_ id: String)
         case addDocument(param: Parameters)
         case getDocuments(_ userId: String)
-        case deleteDocument(_ param: Parameters)
+        case deleteDocumentByType(_ userID: String, documentType: String)
+        case deleteDocumentByID(_ id: String)
         
         var endPoint: Endpoint {
             switch self {
@@ -124,16 +131,19 @@ extension DocumentRepositoryImpl {
                 return .post(path: "documents/add")
             case .getDocuments(let userId):
                 return .get(path: "documents/users/\(userId)")
-            case .deleteDocument:
-                return .delete(path: "documents/delete")
+            case .deleteDocumentByType(let userID, let documentType):
+                return .delete(path: "documents/delete/\(userID)?documentType=\(documentType)")
+            case .deleteDocumentByID(let id):
+                return .delete(path: "documents/\(id)")
+                
             }
         }
         
         var task: HTTPTask {
             switch self {
-            case .processingCheck, .processingReceive, .getDocuments:
+            case .processingCheck, .processingReceive, .getDocuments, .deleteDocumentByID, .deleteDocumentByType(_, _):
                 return .requestParameters(encoding: .jsonEncoding)
-            case .processingSubmit(let param), .addDocument(let param), .deleteDocument(let param):
+            case .processingSubmit(let param), .addDocument(let param):
                 return .requestParameters(bodyParameters: param, encoding: .jsonEncoding)
             }
         }

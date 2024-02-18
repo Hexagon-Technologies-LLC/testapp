@@ -31,9 +31,13 @@ public class CaptureViewModel: ObservableObject {
             if !returnedJobId.isEmpty {
                 let processingStatus = await self.processingCheck(jobId: returnedJobId)
                 if processingStatus {
+                    // Receive processed job
                     let job = try await self.repoDocument.processingReceive(id: returnedJobId)
-
+                    
+                    // Add processed job into document
                     if let licenseJob = job.licenseJob {
+                        // Delete old document before upload
+                        let _ = try await repoDocument.deleteDocumentByType(userID: userInfo.id, documentType: licenseJob.docType ?? "")
                         let documentData = AddDocument(documentData: licenseJob.data.asDictionary,
                                                        documentType: licenseJob.docType,
                                                        editedOCR: false,
@@ -43,6 +47,8 @@ public class CaptureViewModel: ObservableObject {
                                                        userID: userInfo.id).convertToRequest()
                         documentIDAdded = try await self.repoDocument.addDocument(params: documentData as [String : Any])
                     } else if let passportJob = job.passportJob {
+                        // Delete old document before upload
+                        let _ = try await repoDocument.deleteDocumentByType(userID: userInfo.id, documentType: passportJob.docType ?? "")
                         let documentData = AddDocument(documentData: passportJob.data.asDictionary,
                                                        documentType: passportJob.docType,
                                                        editedOCR: false,
@@ -53,6 +59,7 @@ public class CaptureViewModel: ObservableObject {
                         documentIDAdded = try await self.repoDocument.addDocument(params: documentData as [String : Any])
                     }
                     
+                   
                     await MainActor.run {
                         loadingState = .done
                     }

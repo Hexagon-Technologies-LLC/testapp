@@ -39,19 +39,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             guard let userInfo = self.appState[\.userData.userInfo] else { return }
             SVProgressHUD.show()
             Task {
-                var param = [String: Any]()
                 if let license = license {
-                    param = ["deletion_days": 0,
-                             "document_type": DocumentType.driverLicense.rawValue,
-                             "region": license.region ?? "",
-                             "user_id": userInfo.id]
+                    let _ = try await self.repoDocument.deleteDocumentByID(id: license.document_id)
                 } else if let passport = passport {
-                    param = ["deletion_days": 0,
-                             "document_type": DocumentType.passport.rawValue,
-                             "region": passport.region ?? "",
-                             "user_id": userInfo.id]
+                    let _ = try await self.repoDocument.deleteDocumentByID(id: passport.document_id)
                 }
-                let _ = try await self.repoDocument.deleteDocument(params: param)
+                
                 await SVProgressHUD.dismiss()
                 self.reloadCards()
                 
