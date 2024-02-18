@@ -21,3 +21,15 @@ enum LoadingState {
     case loading
     case done
 }
+
+enum DocumentType: String {
+    case passport = "passport"
+    case driverLicense = "license"
+    
+    var title: String {
+        switch self {
+        case .passport: return "Passport"
+        case .driverLicense: return "Driver's License"
+        }
+    }
+}

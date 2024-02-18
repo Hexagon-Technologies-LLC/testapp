@@ -17,7 +17,7 @@ extension Date {
 extension String {
     func toDate(dateFormat format: String = Defined.commonDateFormat) -> Date? {
         let formatter = DateFormatter()
-        formatter.dateFormat = Defined.commonDateFormat
+        formatter.dateFormat = format
         
         return formatter.date(from: self)
     }

@@ -19,6 +19,8 @@ import Foundation
 //}
 
 public struct PassportDocument: Codable {
+    var document_id: String
+    var created_at: String
     var document_data: PassportData?
     var document_type: String?
     var edited_ocr: Bool?
@@ -26,7 +28,7 @@ public struct PassportDocument: Codable {
     var ocr_data: PassportData?
     var region: String?
     var user_id: String?
-    
+
     struct PassportData: Codable {
         var sex: String?
         var last_name: String?
@@ -38,14 +40,24 @@ public struct PassportDocument: Codable {
         var place_of_birth: String?
         var issuing_authority: String?
         var date_of_expiration: String?
+        
+        var fullName: String {
+            return first_name ?? "" + " " + (last_name ?? "")
+        }
+    }
+    
+    var createAtDate: Date {
+        return created_at.toDateISO8601() ?? Date()
     }
     
     var documentTypeName: String {
-        return "Passport"
+        return DocumentType.passport.title
     }
 }
 
 public struct LicenseDocument: Codable {
+    var document_id: String
+    var created_at: String
     var document_data: LicenseData?
     var document_type: String?
     var edited_ocr: Bool?
@@ -80,7 +92,11 @@ public struct LicenseDocument: Codable {
         }
     }
     
+    var createAtDate: Date {
+        return created_at.toDateISO8601() ?? Date()
+    }
+    
     var documentTypeName: String {
-        return "Driver's License"
+        return DocumentType.driverLicense.title
     }
 }

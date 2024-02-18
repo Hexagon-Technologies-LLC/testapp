@@ -6,13 +6,18 @@
 //
 
 import UIKit
-protocol Menudelegate: AnyObject {
-    func  menuselected(menuitem: Int)
-    func menuclose()
+enum DocumentMenuAction: Int {
+    case share = 0
+    case edit
+    case delete
+}
 
+protocol MenuDelegate: AnyObject {
+    func menuselected(menuitem: DocumentMenuAction)
+    func menuclose()
 }
 class MoreoptionView: UIView {
-    weak var menudelegate: Menudelegate?
+    weak var menudelegate: MenuDelegate?
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -50,7 +55,6 @@ class MoreoptionView: UIView {
            
            
            let bggestuure = UITapGestureRecognizer(target: self, action:  #selector (self.dummyAction (_:)))
-
            bgview.isUserInteractionEnabled = true
            bgview.addGestureRecognizer(bggestuure)
 
@@ -58,11 +62,11 @@ class MoreoptionView: UIView {
     @objc func dummyAction(_ sender:UITapGestureRecognizer){
     }
     @objc func deleteAction(_ sender:UITapGestureRecognizer){
-        menudelegate?.menuselected(menuitem: 2)
+        menudelegate?.menuselected(menuitem: .delete)
 
     }
     @objc func someAction(_ sender:UITapGestureRecognizer){
-        menudelegate?.menuselected(menuitem: 0)
+        menudelegate?.menuselected(menuitem: .share)
     }
        
        func commonInit(){

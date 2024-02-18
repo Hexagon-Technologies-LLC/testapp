@@ -31,11 +31,27 @@ public class CaptureViewModel: ObservableObject {
             if !returnedJobId.isEmpty {
                 let processingStatus = await self.processingCheck(jobId: returnedJobId)
                 if processingStatus {
-                    let processingData = try await self.repoDocument.processingReceive(id: returnedJobId)
-                    
-                    let documentData = AddDocument(documentData: processingData.asDictionary, documentType: "License", editedOCR: false, expiryDate: processingData.date_of_expiration, OCRData: processingData.asDictionary, region: processingData.region, userID: userInfo.id).convertToRequest()
-                    
-                    documentIDAdded = try await self.repoDocument.addDocument(params: documentData as [String : Any])
+                    let job = try await self.repoDocument.processingReceive(id: returnedJobId)
+
+                    if let licenseJob = job.licenseJob {
+                        let documentData = AddDocument(documentData: licenseJob.data.asDictionary,
+                                                       documentType: licenseJob.docType,
+                                                       editedOCR: false,
+                                                       expiryDate: licenseJob.data?.date_of_expiration,
+                                                       OCRData: licenseJob.asDictionary,
+                                                       region: licenseJob.data?.region,
+                                                       userID: userInfo.id).convertToRequest()
+                        documentIDAdded = try await self.repoDocument.addDocument(params: documentData as [String : Any])
+                    } else if let passportJob = job.passportJob {
+                        let documentData = AddDocument(documentData: passportJob.data.asDictionary,
+                                                       documentType: passportJob.docType,
+                                                       editedOCR: false,
+                                                       expiryDate: passportJob.data?.date_of_expiration,
+                                                       OCRData: passportJob.asDictionary,
+                                                       region: passportJob.data?.country_region,
+                                                       userID: userInfo.id).convertToRequest()
+                        documentIDAdded = try await self.repoDocument.addDocument(params: documentData as [String : Any])
+                    }
                     
                     await MainActor.run {
                         loadingState = .done

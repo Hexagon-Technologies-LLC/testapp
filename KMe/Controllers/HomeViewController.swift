@@ -15,30 +15,48 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @LazyInjected var repoDocument: DocumentRepository
     private var cancelBag = CancelBag()
     
-    func menuselected(menuitem: Int) {
+    func menuselected(menuitem: DocumentMenuAction, license: LicenseDocument?, passport: PassportDocument?) {
         
         self.selectedview.menuview.fadeOut()
         
-        if(menuitem == 0)
-        {
+        if menuitem == .share {
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SharewithViewController") as! SharewithViewController
             
             self.navigationController?.pushViewController(nextViewController, animated:true)
         }
-        if(menuitem == 2)
-        {
-            showconfirmalert()
-        }
         
+        if menuitem == .delete {
+            showconfirmalert(license: license, passport: passport)
+        }
     }
     
-    func showconfirmalert()
+    func showconfirmalert(license: LicenseDocument?, passport: PassportDocument?)
     {
         KMAlert.actionSheetConfirm(title: "", message: "Please confirm before proceeding to deleting the document.", submitTitle: "Delete") { _ in
             // Cancel
         } submitAction: { _ in
-            // Delete
+            guard let userInfo = self.appState[\.userData.userInfo] else { return }
+            SVProgressHUD.show()
+            Task {
+                var param = [String: Any]()
+                if let license = license {
+                    param = ["deletion_days": 0,
+                             "document_type": DocumentType.driverLicense.rawValue,
+                             "region": license.region ?? "",
+                             "user_id": userInfo.id]
+                } else if let passport = passport {
+                    param = ["deletion_days": 0,
+                             "document_type": DocumentType.passport.rawValue,
+                             "region": passport.region ?? "",
+                             "user_id": userInfo.id]
+                }
+                let _ = try await self.repoDocument.deleteDocument(params: param)
+                await SVProgressHUD.dismiss()
+                self.reloadCards()
+                
+                self.documentview.translatesAutoresizingMaskIntoConstraints = false
+            }
         }
     }
     
@@ -64,17 +82,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func optionselected(menuitem: Int) {
-        
         self.selectedview.menuview.fadeIn()
-        
-        
-        
     }
     
     func optionclose() {
         self.selectedview.menuview.fadeOut()
     }
-    
     
     var selectedcountry:Int = 0
     var selectedview: Documentsummary = Documentsummary()
@@ -131,6 +144,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         selectedindex = documents.count - 1
        
         addUploadView()
+        reloadCards()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -139,15 +153,20 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         tagview.sizeToFit()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
+    func reloadCards() {
         guard let userInfo = appState[\.userData.userInfo] else { return }
         SVProgressHUD.show()
         Task {
             let documentsData = try await repoDocument.getDocuments(userId: userInfo.id)
             await SVProgressHUD.dismiss()
-            print(documentsData)
+            
+            // Remove old UI
+            if let licenseView = self.view.viewWithTag(11) {
+                licenseView.removeFromSuperview()
+            }
+            if let passportView = self.view.viewWithTag(12) {
+                passportView.removeFromSuperview()
+            }
             self.addCard(passports: documentsData.passport, licenses: documentsData.license)
             
 //            cardposition = 0;
@@ -156,7 +175,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 //                cardposition = cardposition + 1;
 //            }
             documentview.translatesAutoresizingMaskIntoConstraints = false
-            
         }
     }
     
@@ -187,13 +205,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func addCard(passports: [PassportDocument], licenses: [LicenseDocument]) {
-        for license in licenses {
+        if let license = licenses.first {
             let documentView = Documentsummary()
-            documentView.bgview.backgroundColor = colornames.randomElement()! //UIColor(named: "drivinglicence")
+            documentView.bgview.backgroundColor = UIColor(named: "drivinglicence")
             documentView.namelabel.text = license.documentTypeName
             documentView.docimage.image = UIImage(named: "drivinglicence_placehoder")
             documentView.docimage.tintColor = .black
             documentView.configureDriverLicenseCard(license)
+            documentView.tag = 11
             if(selectedindex != 1)
             {
                 documentView.bottomconstraint.constant = 44
@@ -201,18 +220,16 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 documentView.documentview.isHidden = true
                 documentView.actionview.isHidden = true
                 
-            }else
-            {
+            } else {
                 documentView.bottomconstraint.constant = 24
                 documentView.menubottomconstraint.constant = 24
                 documentView.documentview.isHidden = false
                 documentView.actionview.isHidden = false
             }
             
-            
             documentView.widthAnchor.constraint(equalToConstant:  self.view.frame.size.width).isActive = true
             documentView.bgview.layer.cornerRadius = 20;
-//            documentView.tag = indexval
+            //            documentView.tag = indexval
             documentView.bgview.clipsToBounds = true
             let gesture = UITapGestureRecognizer(target: self, action:  #selector (self.someAction (_:)))
             documentView.addGestureRecognizer(gesture)
@@ -222,6 +239,46 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             documentView.bgview.layer.shadowRadius = 10
             documentView.optiondelegate = self
             selectedview = documentView
+            
+            documentview.addArrangedSubview(documentView)
+        }
+        
+        if let passport = passports.first {
+            let documentView = Documentsummary()
+            documentView.bgview.backgroundColor = UIColor.green
+            documentView.namelabel.text = passport.documentTypeName
+            documentView.docimage.image = UIImage(named: "passport_placeholder")
+            documentView.docimage.tintColor = .black
+            documentView.configurePasspore(passport)
+            documentView.tag = 12
+            if(selectedindex != 1)
+            {
+                documentView.bottomconstraint.constant = 44
+                documentView.menubottomconstraint.constant = 44
+                documentView.documentview.isHidden = true
+                documentView.actionview.isHidden = true
+                
+            } else {
+                documentView.bottomconstraint.constant = 24
+                documentView.menubottomconstraint.constant = 24
+                documentView.documentview.isHidden = false
+                documentView.actionview.isHidden = false
+            }
+            
+            
+            documentView.widthAnchor.constraint(equalToConstant:  self.view.frame.size.width).isActive = true
+            documentView.bgview.layer.cornerRadius = 20;
+            //            documentView.tag = indexval
+            documentView.bgview.clipsToBounds = true
+            let gesture = UITapGestureRecognizer(target: self, action:  #selector (self.someAction (_:)))
+            documentView.addGestureRecognizer(gesture)
+            documentView.bgview.layer.shadowColor = UIColor.black.cgColor
+            documentView.bgview.layer.shadowOpacity = 1
+            documentView.bgview.layer.shadowOffset = .zero
+            documentView.bgview.layer.shadowRadius = 10
+            documentView.optiondelegate = self
+            selectedview = documentView
+            
             documentview.addArrangedSubview(documentView)
         }
     }
@@ -273,7 +330,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     @objc func uploadAction(_ sender:UITapGestureRecognizer){
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CaptureViewController") as! CaptureViewController
-        
+        nextViewController.delegate = self
         self.navigationController?.pushViewController(nextViewController, animated:true)
     }
     
@@ -389,5 +446,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     @IBAction func backclicked(_ sender: UIButton){
         self.navigationController?.popViewController(animated: true)
+    }
+}
+
+extension HomeViewController: CaptureViewControllerDelegate {
+    func reloadCardsAfterUpload() {
+        self.reloadCards()
     }
 }

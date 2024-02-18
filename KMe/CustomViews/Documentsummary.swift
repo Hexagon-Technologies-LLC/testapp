@@ -7,21 +7,14 @@
 
 import UIKit
 import LocalAuthentication
+
 protocol Optiondelegate: AnyObject {
     func optionselected(menuitem: Int)
     func optionclose()
     func copyclipboardsuccess()
-    func menuselected(menuitem: Int)
+    func menuselected(menuitem: DocumentMenuAction, license: LicenseDocument?, passport: PassportDocument?)
 }
-class Documentsummary: UIView,Menudelegate {
-    func menuselected(menuitem: Int) {
-        optiondelegate?.menuselected(menuitem: menuitem)
-    }
-    
-    func menuclose() {
-        optiondelegate?.optionclose()
-    }
-    
+class Documentsummary: UIView {
     weak var optiondelegate: Optiondelegate?
 
     @IBOutlet weak var actionview: UIStackView!
@@ -42,6 +35,9 @@ class Documentsummary: UIView,Menudelegate {
     @IBOutlet weak var documentNumber: UILabel!
     @IBOutlet weak var cardProfileImage: UIImageView!
     @IBOutlet weak var cardProfileQR: UIImageView!
+    @IBOutlet weak var cardDOB: UILabel!
+    var licenseDocument: LicenseDocument?
+    var passportDocument: PassportDocument?
     
     // Card Detail
     
@@ -55,7 +51,6 @@ class Documentsummary: UIView,Menudelegate {
     
     @IBAction func showmoremenu(_ sender: Any) {
         optiondelegate?.optionselected(menuitem: self.tag)
-
     }
     
     func configureDriverLicenseCard(_ license: LicenseDocument) {
@@ -63,8 +58,22 @@ class Documentsummary: UIView,Menudelegate {
         cardProfileImage.isHidden = true
         documentNumberName.text = "LIC NO"
         documentNumber.text = license.document_data?.document_number
-        cardType.text = "DRIVER'S LICENSE"
+        cardType.text = DocumentType.driverLicense.title.uppercased()
         cardName.text = license.document_data?.fullName
+        cardDOB.text = license.document_data?.date_of_birth?.toDate(dateFormat: "yyyy-MM-dd")?.toString(dateFormat: "dd/MM/yyyy")
+        licenseDocument = license
+    }
+    
+    func configurePasspore(_ passport: PassportDocument) {
+        cardProfileQR.isHidden = true
+        cardProfileImage.isHidden = true
+        documentNumberName.text = "PASSPORT NO"
+        documentNumber.isHidden = true
+//        documentNumber.text = passport.document_data?.document_number
+        cardType.text =  DocumentType.passport.title.uppercased()
+        cardName.text = passport.document_data?.fullName
+        cardDOB.text = passport.document_data?.date_of_birth?.toDate(dateFormat: "yyyy-MM-dd")?.toString(dateFormat: "dd/MM/yyyy")
+        passportDocument = passport
     }
     
     func authenticate() {
@@ -115,5 +124,15 @@ class Documentsummary: UIView,Menudelegate {
 
     public func setheightval()  {
         actionview.isHidden = true
+    }
+}
+
+extension Documentsummary: MenuDelegate {
+    func menuselected(menuitem: DocumentMenuAction) {
+        optiondelegate?.menuselected(menuitem: menuitem, license: licenseDocument, passport: passportDocument)
+    }
+    
+    func menuclose() {
+        optiondelegate?.optionclose()
     }
 }

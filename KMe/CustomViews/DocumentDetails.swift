@@ -8,15 +8,7 @@
 import UIKit
 import LocalAuthentication
 
-class DocumentDetails: UIView,Menudelegate {
-    func menuselected(menuitem: Int) {
-        
-    }
-    
-    func menuclose() {
-        optiondelegate?.optionclose()
-    }
-    
+class DocumentDetails: UIView {
     weak var optiondelegate: Optiondelegate?
 
     @IBOutlet weak var actionview: UIStackView!
@@ -101,5 +93,15 @@ class DocumentDetails: UIView,Menudelegate {
 
     public func setheightval()  {
         actionview.isHidden = true
+    }
+}
+
+extension DocumentDetails: MenuDelegate {
+    func menuselected(menuitem: DocumentMenuAction) {
+        //
+    }
+    
+    func menuclose() {
+        optiondelegate?.optionclose()
     }
 }

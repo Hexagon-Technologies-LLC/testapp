@@ -23,6 +23,7 @@
                 <outlet property="actionview" destination="fqJ-KV-9kE" id="7hr-fq-rod"/>
                 <outlet property="bgview" destination="yVg-aq-rEG" id="ONm-Hl-8Hd"/>
                 <outlet property="bottomconstraint" destination="avJ-7c-BRn" id="NiD-oH-Yxy"/>
+                <outlet property="cardDOB" destination="i9s-00-GTl" id="L8X-dT-omf"/>
                 <outlet property="cardName" destination="YlC-aE-MEf" id="y8a-K7-eXA"/>
                 <outlet property="cardProfileImage" destination="Lzp-bM-atV" id="zDt-7Z-sfC"/>
                 <outlet property="cardProfileQR" destination="VVU-jk-foG" id="Sfe-QD-Twp"/>

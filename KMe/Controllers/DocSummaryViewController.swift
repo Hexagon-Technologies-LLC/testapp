@@ -9,7 +9,7 @@ import UIKit
 import ToastViewSwift
 
 class DocSummaryViewController: UIViewController,UITableViewDelegate, UITableViewDataSource,Optiondelegate {
-    func menuselected(menuitem: Int) {
+    func menuselected(menuitem: DocumentMenuAction, license: LicenseDocument?, passport: PassportDocument?) {
         self.docdetails.menuview.fadeOut()
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SharewithViewController") as! SharewithViewController

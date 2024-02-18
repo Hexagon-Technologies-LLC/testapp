@@ -77,14 +77,12 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func deleteProfileClicked(_ sender: Any) {
-        guard let userInfo = appState[\.userData.userInfo] else { return }
-        
         KMAlert.actionSheetConfirm(title: "", message: "Are you sure you want to delete your account?") { _ in
+            
+        } submitAction: { _ in
             Task {
                 await self.viewModel.deleteAccount()
             }
-        } submitAction: { _ in
-           
         }
     }
 }

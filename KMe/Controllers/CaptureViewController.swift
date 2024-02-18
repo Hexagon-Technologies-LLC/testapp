@@ -9,6 +9,10 @@ import UIKit
 import AVFoundation
 import SVProgressHUD
 
+protocol CaptureViewControllerDelegate: AnyObject {
+    func reloadCardsAfterUpload()
+}
+
 class CaptureViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     var captureSession: AVCaptureSession!
     var stillImageOutput: AVCapturePhotoOutput!
@@ -29,6 +33,7 @@ class CaptureViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     @Injected var appState: AppStore<AppState>
     private var cancelBag = CancelBag()
     private var viewModel = CaptureViewModel()
+    weak var delegate: CaptureViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +82,7 @@ class CaptureViewController: UIViewController, AVCapturePhotoCaptureDelegate {
             
             viewModel.$documentIDAdded.dropFirst().sink { _ in
                 KMAlert.alert(title: "", message: "Document Upload Successfully") { _ in
+                    self.delegate?.reloadCardsAfterUpload()
                     self.navigationController?.popViewController(animated: true)
                 }
             }

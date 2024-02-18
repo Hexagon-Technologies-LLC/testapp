@@ -33,7 +33,6 @@ public protocol SystemEvents {
     func logout()
 }
 
-
 public extension AppState {
     var isAuthorized: Bool { userData.userInfo != nil }
     

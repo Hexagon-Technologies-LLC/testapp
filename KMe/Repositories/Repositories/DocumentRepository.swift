@@ -9,12 +9,13 @@ import Foundation
 import Combine
 import Foundation
 
-public protocol DocumentRepository: WebRepository {
+protocol DocumentRepository: WebRepository {
     func processingSubmit(params: [String: Any]) async throws -> String
     func processingCheck(id: String) async throws -> Bool
     func processingReceive(id: String) async throws -> DocumentJob
     func addDocument(params: [String: Any]) async throws-> String
     func getDocuments(userId: String) async throws -> (passport: [PassportDocument], license: [LicenseDocument])
+    func deleteDocument(params: [String : Any]) async throws -> String
 }
 
 struct DocumentRepositoryImpl {
@@ -34,8 +35,6 @@ struct DocumentRepositoryImpl {
 
 // MARK: - Async impl
 extension DocumentRepositoryImpl: DocumentRepository {
-  
-    
     func processingSubmit(params: [String : Any]) async throws -> String {
         let userInfo: [String: String] = try await execute(endpoint: API.processingSubmit(param: params), isFullPath: false, logLevel: .debug)
         return userInfo["job_id"] ?? ""
@@ -47,7 +46,19 @@ extension DocumentRepositoryImpl: DocumentRepository {
     }
     
     func processingReceive(id: String) async throws -> DocumentJob {
-        let documentJob: DocumentJob = try await execute(endpoint: API.processingReceive(id), isFullPath: false, logLevel: .debug)
+        var documentJob = DocumentJob()
+        let result = try await execute(endpoint: API.processingReceive(id), isFullPath: false, logLevel: .debug)
+        if let json = try? JSON(data: result.data), let dict = json.dictionary {
+            if let docType = dict["docType"]?.string {
+                if docType.elementsEqual(DocumentType.passport.rawValue) {
+                    let passport = try JSONDecoder().decode(PassportJob.self, from: result.data)
+                    documentJob.passportJob = passport
+                } else if docType.elementsEqual(DocumentType.driverLicense.rawValue) {
+                    let license = try JSONDecoder().decode(LicenseJob.self, from: result.data)
+                    documentJob.licenseJob = license
+                }
+            }
+        }
         return documentJob
     }
     
@@ -64,21 +75,29 @@ extension DocumentRepositoryImpl: DocumentRepository {
         if let json = try? JSON(data: result.data), let arrData = json.array {
             for data in arrData {
                 if let documentType = data["document_type"].string {
-                    if documentType.lowercased() == "passport" {
+                    if documentType.lowercased() == DocumentType.passport.rawValue {
                         let passportData = data.data()
                         let passport = try JSONDecoder().decode(PassportDocument.self, from: passportData)
                         passportList.append(passport)
-                    } else if documentType.lowercased() == "license" {
+                    } else if documentType.lowercased() == DocumentType.driverLicense.rawValue {
                         let licenseData = data.data()
                         let license = try JSONDecoder().decode(LicenseDocument.self, from: licenseData)
                         licenseList.append(license)
                     }
                 }
             }
-            return (passport: passportList, license: licenseList)
+            let licenseSorted = licenseList.sorted(by: { $0.createAtDate.compare($1.createAtDate) == .orderedAscending} )
+            let passportSorted = passportList.sorted(by: { $0.createAtDate.compare($1.createAtDate) == .orderedAscending} )
+            
+            return (passport: passportSorted, license: licenseSorted)
         } else {
             return (passport: [], license: [])
         }
+    }
+    
+    func deleteDocument(params: [String : Any]) async throws -> String {
+        let result: [String: String] = try await execute(endpoint: API.deleteDocument(params), isFullPath: false, logLevel: .debug)
+        return result["document_id"] ?? ""
     }
 }
 
@@ -91,6 +110,7 @@ extension DocumentRepositoryImpl {
         case processingReceive(_ id: String)
         case addDocument(param: Parameters)
         case getDocuments(_ userId: String)
+        case deleteDocument(_ param: Parameters)
         
         var endPoint: Endpoint {
             switch self {
@@ -104,6 +124,8 @@ extension DocumentRepositoryImpl {
                 return .post(path: "documents/add")
             case .getDocuments(let userId):
                 return .get(path: "documents/users/\(userId)")
+            case .deleteDocument:
+                return .delete(path: "documents/delete")
             }
         }
         
@@ -111,7 +133,7 @@ extension DocumentRepositoryImpl {
             switch self {
             case .processingCheck, .processingReceive, .getDocuments:
                 return .requestParameters(encoding: .jsonEncoding)
-            case .processingSubmit(let param), .addDocument(let param):
+            case .processingSubmit(let param), .addDocument(let param), .deleteDocument(let param):
                 return .requestParameters(bodyParameters: param, encoding: .jsonEncoding)
             }
         }
