@@ -29,6 +29,7 @@ class Documentsummary: UIView {
     @IBOutlet weak var menuview: MoreoptionView!
     @IBOutlet weak var sharedocument: UIButton!
     
+    @IBOutlet weak var documentView: UIView!
     @IBOutlet weak var cardType: UILabel!
     @IBOutlet weak var cardName: UILabel!
     @IBOutlet weak var documentNumberName: UILabel!
@@ -36,6 +37,8 @@ class Documentsummary: UIView {
     @IBOutlet weak var cardProfileImage: UIImageView!
     @IBOutlet weak var cardProfileQR: UIImageView!
     @IBOutlet weak var cardDOB: UILabel!
+    @IBOutlet weak var documentHeightConstrant: NSLayoutConstraint!
+    
     var licenseDocument: LicenseDocument?
     var passportDocument: PassportDocument?
     
@@ -54,26 +57,43 @@ class Documentsummary: UIView {
     }
     
     func configureDriverLicenseCard(_ license: LicenseDocument) {
-        cardProfileQR.isHidden = true
-        cardProfileImage.isHidden = true
-        documentNumberName.text = "LIC NO"
-        documentNumber.text = license.document_data?.document_number
-        cardType.text = DocumentType.driverLicense.title.uppercased()
-        cardName.text = license.document_data?.fullName
-        cardDOB.text = license.document_data?.date_of_birth?.toDate(dateFormat: "yyyy-MM-dd")?.toString(dateFormat: "dd/MM/yyyy")
+        documentHeightConstrant.constant = UIScreen.main.bounds.width*0.72
         licenseDocument = license
+        let licenseView = DriverDocumentView()
+        licenseView.configureDocument(documentInfo: license)
+        documentview.addSubview(licenseView)
+        licenseView.translatesAutoresizingMaskIntoConstraints = false
+        documentview.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            licenseView.centerXAnchor.constraint(equalTo: documentview.centerXAnchor),
+            licenseView.centerYAnchor.constraint(equalTo: documentview.centerYAnchor),
+            licenseView.widthAnchor.constraint(equalTo: documentview.widthAnchor),
+            licenseView.heightAnchor.constraint(equalTo: documentview.heightAnchor)
+        ])
+        
+        documentview.layoutIfNeeded()
+        documentview.setNeedsLayout()
     }
     
     func configurePasspore(_ passport: PassportDocument) {
-        cardProfileQR.isHidden = true
-        cardProfileImage.isHidden = true
-        documentNumberName.text = "PASSPORT NO"
-        documentNumber.isHidden = true
-//        documentNumber.text = passport.document_data?.document_number
-        cardType.text =  DocumentType.passport.title.uppercased()
-        cardName.text = passport.document_data?.fullName
-        cardDOB.text = passport.document_data?.date_of_birth?.toDate(dateFormat: "yyyy-MM-dd")?.toString(dateFormat: "dd/MM/yyyy")
+        documentHeightConstrant.constant = UIScreen.main.bounds.width*0.58
         passportDocument = passport
+        let passportView = PassportDocumentView()
+        passportView.configureDocument(documentInfo: passport)
+        documentview.addSubview(passportView)
+        passportView.translatesAutoresizingMaskIntoConstraints = false
+        documentview.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            passportView.centerXAnchor.constraint(equalTo: documentview.centerXAnchor),
+            passportView.centerYAnchor.constraint(equalTo: documentview.centerYAnchor),
+            passportView.widthAnchor.constraint(equalTo: documentview.widthAnchor),
+            passportView.heightAnchor.constraint(equalTo: documentview.heightAnchor)
+        ])
+        
+        documentview.layoutIfNeeded()
+        documentview.setNeedsLayout()
     }
     
     func authenticate() {

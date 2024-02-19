@@ -42,7 +42,7 @@ public struct PassportDocument: Codable {
         var date_of_expiration: String?
         
         var fullName: String {
-            return first_name ?? "" + " " + (last_name ?? "")
+            return (last_name ?? "") + " " + (first_name ?? "")
         }
     }
     
@@ -88,7 +88,11 @@ public struct LicenseDocument: Codable {
         var document_discriminator: String?
         
         var fullName: String {
-            return first_name ?? "" + " " + (last_name ?? "")
+            return (last_name ?? "") + " " + (first_name ?? "")
+        }
+        
+        var fullAddress: String {
+            return "\(street_address ?? "")\n\(city ?? ""), \(state ?? ""), \(postal_code ?? "")"
         }
     }
     

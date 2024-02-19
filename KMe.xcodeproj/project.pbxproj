@@ -141,6 +141,11 @@
 		D485E1532B7E736B00BB2473 /* AddDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485E1522B7E736B00BB2473 /* AddDocument.swift */; };
 		D485E1552B7E78CD00BB2473 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485E1542B7E78CD00BB2473 /* Document.swift */; };
 		D4980E002B82F21D0053A9EC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4980DFF2B82F21D0053A9EC /* HomeViewModel.swift */; };
+		D4980E052B83B2490053A9EC /* PassportDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4980E042B83B2490053A9EC /* PassportDocumentView.swift */; };
+		D4980E072B83B2520053A9EC /* PassportDocumentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4980E062B83B2520053A9EC /* PassportDocumentView.xib */; };
+		D4980E092B83B4220053A9EC /* BaseXibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4980E082B83B4220053A9EC /* BaseXibView.swift */; };
+		D4980E0B2B83C5B80053A9EC /* DriverDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4980E0A2B83C5B80053A9EC /* DriverDocumentView.swift */; };
+		D4980E0D2B83C5C40053A9EC /* DriverDocumentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4980E0C2B83C5C40053A9EC /* DriverDocumentView.xib */; };
 		D4A7BFB42B72738000198593 /* CFRepositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BF9A2B72738000198593 /* CFRepositories.swift */; };
 		D4A7BFB62B72738000198593 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BF9D2B72738000198593 /* Resolver.swift */; };
 		D4A7BFB72B72738000198593 /* CancelBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BF9E2B72738000198593 /* CancelBag.swift */; };
@@ -155,7 +160,6 @@
 		D4A7BFC02B72738000198593 /* WebRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFAA2B72738000198593 /* WebRepository.swift */; };
 		D4A7BFC12B72738000198593 /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFAB2B72738000198593 /* HTTP.swift */; };
 		D4A7BFC22B72738000198593 /* ResourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFAC2B72738000198593 /* ResourceType.swift */; };
-		D4A7BFC32B72738000198593 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFAD2B72738000198593 /* Keychain.swift */; };
 		D4A7BFC42B72738000198593 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFAF2B72738000198593 /* AuthRepository.swift */; };
 		D4A7BFC52B72738000198593 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFB12B72738000198593 /* AppState.swift */; };
 		D4A7BFC62B72738000198593 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BFB32B72738000198593 /* UserInfo.swift */; };
@@ -337,6 +341,11 @@
 		D485E1522B7E736B00BB2473 /* AddDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDocument.swift; sourceTree = "<group>"; };
 		D485E1542B7E78CD00BB2473 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		D4980DFF2B82F21D0053A9EC /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		D4980E042B83B2490053A9EC /* PassportDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportDocumentView.swift; sourceTree = "<group>"; };
+		D4980E062B83B2520053A9EC /* PassportDocumentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PassportDocumentView.xib; sourceTree = "<group>"; };
+		D4980E082B83B4220053A9EC /* BaseXibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseXibView.swift; sourceTree = "<group>"; };
+		D4980E0A2B83C5B80053A9EC /* DriverDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverDocumentView.swift; sourceTree = "<group>"; };
+		D4980E0C2B83C5C40053A9EC /* DriverDocumentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DriverDocumentView.xib; sourceTree = "<group>"; };
 		D4A7BF9A2B72738000198593 /* CFRepositories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFRepositories.swift; sourceTree = "<group>"; };
 		D4A7BF9D2B72738000198593 /* Resolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
 		D4A7BF9E2B72738000198593 /* CancelBag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelBag.swift; sourceTree = "<group>"; };
@@ -351,7 +360,6 @@
 		D4A7BFAA2B72738000198593 /* WebRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebRepository.swift; sourceTree = "<group>"; };
 		D4A7BFAB2B72738000198593 /* HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
 		D4A7BFAC2B72738000198593 /* ResourceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceType.swift; sourceTree = "<group>"; };
-		D4A7BFAD2B72738000198593 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		D4A7BFAF2B72738000198593 /* AuthRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		D4A7BFB12B72738000198593 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		D4A7BFB32B72738000198593 /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -481,6 +489,7 @@
 				08C0DEE62AAA8D3E008CAC1C /* outlinedTextfield */,
 				086462B02AA741EB009CBF01 /* FlingActionButton.swift */,
 				D4DDBE7B2B791110007E2B2F /* KMAlert.swift */,
+				D4980E082B83B4220053A9EC /* BaseXibView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -562,6 +571,7 @@
 		08C0DEED2AB01E92008CAC1C /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				D4980E012B83B2100053A9EC /* DocumentView */,
 				08FC8B022AA8605400926DA3 /* Collectioncells */,
 				08BFC8D82AE24B4B00C8D18B /* ScrollDatePicker */,
 				0864749A2ACD12CD009B6CAB /* MemberCarousel */,
@@ -707,6 +717,17 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
+		D4980E012B83B2100053A9EC /* DocumentView */ = {
+			isa = PBXGroup;
+			children = (
+				D4980E042B83B2490053A9EC /* PassportDocumentView.swift */,
+				D4980E062B83B2520053A9EC /* PassportDocumentView.xib */,
+				D4980E0A2B83C5B80053A9EC /* DriverDocumentView.swift */,
+				D4980E0C2B83C5C40053A9EC /* DriverDocumentView.xib */,
+			);
+			path = DocumentView;
+			sourceTree = "<group>";
+		};
 		D4A7BF992B72736D00198593 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
@@ -736,7 +757,6 @@
 			isa = PBXGroup;
 			children = (
 				D4A7BFA42B72738000198593 /* Network */,
-				D4A7BFAD2B72738000198593 /* Keychain.swift */,
 				D4A7BFA22B72738000198593 /* Network+Extensions.swift */,
 			);
 			path = Core;
@@ -946,10 +966,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				086462CE2AA852FB009CBF01 /* Montserrat-MediumItalic.ttf in Resources */,
+				D4980E0D2B83C5C40053A9EC /* DriverDocumentView.xib in Resources */,
 				08C0DEFC2AB17304008CAC1C /* Uploadedstackview.xib in Resources */,
 				0838F3182AB92D3300A6F57B /* ActivityTableViewCell.xib in Resources */,
 				086462CB2AA852FB009CBF01 /* Montserrat-Regular.ttf in Resources */,
 				08C0DEF12AB01EEC008CAC1C /* Uploadstackview.xib in Resources */,
+				D4980E072B83B2520053A9EC /* PassportDocumentView.xib in Resources */,
 				086462CF2AA852FB009CBF01 /* Montserrat-ThinItalic.ttf in Resources */,
 				086462D92AA852FB009CBF01 /* Montserrat-BlackItalic.ttf in Resources */,
 				086462D22AA852FB009CBF01 /* Montserrat-SemiBoldItalic.ttf in Resources */,
@@ -1119,13 +1141,13 @@
 				0838F3142AB92C5A00A6F57B /* DocSummaryViewController.swift in Sources */,
 				0893A6D02AEA49290047C07A /* Reminder.swift in Sources */,
 				08C0DEF32AB01F00008CAC1C /* Uploadstackview.swift in Sources */,
-				D4A7BFC32B72738000198593 /* Keychain.swift in Sources */,
 				D47E8C702B75BB94007879A1 /* DateUtil.swift in Sources */,
 				087EC8252AF0F7C300295036 /* CalendarHeaderTableViewCell.swift in Sources */,
 				08BFC8F02AE24B7000C8D18B /* UICollectionViewCell+Fade.swift in Sources */,
 				087EC8282AF108B900295036 /* EmptyRequestView.swift in Sources */,
 				08BFC8F52AE24B7000C8D18B /* Date+Days.swift in Sources */,
 				D4A7BFB72B72738000198593 /* CancelBag.swift in Sources */,
+				D4980E092B83B4220053A9EC /* BaseXibView.swift in Sources */,
 				D4C696E72B7CBA97002427B9 /* DocumentRepository.swift in Sources */,
 				08BFC8EA2AE24B7000C8D18B /* DateScrollItem.swift in Sources */,
 				086474B52ACE438C009B6CAB /* InviteViewController.swift in Sources */,
@@ -1155,6 +1177,7 @@
 				086462802AA5AC15009CBF01 /* AppDelegate.swift in Sources */,
 				D4A7BFB62B72738000198593 /* Resolver.swift in Sources */,
 				D4DDBE7E2B791143007E2B2F /* UIKit+Ex.swift in Sources */,
+				D4980E052B83B2490053A9EC /* PassportDocumentView.swift in Sources */,
 				08C0DEE32AA9B289008CAC1C /* LoginViewController.swift in Sources */,
 				D4980E002B82F21D0053A9EC /* HomeViewModel.swift in Sources */,
 				08BFC8F12AE24B7000C8D18B /* UICollectionView+Fade.swift in Sources */,
@@ -1201,6 +1224,7 @@
 				D4A7BFCA2B72764900198593 /* AppEnvironment.swift in Sources */,
 				086474A62ACD12FE009B6CAB /* CircularCarouselDataSource.swift in Sources */,
 				0838F3122AB40AE700A6F57B /* SHPopup.swift in Sources */,
+				D4980E0B2B83C5B80053A9EC /* DriverDocumentView.swift in Sources */,
 				08C0DEE52AA9B818008CAC1C /* ProfileCompletionViewController.swift in Sources */,
 				08BFC8F72AE24B7000C8D18B /* SeparatorViewCell.swift in Sources */,
 				0839127D2AC6855F00B81C2B /* ShareTableViewCell.swift in Sources */,
