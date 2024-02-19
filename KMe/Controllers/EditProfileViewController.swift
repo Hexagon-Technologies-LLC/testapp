@@ -104,7 +104,9 @@ class EditProfileViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     
     func subscription() {
         cancelBag.collect {
-            viewModel.$isUpdateSuccess.dropFirst().sink { success in
+            viewModel.$isUpdateSuccess.dropFirst()
+                .receive(on: RunLoop.main)
+                .sink { success in
                 if success == true {
                     KMAlert.alert(title: "", message: "Update Profile Successfully") { _ in
                         //
@@ -112,7 +114,9 @@ class EditProfileViewController: UIViewController,UIPickerViewDelegate,UIPickerV
                 }
             }
             
-            viewModel.$errorMessage.dropFirst().sink { error in
+            viewModel.$errorMessage.dropFirst()
+                .receive(on: RunLoop.main)
+                .sink { error in
                 KMAlert.alert(title: "", message: error) { _ in
                     //
                 }

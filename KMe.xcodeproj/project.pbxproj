@@ -140,6 +140,7 @@
 		D485E1502B7D262700BB2473 /* CaptureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485E14F2B7D262700BB2473 /* CaptureViewModel.swift */; };
 		D485E1532B7E736B00BB2473 /* AddDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485E1522B7E736B00BB2473 /* AddDocument.swift */; };
 		D485E1552B7E78CD00BB2473 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485E1542B7E78CD00BB2473 /* Document.swift */; };
+		D4980E002B82F21D0053A9EC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4980DFF2B82F21D0053A9EC /* HomeViewModel.swift */; };
 		D4A7BFB42B72738000198593 /* CFRepositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BF9A2B72738000198593 /* CFRepositories.swift */; };
 		D4A7BFB62B72738000198593 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BF9D2B72738000198593 /* Resolver.swift */; };
 		D4A7BFB72B72738000198593 /* CancelBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BF9E2B72738000198593 /* CancelBag.swift */; };
@@ -335,6 +336,7 @@
 		D485E14F2B7D262700BB2473 /* CaptureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureViewModel.swift; sourceTree = "<group>"; };
 		D485E1522B7E736B00BB2473 /* AddDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDocument.swift; sourceTree = "<group>"; };
 		D485E1542B7E78CD00BB2473 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		D4980DFF2B82F21D0053A9EC /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		D4A7BF9A2B72738000198593 /* CFRepositories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFRepositories.swift; sourceTree = "<group>"; };
 		D4A7BF9D2B72738000198593 /* Resolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
 		D4A7BF9E2B72738000198593 /* CancelBag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelBag.swift; sourceTree = "<group>"; };
@@ -793,6 +795,7 @@
 		D4DDBE7F2B7916C9007E2B2F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				D4980DFF2B82F21D0053A9EC /* HomeViewModel.swift */,
 				D4C696E02B7C4C50002427B9 /* LoginViewModel.swift */,
 				D4DDBE802B7916DF007E2B2F /* ProfileCompletionViewModel.swift */,
 				D4C696E42B7C5215002427B9 /* EditProfileViewModel.swift */,
@@ -1153,6 +1156,7 @@
 				D4A7BFB62B72738000198593 /* Resolver.swift in Sources */,
 				D4DDBE7E2B791143007E2B2F /* UIKit+Ex.swift in Sources */,
 				08C0DEE32AA9B289008CAC1C /* LoginViewController.swift in Sources */,
+				D4980E002B82F21D0053A9EC /* HomeViewModel.swift in Sources */,
 				08BFC8F12AE24B7000C8D18B /* UICollectionView+Fade.swift in Sources */,
 				08AE1BA02AF4EE2E00F8A4E4 /* EditProfileViewController.swift in Sources */,
 				08A55C422ABAC21500A2B1F5 /* MoreoptionView.swift in Sources */,

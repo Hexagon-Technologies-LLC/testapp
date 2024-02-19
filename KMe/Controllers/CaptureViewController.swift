@@ -65,7 +65,9 @@ class CaptureViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     func subscription() {
         cancelBag.collect {
-            viewModel.$loadingState.dropFirst().sink { state in
+            viewModel.$loadingState.dropFirst()
+                .receive(on: RunLoop.main)
+                .sink { state in
                 switch state {
                 case .loading:
                     SVProgressHUD.show()
@@ -75,12 +77,16 @@ class CaptureViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                 }
             }
             
-            viewModel.$errorMessage.dropFirst().sink { error in
+            viewModel.$errorMessage.dropFirst()
+                .receive(on: RunLoop.main)
+                .sink { error in
                 KMAlert.alert(title: "", message: error) { _ in
                 }
             }
             
-            viewModel.$documentIDAdded.dropFirst().sink { _ in
+            viewModel.$documentIDAdded.dropFirst()
+                .receive(on: RunLoop.main)
+                .sink { _ in
                 KMAlert.alert(title: "", message: "Document Upload Successfully") { _ in
                     self.delegate?.reloadCardsAfterUpload()
                     self.navigationController?.popViewController(animated: true)

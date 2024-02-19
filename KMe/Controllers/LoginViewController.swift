@@ -52,7 +52,9 @@ class LoginViewController: UIViewController {
     
     func subscription() {
         cancelBag.collect {
-            viewModel.$loginState.dropFirst().sink { state in
+            viewModel.$loginState.dropFirst()
+                .receive(on: RunLoop.main)
+                .sink { state in
                 switch state {
                 case .unRegistered(let email):
                     let vc = ProfileCompletionViewController.makeVC(email: email)
@@ -65,7 +67,9 @@ class LoginViewController: UIViewController {
                 }
             }
             
-            viewModel.$errorMessage.dropFirst().sink { error in
+            viewModel.$errorMessage.dropFirst()
+                .receive(on: RunLoop.main)
+                .sink { error in
                 KMAlert.alert(title: "", message: error) { _ in
                     //
                 }

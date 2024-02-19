@@ -9,78 +9,11 @@ import UIKit
 import ToastViewSwift
 import SVProgressHUD
 
-class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,Optiondelegate {
+class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet weak var lbUserName: UILabel!
+    private var viewModel = HomeViewModel()
     @LazyInjected var appState: AppStore<AppState>
-    @LazyInjected var repoDocument: DocumentRepository
     private var cancelBag = CancelBag()
-    
-    func menuselected(menuitem: DocumentMenuAction, license: LicenseDocument?, passport: PassportDocument?) {
-        
-        self.selectedview.menuview.fadeOut()
-        
-        if menuitem == .share {
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SharewithViewController") as! SharewithViewController
-            
-            self.navigationController?.pushViewController(nextViewController, animated:true)
-        }
-        
-        if menuitem == .delete {
-            showconfirmalert(license: license, passport: passport)
-        }
-    }
-    
-    func showconfirmalert(license: LicenseDocument?, passport: PassportDocument?)
-    {
-        KMAlert.actionSheetConfirm(title: "", message: "Please confirm before proceeding to deleting the document.", submitTitle: "Delete") { _ in
-            // Cancel
-        } submitAction: { _ in
-            guard let userInfo = self.appState[\.userData.userInfo] else { return }
-            SVProgressHUD.show()
-            Task {
-                if let license = license {
-                    let _ = try await self.repoDocument.deleteDocumentByID(id: license.document_id)
-                } else if let passport = passport {
-                    let _ = try await self.repoDocument.deleteDocumentByID(id: passport.document_id)
-                }
-                
-                await SVProgressHUD.dismiss()
-                self.reloadCards()
-                
-                self.documentview.translatesAutoresizingMaskIntoConstraints = false
-            }
-        }
-    }
-    
-    func copyclipboardsuccess() {
-        let config = ToastConfiguration(
-            direction: .bottom,
-            dismissBy: [.time(time: 2.0), .swipe(direction: .natural), .longPress],
-            animationTime: 0.2
-        )
-        
-        let attributes = [
-            NSAttributedString.Key.font: UIFont(name: "Montserrat-Semibold", size: 15)!,
-            NSAttributedString.Key.foregroundColor: UIColor.black
-        ]
-        let attributedString  = NSMutableAttributedString(string: "Share link is copied!" , attributes: attributes)
-        let toast = Toast.text(attributedString,config: config)
-        
-        
-        toast.show()
-        //    let toast = Toast.text("Share link is copied!", config: config)
-        
-        // toast.show()
-    }
-    
-    func optionselected(menuitem: Int) {
-        self.selectedview.menuview.fadeIn()
-    }
-    
-    func optionclose() {
-        self.selectedview.menuview.fadeOut()
-    }
     
     var selectedcountry:Int = 0
     var selectedview: Documentsummary = Documentsummary()
@@ -110,6 +43,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         super.viewDidLoad()
         registerNib()
+        subscription()
+        
         _ = UIScreen.main.bounds.width
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -146,28 +81,36 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         tagview.sizeToFit()
     }
     
+    func subscription() {
+        cancelBag.collect {
+            viewModel.$documentResult.dropFirst()
+                .receive(on: RunLoop.main)
+                .sink { documentsData in
+                SVProgressHUD.dismiss()
+                if let licenseView = self.view.viewWithTag(11) {
+                    licenseView.removeFromSuperview()
+                }
+                if let passportView = self.view.viewWithTag(12) {
+                    passportView.removeFromSuperview()
+                }
+                self.addCard(passports: documentsData?.passport, licenses: documentsData?.license)
+                self.documentview.translatesAutoresizingMaskIntoConstraints = false
+            }
+            
+            viewModel.$errorMessage.dropFirst()
+                .receive(on: RunLoop.main)
+                .sink { error in
+                KMAlert.alert(title: "", message: error) { _ in
+                    //
+                }
+            }
+        }
+    }
+    
     func reloadCards() {
-        guard let userInfo = appState[\.userData.userInfo] else { return }
         SVProgressHUD.show()
         Task {
-            let documentsData = try await repoDocument.getDocuments(userId: userInfo.id)
-            await SVProgressHUD.dismiss()
-            
-            // Remove old UI
-            if let licenseView = self.view.viewWithTag(11) {
-                licenseView.removeFromSuperview()
-            }
-            if let passportView = self.view.viewWithTag(12) {
-                passportView.removeFromSuperview()
-            }
-            self.addCard(passports: documentsData.passport, licenses: documentsData.license)
-            
-//            cardposition = 0;
-//            for index in documents {
-//                addnewview(staus: index,indexval: cardposition)
-//                cardposition = cardposition + 1;
-//            }
-            documentview.translatesAutoresizingMaskIntoConstraints = false
+            await viewModel.reloadCard()
         }
     }
     
@@ -197,8 +140,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         documentview.addArrangedSubview(uploadView)
     }
     
-    func addCard(passports: [PassportDocument], licenses: [LicenseDocument]) {
-        if let license = licenses.first {
+    func addCard(passports: [PassportDocument]?, licenses: [LicenseDocument]?) {
+        if let license = licenses?.first {
             let documentView = Documentsummary()
             documentView.bgview.backgroundColor = UIColor(named: "drivinglicence")
             documentView.namelabel.text = license.documentTypeName
@@ -236,7 +179,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             documentview.addArrangedSubview(documentView)
         }
         
-        if let passport = passports.first {
+        if let passport = passports?.first {
             let documentView = Documentsummary()
             documentView.bgview.backgroundColor = UIColor.green
             documentView.namelabel.text = passport.documentTypeName
@@ -273,50 +216,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             selectedview = documentView
             
             documentview.addArrangedSubview(documentView)
-        }
-    }
-    
-    func addnewview(staus: Int,indexval : Int)  {
-        switch staus {
-        case 3:
-            let documentView = Documentsummary()
-            documentView.bgview.backgroundColor = colornames[indexval]
-            documentView.namelabel.text = document_names[indexval]
-            documentView.docimage.image = UIImage(named: document_placeholder[indexval])
-            documentView.docimage.tintColor = .black
-            if(selectedindex != indexval)
-            {
-                documentView.bottomconstraint.constant = 44
-                documentView.menubottomconstraint.constant = 44
-                documentView.documentview.isHidden = true
-                documentView.actionview.isHidden = true
-                
-            }else
-            {
-                documentView.bottomconstraint.constant = 24
-                documentView.menubottomconstraint.constant = 24
-                documentView.documentview.isHidden = false
-                documentView.actionview.isHidden = false
-            }
-            
-            
-            documentView.widthAnchor.constraint(equalToConstant:  self.view.frame.size.width).isActive = true
-            documentView.bgview.layer.cornerRadius = 20;
-            documentView.tag = indexval
-            documentView.bgview.clipsToBounds = true
-            let gesture = UITapGestureRecognizer(target: self, action:  #selector (self.someAction (_:)))
-            documentView.addGestureRecognizer(gesture)
-            documentView.bgview.layer.shadowColor = UIColor.black.cgColor
-            documentView.bgview.layer.shadowOpacity = 1
-            documentView.bgview.layer.shadowOffset = .zero
-            documentView.bgview.layer.shadowRadius = 10
-            documentView.optiondelegate = self
-            selectedview = documentView
-            documentview.addArrangedSubview(documentView)
-            
-            break;
-        default:
-            break;
         }
     }
     
@@ -360,10 +259,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 //        selectedindex = sender.view?.tag  ?? 0
     }
     
-    @objc func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
+    @objc func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return locations.count;
     }
+    
     func registerNib() {
         let nib = UINib(nibName: CountryCollectionViewCell.nibName, bundle: nil)
         Countrypicker?.register(nib, forCellWithReuseIdentifier: CountryCollectionViewCell.reuseIdentifier)
@@ -373,9 +272,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     
-    
-    @objc(collectionView:cellForItemAtIndexPath:) func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    {
+    @objc(collectionView:cellForItemAtIndexPath:) func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CountryCollectionViewCell.reuseIdentifier, for: indexPath) as! CountryCollectionViewCell;
         
         let location = locations[indexPath.row];
@@ -432,18 +329,87 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SendInviteViewController") as! SendInviteViewController
         self.navigationController?.pushViewController(nextViewController, animated:true)
     }
+    
     @IBAction func notifyclicked(_ sender: UIButton){
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "NotificationViewController") as! NotificationViewController
         self.navigationController?.pushViewController(nextViewController, animated:true)
     }
+    
     @IBAction func backclicked(_ sender: UIButton){
         self.navigationController?.popViewController(animated: true)
+    }
+
+    func showDeleteConfirmAlert(license: LicenseDocument?, passport: PassportDocument?)
+    {
+        KMAlert.actionSheetConfirm(title: "", message: "Please confirm before proceeding to deleting the document.", submitTitle: "Delete") { _ in
+            // Cancel
+        } submitAction: { _ in
+            SVProgressHUD.show()
+            Task {
+                if let license = license {
+                    await self.viewModel.deleteSingleDocument(license.document_id)
+                } else if let passport = passport {
+                    await self.viewModel.deleteSingleDocument(passport.document_id)
+                }
+                await SVProgressHUD.dismiss()
+                self.reloadCards()
+                
+                self.documentview.translatesAutoresizingMaskIntoConstraints = false
+            }
+        }
     }
 }
 
 extension HomeViewController: CaptureViewControllerDelegate {
     func reloadCardsAfterUpload() {
         self.reloadCards()
+    }
+}
+
+extension HomeViewController: Optiondelegate {
+    func copyclipboardsuccess() {
+        let config = ToastConfiguration(
+            direction: .bottom,
+            dismissBy: [.time(time: 2.0), .swipe(direction: .natural), .longPress],
+            animationTime: 0.2
+        )
+        
+        let attributes = [
+            NSAttributedString.Key.font: UIFont(name: "Montserrat-Semibold", size: 15)!,
+            NSAttributedString.Key.foregroundColor: UIColor.black
+        ]
+        let attributedString  = NSMutableAttributedString(string: "Share link is copied!" , attributes: attributes)
+        let toast = Toast.text(attributedString,config: config)
+        
+        
+        toast.show()
+        //    let toast = Toast.text("Share link is copied!", config: config)
+        
+        // toast.show()
+    }
+    
+    func optionselected(menuitem: Int) {
+        self.selectedview.menuview.fadeIn()
+    }
+    
+    func optionclose() {
+        self.selectedview.menuview.fadeOut()
+    }
+    
+    func menuselected(menuitem: DocumentMenuAction, license: LicenseDocument?, passport: PassportDocument?) {
+        
+        self.selectedview.menuview.fadeOut()
+        
+        if menuitem == .share {
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SharewithViewController") as! SharewithViewController
+            
+            self.navigationController?.pushViewController(nextViewController, animated:true)
+        }
+        
+        if menuitem == .delete {
+            showDeleteConfirmAlert(license: license, passport: passport)
+        }
     }
 }

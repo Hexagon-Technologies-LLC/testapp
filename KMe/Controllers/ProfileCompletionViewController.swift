@@ -95,7 +95,9 @@ class ProfileCompletionViewController: UIViewController,UIPickerViewDelegate,UIP
     
     func subscription() {
         cancelBag.collect {
-            viewModel.$userInfo.dropFirst().sink { userInfo in
+            viewModel.$userInfo.dropFirst()
+                .receive(on: RunLoop.main)
+                .sink { userInfo in
                 KMAlert.alert(title: "", message: "Register Successfully") { action in
                     let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                     let nextViewController  = storyBoard.instantiateViewController(withIdentifier: "SSCustomTabBarViewController") as! SSCustomTabBarViewController
@@ -103,7 +105,9 @@ class ProfileCompletionViewController: UIViewController,UIPickerViewDelegate,UIP
                 }
             }
             
-            viewModel.$errorMessage.dropFirst().sink { error in
+            viewModel.$errorMessage.dropFirst()
+                .receive(on: RunLoop.main)
+                .sink { error in
                 KMAlert.alert(title: "", message: error) { _ in
                     self.flingBtn.reset()
                 }
