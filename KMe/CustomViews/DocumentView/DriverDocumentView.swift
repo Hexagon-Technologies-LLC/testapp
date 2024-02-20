@@ -30,7 +30,7 @@ class DriverDocumentView: BaseXibView {
     
     func configureDocument(documentInfo: LicenseDocument) {
         cardType.text =  DocumentType.driverLicense.title.uppercased()
-        cardRegion.text = documentInfo.region
+        cardRegion.text = documentInfo.document_data?.region
         cardNo.text = documentInfo.document_data?.document_number
     
         cardName.text = documentInfo.document_data?.fullName
@@ -39,7 +39,7 @@ class DriverDocumentView: BaseXibView {
         cardDateIssue.text = documentInfo.document_data?.date_of_issue
         cardDateExpired.text = documentInfo.document_data?.date_of_expiration
         
-        cardDOB.text = documentInfo.document_data?.date_of_birth?.toDate(dateFormat: "yyyy-MM-dd")?.toString(dateFormat: "dd/MM/yyyy")
+        cardDOB.text = documentInfo.document_data?.date_of_birth
         
         cardEye.text = documentInfo.document_data?.eye_color
         cardWeight.text = documentInfo.document_data?.weight

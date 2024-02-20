@@ -9,10 +9,6 @@ import UIKit
 import AVFoundation
 import SVProgressHUD
 
-protocol CaptureViewControllerDelegate: AnyObject {
-    func reloadCardsAfterUpload()
-}
-
 class CaptureViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     var captureSession: AVCaptureSession!
     var stillImageOutput: AVCapturePhotoOutput!
@@ -33,7 +29,7 @@ class CaptureViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     @Injected var appState: AppStore<AppState>
     private var cancelBag = CancelBag()
     private var viewModel = CaptureViewModel()
-    weak var delegate: CaptureViewControllerDelegate?
+    weak var delegate: EditDocumentControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,13 +80,28 @@ class CaptureViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                 }
             }
             
-            viewModel.$documentIDAdded.dropFirst()
+            viewModel.$passportProcessingJob.dropFirst()
                 .receive(on: RunLoop.main)
-                .sink { _ in
-                KMAlert.alert(title: "", message: "Document Upload Successfully") { _ in
-                    self.delegate?.reloadCardsAfterUpload()
-                    self.navigationController?.popViewController(animated: true)
-                }
+                .sink { passportJob in
+                    let storyBoard : UIStoryboard = UIStoryboard(name: "EditDocument", bundle:nil)
+                    let vc = storyBoard.instantiateViewController(withIdentifier: "EditPassportViewController") as! EditPassportViewController
+                    let viewModel = EditDocumentViewModel()
+                    viewModel.editingPassport = passportJob
+                    vc.viewModel = viewModel
+                    vc.delegate = self.delegate
+                    self.navigationController?.pushViewController(vc, animated:true)
+            }
+            
+            viewModel.$licenseProcessingJob.dropFirst()
+                .receive(on: RunLoop.main)
+                .sink { licenseJob in
+                    let storyBoard : UIStoryboard = UIStoryboard(name: "EditDocument", bundle:nil)
+                    let vc = storyBoard.instantiateViewController(withIdentifier: "EditLicenseViewController") as! EditLicenseViewController
+                    let viewModel = EditDocumentViewModel()
+                    viewModel.editingLicense = licenseJob
+                    vc.viewModel = viewModel
+                    vc.delegate = self.delegate
+                    self.navigationController?.pushViewController(vc, animated:true)
             }
         }
     }

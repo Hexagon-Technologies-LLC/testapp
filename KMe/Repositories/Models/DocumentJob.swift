@@ -36,6 +36,10 @@ struct LicenseJob: Codable, Equatable {
         let eye_color: String
         let endorsements: String
         let restrictions: String
+        
+        var sexString: String {
+            Gender(rawValue: sex)?.toString ?? ""
+        }
     }
 }
     
@@ -44,15 +48,19 @@ struct PassportJob: Codable, Equatable {
     var data: PassportJobData?
     
     struct PassportJobData: Codable, Equatable {
-        let country_region: String
-        let place_of_birth: String
-        let date_of_birth: String
-        let date_of_expiration: String
-        let issuing_authority: String
-        let date_of_issue: String
-        let last_name: String
-        let nationality: String
-        let sex: String
-        let first_name: String
+        var country_region: String
+        var place_of_birth: String
+        var date_of_birth: String
+        var date_of_expiration: String
+        var issuing_authority: String
+        var date_of_issue: String
+        var last_name: String
+        var nationality: String
+        var sex: String
+        var first_name: String
+        
+        var sexString: String {
+            Gender(rawValue: sex)?.toString ?? ""
+        }
     }
 }

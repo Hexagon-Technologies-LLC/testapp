@@ -146,6 +146,10 @@
 		D4980E092B83B4220053A9EC /* BaseXibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4980E082B83B4220053A9EC /* BaseXibView.swift */; };
 		D4980E0B2B83C5B80053A9EC /* DriverDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4980E0A2B83C5B80053A9EC /* DriverDocumentView.swift */; };
 		D4980E0D2B83C5C40053A9EC /* DriverDocumentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4980E0C2B83C5C40053A9EC /* DriverDocumentView.xib */; };
+		D4980E102B8492B90053A9EC /* EditDocument.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4980E0F2B8492B90053A9EC /* EditDocument.storyboard */; };
+		D4980E122B8493170053A9EC /* EditPassportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4980E112B8493170053A9EC /* EditPassportViewController.swift */; };
+		D4980E142B84961B0053A9EC /* EditDocumentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4980E132B84961B0053A9EC /* EditDocumentViewModel.swift */; };
+		D4980E162B84AE6A0053A9EC /* EditLicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4980E152B84AE6A0053A9EC /* EditLicenseViewController.swift */; };
 		D4A7BFB42B72738000198593 /* CFRepositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BF9A2B72738000198593 /* CFRepositories.swift */; };
 		D4A7BFB62B72738000198593 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BF9D2B72738000198593 /* Resolver.swift */; };
 		D4A7BFB72B72738000198593 /* CancelBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7BF9E2B72738000198593 /* CancelBag.swift */; };
@@ -346,6 +350,10 @@
 		D4980E082B83B4220053A9EC /* BaseXibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseXibView.swift; sourceTree = "<group>"; };
 		D4980E0A2B83C5B80053A9EC /* DriverDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverDocumentView.swift; sourceTree = "<group>"; };
 		D4980E0C2B83C5C40053A9EC /* DriverDocumentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DriverDocumentView.xib; sourceTree = "<group>"; };
+		D4980E0F2B8492B90053A9EC /* EditDocument.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditDocument.storyboard; sourceTree = "<group>"; };
+		D4980E112B8493170053A9EC /* EditPassportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPassportViewController.swift; sourceTree = "<group>"; };
+		D4980E132B84961B0053A9EC /* EditDocumentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDocumentViewModel.swift; sourceTree = "<group>"; };
+		D4980E152B84AE6A0053A9EC /* EditLicenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLicenseViewController.swift; sourceTree = "<group>"; };
 		D4A7BF9A2B72738000198593 /* CFRepositories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFRepositories.swift; sourceTree = "<group>"; };
 		D4A7BF9D2B72738000198593 /* Resolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
 		D4A7BF9E2B72738000198593 /* CancelBag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelBag.swift; sourceTree = "<group>"; };
@@ -449,6 +457,7 @@
 				D4A7BF992B72736D00198593 /* Repositories */,
 				086462AF2AA741D3009CBF01 /* Components */,
 				08C0DEED2AB01E92008CAC1C /* CustomViews */,
+				D4980E0E2B84929A0053A9EC /* Storyboards */,
 				D47E8C6A2B75B2CE007879A1 /* Utils */,
 				D4DDBE852B792457007E2B2F /* Resources */,
 				08C488A02AE8DC5600329F98 /* Mockdata */,
@@ -458,8 +467,6 @@
 				086462812AA5AC15009CBF01 /* SceneDelegate.swift */,
 				086462832AA5AC15009CBF01 /* ViewController.swift */,
 				D4CFA52E2B737C5C00E000E0 /* Defined.swift */,
-				086462852AA5AC15009CBF01 /* Main.storyboard */,
-				0864628A2AA5AC16009CBF01 /* LaunchScreen.storyboard */,
 				0864628D2AA5AC16009CBF01 /* Info.plist */,
 			);
 			path = KMe;
@@ -676,6 +683,8 @@
 				08BB6D472ABC9C1A004EAAAF /* NotificationViewController.swift */,
 				08BB6D512ABD15A3004EAAAF /* ProfileViewController.swift */,
 				083912762AC684B400B81C2B /* CaptureViewController.swift */,
+				D4980E112B8493170053A9EC /* EditPassportViewController.swift */,
+				D4980E152B84AE6A0053A9EC /* EditLicenseViewController.swift */,
 				08AE1B9F2AF4EE2E00F8A4E4 /* EditProfileViewController.swift */,
 				086474B42ACE438C009B6CAB /* InviteViewController.swift */,
 				086474B62ACE484C009B6CAB /* SendInviteViewController.swift */,
@@ -726,6 +735,16 @@
 				D4980E0C2B83C5C40053A9EC /* DriverDocumentView.xib */,
 			);
 			path = DocumentView;
+			sourceTree = "<group>";
+		};
+		D4980E0E2B84929A0053A9EC /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				0864628A2AA5AC16009CBF01 /* LaunchScreen.storyboard */,
+				086462852AA5AC15009CBF01 /* Main.storyboard */,
+				D4980E0F2B8492B90053A9EC /* EditDocument.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		D4A7BF992B72736D00198593 /* Repositories */ = {
@@ -821,6 +840,7 @@
 				D4C696E42B7C5215002427B9 /* EditProfileViewModel.swift */,
 				D4C696E22B7C5146002427B9 /* SettingViewModel.swift */,
 				D485E14F2B7D262700BB2473 /* CaptureViewModel.swift */,
+				D4980E132B84961B0053A9EC /* EditDocumentViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -980,6 +1000,7 @@
 				08BFC8F82AE24B7000C8D18B /* DateScrollPicker.xib in Resources */,
 				08BFC8EC2AE24B7000C8D18B /* DateViewCell.xib in Resources */,
 				0864628C2AA5AC16009CBF01 /* LaunchScreen.storyboard in Resources */,
+				D4980E102B8492B90053A9EC /* EditDocument.storyboard in Resources */,
 				086462C92AA852FB009CBF01 /* Montserrat-ExtraLight.ttf in Resources */,
 				08C0DF022AB174BC008CAC1C /* Documentsummary.xib in Resources */,
 				086462892AA5AC16009CBF01 /* Assets.xcassets in Resources */,
@@ -1184,6 +1205,7 @@
 				08AE1BA02AF4EE2E00F8A4E4 /* EditProfileViewController.swift in Sources */,
 				08A55C422ABAC21500A2B1F5 /* MoreoptionView.swift in Sources */,
 				08BB6D482ABC9C1A004EAAAF /* NotificationViewController.swift in Sources */,
+				D4980E142B84961B0053A9EC /* EditDocumentViewModel.swift in Sources */,
 				D4C696E32B7C5146002427B9 /* SettingViewModel.swift in Sources */,
 				D4A7BFBB2B72738000198593 /* Network+Extensions.swift in Sources */,
 				08462B1B2B2074A900FAAF8B /* Country.swift in Sources */,
@@ -1215,7 +1237,9 @@
 				D4DDBE842B7922A1007E2B2F /* TextFieldPubisher.swift in Sources */,
 				08C0DEEC2AAA8DB8008CAC1C /* UIBezierPath+MaterialOutlinedTextField.swift in Sources */,
 				D4CFA52F2B737C5C00E000E0 /* Defined.swift in Sources */,
+				D4980E162B84AE6A0053A9EC /* EditLicenseViewController.swift in Sources */,
 				08AE1B9E2AF4E16500F8A4E4 /* InviteMember.swift in Sources */,
+				D4980E122B8493170053A9EC /* EditPassportViewController.swift in Sources */,
 				08462B192B2066DB00FAAF8B /* MemberDocument.swift in Sources */,
 				D4A7BFC12B72738000198593 /* HTTP.swift in Sources */,
 				D47E8C6C2B75B2E3007879A1 /* UserDefaultHandler.swift in Sources */,
@@ -1433,7 +1457,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = KMe/KMe.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 48HJA497TD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KMe/Info.plist;
@@ -1469,7 +1493,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = KMe/KMe.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 48HJA497TD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KMe/Info.plist;

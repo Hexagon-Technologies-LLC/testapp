@@ -36,7 +36,7 @@ class PassportDocumentView: BaseXibView {
         cardDateIssue.text = documentInfo.document_data?.date_of_issue
         cardDateExpired.text = documentInfo.document_data?.date_of_expiration
         
-        cardDOB.text = documentInfo.document_data?.date_of_birth?.toDate(dateFormat: "yyyy-MM-dd")?.toString(dateFormat: "dd/MM/yyyy")
+        cardDOB.text = documentInfo.document_data?.date_of_birth
         cardPlaceOfBirth.text = documentInfo.document_data?.place_of_birth
     }
 }

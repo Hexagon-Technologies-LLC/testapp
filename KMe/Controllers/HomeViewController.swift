@@ -361,7 +361,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
 }
 
-extension HomeViewController: CaptureViewControllerDelegate {
+extension HomeViewController: EditDocumentControllerDelegate {
     func reloadCardsAfterUpload() {
         self.reloadCards()
     }

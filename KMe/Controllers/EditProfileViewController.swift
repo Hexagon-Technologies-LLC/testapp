@@ -373,6 +373,7 @@ class EditProfileViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         {
             gender.text = APPCONTENT.getgender[row] as? String
         }
+        gender.sendActions(for: .editingChanged)
     }
     
     @IBAction func backnavigation(_ sender: Any) {

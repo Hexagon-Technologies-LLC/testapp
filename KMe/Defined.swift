@@ -33,3 +33,19 @@ enum DocumentType: String {
         }
     }
 }
+
+enum Gender: String {
+    case male = "M"
+    case female = "F"
+    case other = "O"
+    case dontSpecify = "D"
+    
+    var toString: String {
+        switch self {
+        case .male: return "Male"
+        case .female: return "Female"
+        case .other: return "Other"
+        default: return "Don't specify"
+        }
+    }
+}
