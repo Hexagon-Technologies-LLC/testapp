@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24.225" height="13" viewBox="0 0 24.225 13">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_455" data-name="Rectangle 455" width="24" height="13" transform="translate(-0.001 0)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Canada" transform="translate(0 0.42)">
+    <rect id="Rectangle_452" data-name="Rectangle 452" width="6.056" height="12.782" transform="translate(0 -0.29)" fill="#ec1c24"/>
+    <rect id="Rectangle_453" data-name="Rectangle 453" width="12.113" height="12.782" transform="translate(6.056 -0.29)" fill="#fff"/>
+    <rect id="Rectangle_454" data-name="Rectangle 454" width="6.056" height="12.782" transform="translate(18.169 -0.29)" fill="#ec1c24"/>
+    <g id="Group_374" data-name="Group 374" transform="translate(0.001 -0.42)">
+      <g id="Group_373" data-name="Group 373" clip-path="url(#clip-path)">
+        <path id="Path_351" data-name="Path 351" d="M700.877,204.689h.144l-.046-1.867.132-.111,1.731.2-.151-.51a.237.237,0,0,1,.078-.242l1.737-1.444-.36-.173c-.158-.058-.113-.148-.057-.367l.265-.987-1.008.217a.153.153,0,0,1-.179-.109l-.13-.464-.8.914c-.113.146-.343.146-.271-.192l.341-1.852-.457.243c-.129.073-.256.085-.329-.046l-.642-1.205-.642,1.2c-.071.131-.2.119-.328.046l-.457-.243.341,1.852c.071.339-.159.339-.272.193l-.8-.914-.13.464a.154.154,0,0,1-.179.11l-1.009-.217.265.987c.057.219.1.31-.056.368l-.361.173,1.737,1.444a.237.237,0,0,1,.08.242l-.152.51,1.731-.2.132.111-.046,1.867Z" transform="translate(-688.765 -194.17)" fill="#ec1c24" fill-rule="evenodd"/>
+      </g>
+    </g>
+  </g>
+</svg>
