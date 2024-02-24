@@ -9,7 +9,7 @@ import Foundation
 
 public class CaptureViewModel: ObservableObject {
     @LazyInjected public var appState: AppStore<AppState>
-    @LazyInjected var repoDocument: DocumentRepository
+    @LazyInjected var repoDocument: DocumentNetwork
     private var cancelBag = CancelBag()
     @Published var errorMessage: String?
     @Published var loadingState: LoadingState = .none

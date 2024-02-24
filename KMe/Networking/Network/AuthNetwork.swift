@@ -1,5 +1,5 @@
 //
-//  AuthWebRepository.swift
+//  AuthWebNetwork.swift
 //  iOSRepositories
 //
 //  Created by Cuong Le on 06/02/24.
@@ -10,7 +10,7 @@
 import Combine
 import Foundation
 
-public protocol AuthRepository: WebRepository {
+public protocol AuthNetwork: WebNetwork {
     func credentialToken(code: String) async throws -> TokenInfo
     func signIn(username: String, password: String) async throws -> Bool
     func getProfile(id: String) async throws -> UserInfo
@@ -20,7 +20,7 @@ public protocol AuthRepository: WebRepository {
     func deleteProfile(id: String) async throws -> String
 }
 
-struct AuthRepositoryImpl {
+struct AuthNetworkImpl {
     let session: URLSession
     let baseURL: String
     let bgQueue = DispatchQueue(label: "bg_auth_queue") // , attributes: .concurrent
@@ -43,7 +43,7 @@ public enum AuthError: Error, LocalizedError {
 }
 
 // MARK: - Async impl
-extension AuthRepositoryImpl: AuthRepository {
+extension AuthNetworkImpl: AuthNetwork {
     func signIn(username: String, password: String) async throws -> Bool {
         
         let param: Parameters = ["username": username, "password": password]
@@ -91,7 +91,7 @@ extension AuthRepositoryImpl: AuthRepository {
 }
 
 // MARK: - Configuration
-extension AuthRepositoryImpl {
+extension AuthNetworkImpl {
     enum API: ResourceType {
         case signIn(param: Parameters)
         case credentialToken(param: Parameters)

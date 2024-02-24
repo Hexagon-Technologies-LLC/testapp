@@ -9,7 +9,7 @@ import Foundation
 
 public class EditProfileViewModel: ObservableObject {
     @LazyInjected public var appState: AppStore<AppState>
-    @LazyInjected var repoAuth: AuthRepository
+    @LazyInjected var repoAuth: AuthNetwork
     private var cancelBag = CancelBag()
     
     @Published var dateOfBirth: String?

@@ -1,5 +1,5 @@
 //
-//  DocumentRepository.swift
+//  DocumentNetwork.swift
 //  KMe
 //
 //  Created by Le Quang Tuan Cuong(CuongLQT) on 14/02/2024.
@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import Foundation
 
-protocol DocumentRepository: WebRepository {
+protocol DocumentNetwork: WebNetwork {
     func processingSubmit(params: [String: Any]) async throws -> String
     func processingCheck(id: String) async throws -> Bool
     func processingReceive(id: String) async throws -> DocumentJob
@@ -19,7 +19,7 @@ protocol DocumentRepository: WebRepository {
     func deleteDocumentByID(id: String) async throws -> String
 }
 
-struct DocumentRepositoryImpl {
+struct DocumentNetworkImpl {
     let session: URLSession
     let baseURL: String
     let bgQueue = DispatchQueue(label: "bg_auth_queue") // , attributes: .concurrent
@@ -35,7 +35,7 @@ struct DocumentRepositoryImpl {
 
 
 // MARK: - Async impl
-extension DocumentRepositoryImpl: DocumentRepository {
+extension DocumentNetworkImpl: DocumentNetwork {
     func processingSubmit(params: [String : Any]) async throws -> String {
         let userInfo: [String: String] = try await execute(endpoint: API.processingSubmit(param: params), isFullPath: false, logLevel: .debug)
         return userInfo["job_id"] ?? ""
@@ -109,7 +109,7 @@ extension DocumentRepositoryImpl: DocumentRepository {
 
 
 // MARK: - Configuration
-extension DocumentRepositoryImpl {
+extension DocumentNetworkImpl {
     enum API: ResourceType {
         case processingSubmit(param: Parameters)
         case processingCheck(_ id: String)

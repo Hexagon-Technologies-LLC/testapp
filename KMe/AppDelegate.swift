@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let env = AppEnvironmentImpl()
         self.appState = env.appState
         
-        let repo = CFRepositories(env: env)
+        let repo = KMeNetworking(env: env)
         repo.registerDI()
         
         return true

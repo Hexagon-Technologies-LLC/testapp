@@ -39,7 +39,7 @@ public protocol AppEnvironment {
 }
 
 /// RepositoryModule module definition
-public final class CFRepositories<T: AppEnvironment> {
+public final class KMeNetworking<T: AppEnvironment> {
     // MARK: - Fields
     var env: T
     // MARK: - Initializers
@@ -59,11 +59,11 @@ public final class CFRepositories<T: AppEnvironment> {
         Resolver.register { self.env.systemEventsHandler }.scope(.shared)
         
         Resolver.register {
-            AuthRepositoryImpl(configuration: self.env.serviceConfig)
-        }.implements(AuthRepository.self)
+            AuthNetworkImpl(configuration: self.env.serviceConfig)
+        }.implements(AuthNetwork.self)
         
         Resolver.register {
-            DocumentRepositoryImpl(configuration: self.env.serviceConfig)
-        }.implements(DocumentRepository.self)
+            DocumentNetworkImpl(configuration: self.env.serviceConfig)
+        }.implements(DocumentNetwork.self)
     }
 }

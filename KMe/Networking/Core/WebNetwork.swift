@@ -1,5 +1,5 @@
 //
-//  WebRepository.swift
+//  WebNetwork.swift
 //  iOSRepositories
 //
 //  Created by Cuong Le on 06/02/24.
@@ -10,18 +10,18 @@
 import Combine
 import Foundation
 
-public protocol WebRepository {
+public protocol WebNetwork {
     var baseURL: String { get }
     var session: URLSession { get }
     var bgQueue: DispatchQueue { get }
     var interceptor: RequestInterceptor? { get }
 }
 
-extension WebRepository {
+extension WebNetwork {
     var retryCount: Int { 1 }
 }
 
-extension WebRepository {
+extension WebNetwork {
     func execute<Value>(endpoint: ResourceType,
                         httpCodes: HTTPCodes = .success,
                         isFullPath: Bool = false,
