@@ -1,6 +1,6 @@
 //
 //  NetworkingLogger.swift
-//  iOSRepositories
+//  KMeNetworkingModule
 //
 //  Created by Cuong Le on 06/02/24.
 //  Copyright © All rights reserved.

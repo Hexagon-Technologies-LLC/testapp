@@ -1,6 +1,6 @@
 //
-//  iOSRepositories.swift
-//  iOSRepositories
+//  KMeNetworkingModule.swift
+//  KMeNetworkingModule
 //
 //  Created by Cuong Le on 06/02/24.
 //  Copyright © All rights reserved.
