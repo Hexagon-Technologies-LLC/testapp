@@ -37,9 +37,6 @@ class EditProfileCompletionViewController: UIViewController,UIPickerViewDelegate
         self.dismissPopup(completion: nil)
     }
     
-    
-    
-    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var regionlayout: UIStackView!
     @IBOutlet weak var flaglayout: UIStackView!

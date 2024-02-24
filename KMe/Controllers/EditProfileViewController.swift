@@ -7,6 +7,7 @@
 
 import UIKit
 import SSCustomTabbar
+import SVProgressHUD
 
 class EditProfileViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource, UITextFieldDelegate,regionselectiondelegate {
     
@@ -24,6 +25,7 @@ class EditProfileViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     
     func regionDefault(countries: NSArray) {
         region.text = countries.componentsJoined(by: ",")
+        region.sendActions(for: .editingChanged)
         
         selectedcountries.removeAllObjects()
         selectedcountries.addObjects(from: countries as! [String])
@@ -299,8 +301,10 @@ class EditProfileViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     }
     
     @IBAction func submitButtonTapped(_ sender: Any) {
+        SVProgressHUD.show()
         Task {
             await viewModel.updateProfile()
+            await SVProgressHUD.dismiss()
         }
     }
     
