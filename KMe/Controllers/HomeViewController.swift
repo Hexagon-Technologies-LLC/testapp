@@ -117,8 +117,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     func addUploadView() {
         let uploadView = Bundle.main.loadNibNamed("Uploadstackview", owner: self, options: nil)?.first as! UIView
         uploadView.backgroundColor = UIColor(named: "Uploadbg")
-        uploadView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        uploadView.widthAnchor.constraint(equalToConstant:  self.view.frame.size.width).isActive = true
+        NSLayoutConstraint.activate([
+            uploadView.widthAnchor.constraint(equalToConstant: self.view.frame.size.width),
+            uploadView.heightAnchor.constraint(equalToConstant: 100)
+        ])
+        
         uploadView.roundAllCorners(cornerRadius: 20)
         
         uploadView.applyGradient(colours: [UIColor(named: "gradient_top")!,UIColor(named: "gradient_bottom")!])
