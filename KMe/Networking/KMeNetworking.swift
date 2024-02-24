@@ -53,7 +53,7 @@ public final class KMeNetworking<T: AppEnvironment> {
     
     /// Registers DI
     public func registerDI() {
-        print("CFRepositories registerDI")
+        print("KMeNetworking registerDI")
         Resolver.register { self.env.appState }.scope(.shared)
         Resolver.register { self.env.systemEventsHandler }.scope(.shared)
         
