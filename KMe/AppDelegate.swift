@@ -10,13 +10,18 @@ import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
+    var appState: AppStore<AppState>?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         IQKeyboardManager.shared.enable = true
-
+        
+        let env = AppEnvironmentImpl()
+        self.appState = env.appState
+        
+        let repo = KMeNetworking(env: env)
+        repo.registerDI()
+        
         return true
     }
 

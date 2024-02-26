@@ -1,28 +1,46 @@
 PODS:
   - DropDown (2.3.13)
   - IQKeyboardManagerSwift (6.5.16)
+  - JWTDecode (3.1.0)
   - SSCustomTabbar (2.0.7)
+  - SVProgressHUD (2.3.1):
+    - SVProgressHUD/Core (= 2.3.1)
+  - SVProgressHUD/Core (2.3.1)
   - ToastViewSwift (2.0.0)
 
 DEPENDENCIES:
   - DropDown
   - IQKeyboardManagerSwift
+  - JWTDecode (~> 3.1)
   - SSCustomTabbar
+  - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
   - ToastViewSwift
 
 SPEC REPOS:
   trunk:
     - DropDown
     - IQKeyboardManagerSwift
+    - JWTDecode
     - SSCustomTabbar
     - ToastViewSwift
+
+EXTERNAL SOURCES:
+  SVProgressHUD:
+    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
+
+CHECKOUT OPTIONS:
+  SVProgressHUD:
+    :commit: 34482a5479e24a1e0783b853102d91e761e6814b
+    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
 
 SPEC CHECKSUMS:
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   IQKeyboardManagerSwift: 12d89768845bb77b55cc092ecc2b1f9370f06b76
+  JWTDecode: 3eaab1e06b6f4dcbdd6716aff09ba4c2104ca8b7
   SSCustomTabbar: da05060b9916312a3b9af6b7640d6a298a335dfe
+  SVProgressHUD: 4837c74bdfe2e51e8821c397825996a8d7de6e22
   ToastViewSwift: db710ad3c19c826269d004038c7b69f5b658dc6f
 
-PODFILE CHECKSUM: 057a5f5cd520c8c4f9118d28dcdaea41f2939145
+PODFILE CHECKSUM: 50a8f178c95986a34faa6b9311e86c8612b68c6a
 
-COCOAPODS: 1.13.0
+COCOAPODS: 1.14.3

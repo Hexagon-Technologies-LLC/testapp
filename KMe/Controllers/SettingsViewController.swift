@@ -11,6 +11,9 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var profileview: UIView!
     @IBOutlet weak var termsview: UIView!
     @IBOutlet weak var settingsviiew: UIView!
+    @IBOutlet weak var deleteButton: UIButton!
+    @LazyInjected var appState: AppStore<AppState>
+    private var viewModel = SettingViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,12 +61,28 @@ class SettingsViewController: UIViewController {
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SendInviteViewController") as! SendInviteViewController
         self.navigationController?.pushViewController(nextViewController, animated:true)
     }
+    
     @IBAction func notifyclicked(_ sender: UIButton){
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "NotificationViewController") as! NotificationViewController
         self.navigationController?.pushViewController(nextViewController, animated:true)
     }
+    
     @IBAction func backclicked(_ sender: UIButton){
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func logoutProfileClicked(_ sender: Any) {
+        appState.value.logout()
+    }
+    
+    @IBAction func deleteProfileClicked(_ sender: Any) {
+        KMAlert.actionSheetConfirm(title: "", message: "Are you sure you want to delete your account?") { _ in
+            
+        } submitAction: { _ in
+            Task {
+                await self.viewModel.deleteAccount()
+            }
+        }
     }
 }

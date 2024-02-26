@@ -37,9 +37,6 @@ class EditProfileCompletionViewController: UIViewController,UIPickerViewDelegate
         self.dismissPopup(completion: nil)
     }
     
-    
-    
-    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var regionlayout: UIStackView!
     @IBOutlet weak var flaglayout: UIStackView!
@@ -194,7 +191,7 @@ class EditProfileCompletionViewController: UIViewController,UIPickerViewDelegate
         print(datePicker.date)
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy"
+        formatter.dateFormat = "MM/dd/yyyy"
         dateofbirth.text = formatter.string(from: datePicker.date)
         self.view.endEditing(true)
     }

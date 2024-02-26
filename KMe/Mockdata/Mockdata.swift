@@ -164,8 +164,7 @@ struct APPCONTENT {
     
     
     static var getgender:NSArray {
-        
-        let gendermaster = ["Select gender","Male","Female","Other","Don't want to specify"]
+        let gendermaster = [Gender.male.toString, Gender.female.toString, Gender.other.toString, Gender.dontSpecify.toString]
         return gendermaster as NSArray
     }
 

@@ -10,7 +10,8 @@ target 'KMe' do
   pod 'DropDown'
   pod 'ToastViewSwift'
   pod 'IQKeyboardManagerSwift'
-
+  pod 'JWTDecode', '~> 3.1'
+  pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
   
   target 'KMeTests' do
     inherit! :search_paths
